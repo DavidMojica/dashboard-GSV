@@ -29,9 +29,9 @@
             $stmt = $pdo->prepare($query);
             $user = filter_input(INPUT_POST, "user", FILTER_SANITIZE_STRING);
             $pass = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_STRING);
-            $pass_hash = hash('sha256', $pass); // Calcula el hash de la contraseña
-            $stmt->bindParam(':username', $user, PDO::PARAM_STR); // Vincula el valor a :username
-            $stmt->bindParam(':pass', $pass_hash, PDO::PARAM_STR); // Vincula el valor a :pass
+            $pass_hash = hash('sha256', $pass);
+            $stmt->bindParam(':username', $user, PDO::PARAM_STR); 
+            $stmt->bindParam(':pass', $pass_hash, PDO::PARAM_STR);
             $stmt->execute();
             
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
