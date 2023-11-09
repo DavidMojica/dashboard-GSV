@@ -20,7 +20,7 @@
         <label for="pass">Contraseña</label>
         <input type="text" name="pass" id="pass">
 
-        <button>Ingresar</button>
+        <button id="send">Ingresar</button>
     </form>
     
 </body>
