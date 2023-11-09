@@ -1,2 +1,2 @@
-
+INSERT INTO `tbl_usuario`(`username`, `pass`) VALUES ('ivern', SHA2('corei58400', 256))
 

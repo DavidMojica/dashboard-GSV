@@ -1,21 +1,29 @@
 const user = document.getElementById('user');
 const pass = document.getElementById('pass');
 const send = document.getElementById('send');
+const msg  = document.getElementById('msg');
+const loginForm = document.getElementById('loginForm');
 
+loginForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar el envío del formulario
 
-function validar_login(){
-    user_text = user.value.trim();
-    pass_text = pass.value.trim();
-    let msg = "";
-    ban = true
+    const user_text = user.value.trim();
+    const pass_text = pass.value.trim();
+    let error = ""
+    let ban = true;
 
-    if(user === "" || pass === ""){
-        msg += "Algún campo está vacío<br>";
+    if (user_text === "" || pass_text === "") {
+        error += "Algún dato está vacío";
         ban = false;
     }
 
-    if (ban) mandar_al_servidor(user_text, pass_text);
-}
+    if (ban) {
+        mandar_al_servidor(user_text, pass_text);
+    }
+    else {
+        msg.textContent = error;
+    }
+});
 
 function mandar_al_servidor(user, pass){
     $.ajax({
@@ -30,7 +38,10 @@ function mandar_al_servidor(user, pass){
             let data       = JSON.parse(jsonString);
             console.log(data);
             if(data.success){
-                window.location.href = "../templates/admin.php"
+                window.location.href = "../templates/admin.php";
+            }
+            else{
+                msg.textContent = data.mensaje;
             }
         },error: function(jqXHR, textStatus, errorThrown){
             // Error en la solicitud AJAX

@@ -11,8 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <title>Dashboard</title>
+    
+    
+    <title>Dashboard</title> 
 </head>
 
 <body>
@@ -35,7 +36,7 @@
                         echo '<li class="nav-item m-1"><a href="cerrar_sesion.php">Cerrar Sesión</a></li>';
                     } else {
                         // La sesión no está iniciada, muestra el botón de "Iniciar Sesión"
-                        echo '<li class="nav-item m-1"><a href="iniciar_sesion.php">Iniciar Sesión</a></li>';
+                        echo '<li class="nav-item m-1"><a href="templates/login.php">Iniciar Sesión</a></li>';
                     }
                     ?>
                 </ul>
