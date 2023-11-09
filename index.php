@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-success bg-gradient" style="background: var(--bs-indigo-500);">
+    <nav class="navbar navbar-expand-lg bg-success bg-gradient">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="" class="logo" width="250" alt="logo_secretaria">
