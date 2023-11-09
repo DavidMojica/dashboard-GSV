@@ -25,27 +25,30 @@ loginForm.addEventListener("submit", function (event) {
     }
 });
 
-function mandar_al_servidor(user, pass) {
-    // Utiliza el método fetch en lugar de $.ajax (jQuery) para realizar la solicitud AJAX
-    fetch('../processes/login_process.php', {
-        method: 'POST',
-        body: JSON.stringify({ user, pass }),
-        headers: {
-            'Content-Type': 'application/json'
+function mandar_al_servidor(user, pass){
+    $.ajax({
+        url: '../processes/login_process.php',
+        type: 'POST',
+        data:{
+            user: user,
+            pass: pass
+        },
+        success: function(response){
+            let jsonString = JSON.stringify(response);
+            let data       = JSON.parse(jsonString);
+            console.log(data);
+            if(data.success){
+                window.location.href = "../templates/admin.php";
+            }
+            else{
+                msg.textContent = data.mensaje;
+            }
+        },error: function(jqXHR, textStatus, errorThrown){
+            // Error en la solicitud AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        if (data.success) {
-            window.location.href = "../templates/admin.php";
-        } else {
-            msg.textContent = data.mensaje;
-        }
-    })
-    .catch(error => {
-        // Manejar errores en la solicitud AJAX
-        console.log('Error en la solicitud');
-        console.error(error);
     });
 }
