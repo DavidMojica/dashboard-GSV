@@ -19,6 +19,7 @@
 
         <label for="pass">Contraseña</label>
         <input type="text" name="pass" id="pass">
+        <p id="msg"></p>
 
         <button id="send">Ingresar</button>
     </form>

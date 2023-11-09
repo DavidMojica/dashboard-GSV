@@ -1,7 +1,7 @@
 const user = document.getElementById('user');
 const pass = document.getElementById('pass');
 const send = document.getElementById('send');
-
+const msg  = document.getElementById('msg');
 
 function validar_login(){
     user_text = user.value.trim();
@@ -30,7 +30,10 @@ function mandar_al_servidor(user, pass){
             let data       = JSON.parse(jsonString);
             console.log(data);
             if(data.success){
-                window.location.href = "../templates/admin.php"
+                window.location.href = "../templates/admin.php";
+            }
+            else{
+                msg.textContent = data.mensaje;
             }
         },error: function(jqXHR, textStatus, errorThrown){
             // Error en la solicitud AJAX
