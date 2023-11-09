@@ -30,8 +30,14 @@ function mandar_al_servidor(user, pass){
             let data       = JSON.parse(jsonString);
             console.log(data);
             if(data.success){
-                window.location.href = "../templates/"
+                window.location.href = "../templates/admin.php"
             }
+        },error: function(jqXHR, textStatus, errorThrown){
+            // Error en la solicitud AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
 }
