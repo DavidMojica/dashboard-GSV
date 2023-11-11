@@ -6,6 +6,8 @@ const fecha = document.getElementById('fecha');
 const formAccidentes = document.getElementById('formAccidentes');
 const msg =document.getElementById('msg_error');
 
+var fechaActual = new Date();
+var anio_actual = fechaActual.getFullYear();
 
 const cantidadMunicipiosAntioquia = 125;
 const cantidadTiposVictimas = 6;
@@ -21,6 +23,10 @@ formAccidentes.addEventListener('submit', function(event){
     const regex = /^\d{4}-\d{2}$/
     let error = "";
 
+    if(municipio_text.length == 0 || victima_text.length == 0 || cantidad_text.length == 0 || fecha_text.length == 0){
+        error += "Algún campo está vacío";
+    }
+
     if(municipio_text <= 0 || municipio_text > cantidadMunicipiosAntioquia){
         error += "Valor de municipio inválido. <br>";
     }
@@ -34,7 +40,14 @@ formAccidentes.addEventListener('submit', function(event){
     }
 
     if(!regex.test(fecha_text)){
-        error += "Ingrese la fecha en formato (YYYY-MM)."
+        error += "Ingrese la fecha en formato (YYYY-MM). <br>"
+    }
+    else{
+        const split = fecha.split("-");
+        const anio = split[0];
+        const mes = split[1];
+        if(mes <= 0 && mes > 12) error += "Mes no válido. <br>";
+        if(anio <= 2000 && anio > anio_actual) error += "Año no válido. <br>"
     }
 
 
@@ -44,10 +57,31 @@ formAccidentes.addEventListener('submit', function(event){
 });
 
 function AJAXaccidentes(municipio, fatalidad, victima, cantidad, fecha){
-    const split = fecha.split("-");
-    const anio = split[0];
-    const mes = split[1];
-
-
+    
+    $.ajax({
+        url: '../processes/AJAX_a.php',
+        type: 'POST',
+        data:{
+            municipio: municipio,
+            fatalidad: fatalidad,
+            victima: victima,
+            cantidad: cantidad,
+            anio: anio,
+            mes: mes
+        },
+        success: function(response){
+            let jsonString = JSON.stringify(response);
+            let data       = JSON.parse(jsonString);
+            if(data.success) limpiarCampos();
+            else alert(data.mensaje)
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            // Error en la solicitud AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
 }
 
