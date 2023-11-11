@@ -1,3 +1,15 @@
+<?php
+// Iniciar sesión
+session_start();
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['username']) || !$_SESSION['username']) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +18,9 @@
     <title>Admin</title>
 </head>
 <body>
-
     <form action="" method="POST">
+        <h2>Accidentes</h2>
+        
         
     </form>
     

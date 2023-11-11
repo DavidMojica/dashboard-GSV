@@ -158,3 +158,12 @@ INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05887',8,'
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05890',5,'Yolombó');
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05893',9,'Yondó');
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05895',7,'Zaragoza');
+
+--tbl vehiculo--
+
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Moto');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Peatón');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Vehículo');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Bicicleta');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Sin información');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario Otro');

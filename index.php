@@ -31,7 +31,7 @@
                     session_start();
 
                     // Comprueba si la sesión está iniciada
-                    if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
+                    if (isset($_SESSION['username']) && $_SESSION['username'] === true) {
                         // La sesión está iniciada, muestra el botón de "Cerrar Sesión"
                         echo '<li class="nav-item m-1"><a href="cerrar_sesion.php">Cerrar Sesión</a></li>';
                     } else {
@@ -39,6 +39,8 @@
                         echo '<li class="nav-item m-1"><a href="templates/login.php">Iniciar Sesión</a></li>';
                     }
                     ?>
+
+                    <li class="nav-item m-1"><a href="templates/admin.php">Admin</a></li>
                 </ul>
             </div>
         </div>
