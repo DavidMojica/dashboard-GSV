@@ -1,0 +1,46 @@
+.logo_form{
+    display: none;
+}
+main{
+    display: grid;
+    place-items: center;
+    height: 85.7vh;
+}
+#loginForm{
+    height: 45vh;
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows:.001fr 1.8fr 0.9fr 0.9fr 0.8fr 1.6fr; 
+    gap: 0px 0px; 
+    place-items: center;
+}
+
+@media (max-width: 768px) {
+    .navbar{
+        display: none;
+    }
+    .logo_form{
+        display: block;
+        width: 170px;
+        background: #fff;
+        border-radius: 1.5em 1em;
+        padding: 10%;
+    }
+    .form-container{
+        height: 100vh;
+        width: 99vw;
+    }
+    #loginForm{   
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1.9fr 0.9fr 0.8fr 0.7fr 1fr 1.7fr; 
+        gap: 0px 0px; 
+        height: 100%;
+        
+    }
+    .form-container .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        width: 80%;
+      }
+}

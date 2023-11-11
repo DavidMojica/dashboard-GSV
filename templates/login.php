@@ -22,16 +22,16 @@ if (isset($_SESSION['username'])) {
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../templates/styles/login.css">
     <link rel="stylesheet" href="../templates/styles/base.css">
     <link rel="stylesheet" href="../templates/styles/btn_type_A.css">
     <link rel="stylesheet" href="../templates/styles/bg_dotted.css">
     <link rel="stylesheet" href="../templates/styles/form_slashing.css">
+    <link rel="stylesheet" href="../templates/styles/login.css">
     <script src="../scripts/login.js" defer></script>
     <title>Document</title>
 </head>
 <body class="bg_dotted">
-<nav class="navbar navbar-expand-lg bg-primary bg-gradient">
+<nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo" alt="logo_secretaria">
@@ -57,15 +57,23 @@ if (isset($_SESSION['username'])) {
     
     <main>
         <div class="form-container">
-            <form action="" method="POST" id="loginForm">
-                <label for="user">Usuario</label>
-                <input type="text" name="user" id="user">
-                <br>
-                <label for="pass">Contraseña</label>
-                <input type="password" name="pass" id="pass">
+            <form action="" class="form" method="POST" id="loginForm">
+                <a class="navbar-brand" href="#">
+                    <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo_form" alt="logo_secretaria">
+                </a>
+            
+            
+                <h2>Iniciar Sesión</h2>
+                <div class="form-group">
+                    <label for="user">Usuario</label>
+                    <input type="text" name="user" id="user">
+                </div>
+                <div class="form-group">
+                    <label for="pass">Contraseña</label>
+                    <input type="password" name="pass" id="pass">
+                </div>
                 <p id="msg"></p>
-
-                <button id="send">Ingresar</button>
+                <button class="form-submit-btn">Ingresar</button>
             </form>
         </div>
     </main>
