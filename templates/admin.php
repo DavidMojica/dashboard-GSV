@@ -44,11 +44,7 @@ include('../processes/PDOconn.php');
         </div>
     </nav>
 
-
-
-
-
-    <form action="" method="POST">
+    <form action="" method="POST" id="formAccidentes">
         <h2>Accidentes</h2>
         <label for="municipio">Municipio</label>
         <select name="municipio" id="municipio">
@@ -76,7 +72,6 @@ include('../processes/PDOconn.php');
 
         <br>
         <label for="victima">Tipo de víctima</label>
-
         <select name="victima" id="victima">
             <option value="-1">Seleccione...</option>
             <?php
@@ -98,9 +93,9 @@ include('../processes/PDOconn.php');
         <br>
         <label for="fecha">Seleccionar Año y Mes:</label>
         <input type="text" id="fecha" name="fecha" placeholder="YYYY-MM" pattern="\d{4}-\d{2}" title="Ingrese un formato válido (YYYY-MM)" oninput="validarFecha()">
-
+        <p id="msg_error"></p>
         <br>
-        <button>Ingresar</button>
+        <button id="send">Ingresar</button>
 
     </form>
 
