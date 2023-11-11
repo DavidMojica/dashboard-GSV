@@ -11,3 +11,14 @@ INSERT INTO `tbl_meses`(`nombre`) VALUES ('Octubre');
 INSERT INTO `tbl_meses`(`nombre`) VALUES ('Noviembre');
 INSERT INTO `tbl_meses`(`nombre`) VALUES ('Diciembre');
 
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Valle de Aburrá');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Oriente');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Occidente');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Suroeste');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Nordeste');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Urabá');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Bajo Cauca');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Norte');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Norte');
+INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Magdalena Medio');
+
