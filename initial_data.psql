@@ -21,7 +21,17 @@ INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Bajo Cauca');
 INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Norte');
 INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Magdalena Medio');
 
+-------TBL MUNICIPIO-----
 --ALTER TABLE tbl_municipio AUTO_INCREMENT = 1;
+-- 1: valle aburra
+-- 2: Oriente
+-- 3 Occidente
+-- 4 Suroeste
+-- 5 Nordeste
+-- 6 uraba 
+-- 7 Bajo Cauca
+-- 8 Norte
+-- 9 Magdalena Medio
 
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05002',2,'Abejorral');
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05004',3,'Abriaquí');
@@ -68,15 +78,92 @@ INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05250',7,'
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05148',2,'El Carmen de Viboral');
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05541',2,'El Peñol');
 INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05607',2,'El Retiro');
--- 1: valle aburra
--- 2: Oriente
--- 3 Occidente
--- 4 Suroeste
--- 5 Nordeste
--- 6 uraba 
--- 7 Bajo Cauca
--- 8 Norte
--- 9 Magdalena Medio
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05697',2,'El Santuario');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05264',8,'Entrerríos');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05266',1,'Envigado');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05282',4,'Fredonia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05284',3,'Frontino');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05306',3,'Giraldo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05308',1,'Girardota');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05310',8,'Gómez Plata');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05313',2,'Granada');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05315',8,'Guadalupe');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05318',2,'Guarne');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05321',2,'Guatapé');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05347',3,'Heliconia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05353',4,'Hispania');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05360',1,'Itagüí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05361',8,'Ituango');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05364',4,'Jardín');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05368',4,'Jericó');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05376',2,'La Ceja');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05380',1,'La Estrella');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05390',4,'La Pintada');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05400',2,'La Unión');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05411',3,'Liborina');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05425',9,'Maceo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05440',2,'Marinilla');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05001',1,'Medellín');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05467',4,'Montebello');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05475',6,'Murindó');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05480',6,'Mutatá');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05483',2,'Nariño');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05495',7,'Nechí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05490',6,'Necoclí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05501',3,'Olaya');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05543',3,'Peque');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05576',4,'Pueblorrico');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05579',9,'Puerto Berrío');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05585',9,'Puerto Nare');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05591',9,'Puerto Triunfo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05604',5,'Remedios');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05615',2,'Rionegro');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05628',3,'Sabanalarga');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05631',1,'Sabaneta');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05642',4,'Salgar');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05647',8,'San Andrés de Cuerquia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05649',2,'San Carlos');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05652',2,'San Francisco');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05656',3,'San Jerónimo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05658',8,'San José de la Montaña');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05659',6,'San Juan de Urabá');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05660',2,'San Luis');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05664',8,'San Pedro de los Milagros');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05665',6,'San Pedro de Urabá');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05667',2,'San Rafael');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05670',5,'San Roque');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05674',2,'San Vicente Ferrer');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05679',4,'Santa Bárbara');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05042',3,'Santa Fe de Antioquia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05686',8,'Santa Rosa de Osos');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05690',5,'Santo Domingo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05736',5,'Segovia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05756',2,'Sonsón');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05761',3,'Sopetrán');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05789',4,'Támesis');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05790',7,'Tarazá');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05792',4,'Tarso');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05809',4,'Titiribí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05819',8,'Toledo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05837',6,'Turbo');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05842',3,'Uramita');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05847',4,'Urrao');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05854',8,'Valdivia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05856',4,'Valparaíso');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05858',5,'Vegachí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05861',4,'Venecia');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05873',8,'Vigía del Fuerte');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05885',5,'Yalí');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05887',8,'Yarumal');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05890',5,'Yolombó');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05893',9,'Yondó');
+INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05895',7,'Zaragoza');
 
+--tbl vehiculo--
 
-
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Moto');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Peatón');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Vehículo');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Bicicleta');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Sin información');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario Otro');

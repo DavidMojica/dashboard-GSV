@@ -1,3 +1,14 @@
+<?php
+// Iniciar sesión
+session_start();
+
+// Verificar si el usuario está autenticado
+if (isset($_SESSION['username'])) {
+    header('Location: ../index.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +25,7 @@
     <title>Document</title>
 </head>
 <body>
+    
     <form action="" method="POST" id="loginForm">
         <label for="user">Usuario</label>
         <input type="text" name="user" id="user">

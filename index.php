@@ -11,16 +11,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    
-    <title>Dashboard</title> 
+
+
+    <title>Dashboard</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-success bg-gradient">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="" class="logo" width="250" alt="logo_secretaria">
+                <img src="resources/imgs/logo.jpg" class="logo" width="150" alt="logo_secretaria">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,14 +31,17 @@
                     session_start();
 
                     // Comprueba si la sesión está iniciada
-                    if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true) {
-                        // La sesión está iniciada, muestra el botón de "Cerrar Sesión"
-                        echo '<li class="nav-item m-1"><a href="cerrar_sesion.php">Cerrar Sesión</a></li>';
-                    } else {
-                        // La sesión no está iniciada, muestra el botón de "Iniciar Sesión"
+                    if (!isset($_SESSION['username'])) {
                         echo '<li class="nav-item m-1"><a href="templates/login.php">Iniciar Sesión</a></li>';
+                    } else {
+                        echo '<li class="nav-item m-1">
+                                <form action="processes/logout.php" method="post">
+                                <input type="submit" value="Cerrar Sesión" class="button hbt">
+                                </form></li>';
                     }
                     ?>
+
+                    <li class="nav-item m-1"><a href="templates/admin.php">Admin</a></li>
                 </ul>
             </div>
         </div>

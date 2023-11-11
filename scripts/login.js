@@ -36,7 +36,6 @@ function mandar_al_servidor(user, pass){
         success: function(response){
             let jsonString = JSON.stringify(response);
             let data       = JSON.parse(jsonString);
-            console.log(data);
             if(data.success){
                 window.location.href = "../templates/admin.php";
             }
