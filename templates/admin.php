@@ -30,7 +30,7 @@ include('../processes/PDOconn.php');
     <title>Admin</title>
 </head>
 
-<body>
+<body >
     <nav class="navbar navbar-expand-lg bg-primary bg-gradient">
         <div class="container">
             <a class="navbar-brand" href="/">

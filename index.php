@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="templates/styles/btn_type_A.css">
     <link rel="stylesheet" href="templates/styles/index.css">
+    <link rel="stylesheet" href="templates/styles/base.css">
     <title>Dashboard</title>
 </head>
 
@@ -50,8 +51,6 @@
                         <li class="nav-item m-1"><a href="templates/admin.php"><button type="btn_type_A"></button></a></li>
 
                     <?php } ?>
-
-
                 </ul>
             </div>
         </div>
