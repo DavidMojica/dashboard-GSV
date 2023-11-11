@@ -21,6 +21,7 @@ var anio_actual = fechaActual.getFullYear();
 
 const cantidadMunicipiosAntioquia = 125;
 const cantidadTiposVictimas = 6;
+const regex = /^\d{4}$/
 
 formAccidentes.addEventListener('submit', function(event){
     event.preventDefault();
@@ -31,8 +32,7 @@ formAccidentes.addEventListener('submit', function(event){
     const cantidad_text = cantidad.value.trim();
     const anio_text = anio.value.trim();
     const mes_text = mes.value.trim();
-    const regex = /^\d{4}$/
-    let error = "";
+
 
     if(municipio_text.length == 0 || victima_text.length == 0 || cantidad_text.length == 0 || anio_text.length==0 || mes_text.length==0){
         msg.textContent = "Algún campo está vacío";

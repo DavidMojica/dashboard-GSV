@@ -10,11 +10,10 @@
         $cantidad = trim($_POST['cantidad']);
         $anio = trim($_POST['anio']);
         $mes = trim($_POST['mes']);
-        
+
         $anioActual = date('Y');
 
         # Variables de PHP
-        $errors = [];
         $queryError = "";
         $ban = false;
 
