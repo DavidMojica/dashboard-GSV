@@ -95,7 +95,7 @@ include('../processes/PDOconn.php');
 
         <br>
         <label for="anio">Ingrese el año</label>
-        <input type="number" id="anio" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+        <input type="number" id="anio" min="0" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
         
         <select name="mes" id="mes">
             <option value="1">Enero</option>
@@ -114,8 +114,35 @@ include('../processes/PDOconn.php');
         
         <p id="msg_error"></p>
         <br>
-        <button id="send">Ingresar</button>
+        <button>Ingresar</button>
 
+    </form>
+
+    <form action="" method="POST" id="formDane">
+        <h2>Dane</h2>
+        <label for="municipio_dane">Municipio</label>
+        <select name="municipio_dane" id="municipio_dane">
+            <option value="-1">Seleccione...</option>
+            <?php
+                $query = "SELECT * FROM tbl_municipio";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($result as $row) {
+                    echo "<option value='". $row['id'] ."'>". $row['nombre'] ."</option>";
+                } 
+            ?>
+        </select>
+
+        <label for="cantidad_dane">cantidad</label>
+        <input type="number" name="cantidad_dane" id="cantidad_dane" min="0">
+
+        <label for="anio_dane">Año</label>
+        <input type="number" id="anio_dane" min="0" name="anio_dane" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+        
+        <p id="msg_dane"></p>
+        <button>Ingresar</button>
     </form>
 
 </body>
