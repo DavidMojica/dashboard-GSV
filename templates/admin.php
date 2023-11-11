@@ -31,7 +31,7 @@ include('../processes/PDOconn.php');
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-success bg-gradient">
+    <nav class="navbar navbar-expand-lg bg-primary bg-gradient">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="../resources/imgs/logo.jpg" class="logo" width="250" alt="logo_secretaria">

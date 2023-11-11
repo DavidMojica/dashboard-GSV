@@ -12,12 +12,12 @@
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+    <link rel="stylesheet" href="templates/styles/btn_type_A.css">
     <title>Dashboard</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-success bg-gradient">
+    <nav class="navbar navbar-expand-lg bg-secondary bg-gradient">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="resources/imgs/logo.jpg" class="logo" width="150" alt="logo_secretaria">
@@ -32,7 +32,13 @@
 
                     // Comprueba si la sesión está iniciada
                     if (!isset($_SESSION['username'])) {
-                        echo '<li class="nav-item m-1"><a href="templates/login.php">Iniciar Sesión</a></li>';
+                    ?>
+                        <li class="nav-item m-1">
+                            <a href="templates/login.php">  
+                                <button class="btn_type_A">Iniciar Sesión</button>
+                            </a>
+                        </li>'
+                    <?php
                     } else {
                         echo '<li class="nav-item m-1">
                                 <form action="processes/logout.php" method="post">
