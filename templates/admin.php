@@ -67,7 +67,7 @@ include('../processes/PDOconn.php');
         <br>
         <label for="toggle">Muerte</label>
         <label class="switch">
-            <input type="checkbox" id="toggle" onchange="updateValue()">
+            <input type="checkbox" id="toggle">
             <span class="slider"></span>
         </label>
         <label for="toggle">Lesión</label>
@@ -94,8 +94,24 @@ include('../processes/PDOconn.php');
         <input type="number" name="cantidad" id="cantidad">
 
         <br>
-        <label for="fecha">Seleccionar Año y Mes:</label>
-        <input type="text" id="fecha" name="fecha" placeholder="YYYY-MM" pattern="\d{4}-\d{2}" title="Ingrese un formato válido (YYYY-MM)" oninput="validarFecha()">
+        <label for="anio">Ingrese el año</label>
+        <input type="number" id="anio" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+        
+        <select name="mes" id="mes">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        
         <p id="msg_error"></p>
         <br>
         <button id="send">Ingresar</button>
