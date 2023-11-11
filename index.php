@@ -13,14 +13,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="templates/styles/btn_type_A.css">
+    <link rel="stylesheet" href="templates/styles/index.css">
     <title>Dashboard</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-secondary bg-gradient">
+    <nav class="navbar navbar-expand-lg bg-primary bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="resources/imgs/logo.jpg" class="logo" width="150" alt="logo_secretaria">
+            <a class="navbar-brand" href="#">
+                <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo" alt="logo_secretaria">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,20 +35,23 @@
                     if (!isset($_SESSION['username'])) {
                     ?>
                         <li class="nav-item m-1">
-                            <a href="templates/login.php">  
-                                <button class="btn_type_A">Iniciar Sesión</button>
+                            <a href="templates/login.php">
+                                <button class="btn_type_A">Iniciar Sesión <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                             </a>
-                        </li>'
+                        </li>
+
                     <?php
                     } else {
-                        echo '<li class="nav-item m-1">
-                                <form action="processes/logout.php" method="post">
-                                <input type="submit" value="Cerrar Sesión" class="button hbt">
-                                </form></li>';
-                    }
-                    ?>
+                    ?> <li class="nav-item m-1">
+                            <form action="processes/logout.php" method="post">
+                                <button type="btn_type_A"></button>
+                            </form>
+                        </li>
+                        <li class="nav-item m-1"><a href="templates/admin.php"><button type="btn_type_A"></button></a></li>
 
-                    <li class="nav-item m-1"><a href="templates/admin.php">Admin</a></li>
+                    <?php } ?>
+
+
                 </ul>
             </div>
         </div>
