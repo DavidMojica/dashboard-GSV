@@ -30,6 +30,7 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">
+    <link rel="stylesheet" href="styles/select_type_A.css">
     <script src="../scripts/admin.js" defer></script>
 
     <title>Admin</title>
@@ -51,6 +52,9 @@ include('../processes/PDOconn.php');
                             <input type="submit" value="Cerrar Sesión" class="btn_type_A">
                         </form>
                     </li>
+                    <li class="nav-item m-1">
+                        <button type="button" class="btn_type_A" id="toggle_dane">Población DANE</button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -67,8 +71,8 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <label for="municipio" aria-hidden="true">Municipio</label>
-                            <select name="municipio" id="municipio">
-                                <option value="-1">Seleccione...</option>
+                            <div class="select">
+                            <select name="municipio" id="municipio" class="select_A">
                                 <?php
                                 $query = "SELECT * FROM tbl_municipio";
                                 $stmt = $pdo->prepare($query);
@@ -81,12 +85,14 @@ include('../processes/PDOconn.php');
                                 ?>
                             </select>
 
+                            </div>
+
                             
                             
 
                             <label for="victima">Tipo de víctima</label>
+                            <div class="select">
                             <select name="victima" id="victima">
-                                <option value="-1">Seleccione...</option>
                                 <?php
                                 $query = "SELECT * FROM tbl_vehiculo";
                                 $stmt = $pdo->prepare($query);
@@ -98,6 +104,7 @@ include('../processes/PDOconn.php');
                                 }
                                 ?>
                             </select>
+                            </div>
 
                             
                             <label for="cantidad">cantidad</label>
@@ -108,6 +115,7 @@ include('../processes/PDOconn.php');
                             <input type="number" class="input" id="anio" min="0" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
 
                             <label for="mes">Mes</label>
+                            <div class="select">
                             <select name="mes" id="mes">
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
@@ -122,6 +130,7 @@ include('../processes/PDOconn.php');
                                 <option value="11">Noviembre</option>
                                 <option value="12">Diciembre</option>
                             </select>
+                            </div>
 
                             <div class="bot_1">
                             <p id="msg_error" class="msg_error"></p>
@@ -140,7 +149,6 @@ include('../processes/PDOconn.php');
                                 <button class="button">Ingresar</button>
                             </div>
                         </form>
-                        <button type="button" id="toggle_dane">Población DANE</button>
                     </div>
                 </div>
 
