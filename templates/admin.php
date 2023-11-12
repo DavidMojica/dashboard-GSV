@@ -17,7 +17,6 @@ include('../processes/PDOconn.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/admin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -35,6 +34,8 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/select_type_A.css">
     <link rel="stylesheet" href="styles/in_bright.css">
     <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/admin.css">
+
     <script src="../scripts/admin.js" defer></script>
 
     <title>Admin</title>
@@ -71,8 +72,8 @@ include('../processes/PDOconn.php');
                                 <h2 class="h2-drop">Formulario de Accidentes</h2>
                             </div>
 
-                            <h3>¿Dónde?</h3>
-                            <div class="select">
+                            <h3 class="top_2">¿Dónde?</h3>
+                            <div class="select top_3">
                                 <select name="municipio" id="municipio" class="select_A">
                                     <?php
                                     $query = "SELECT * FROM tbl_municipio";
@@ -87,8 +88,8 @@ include('../processes/PDOconn.php');
                                 </select>
                             </div>
 
-                            <h3>Tipo de víctima</h3>
-                            <div class="select">
+                            <h3 class="top_4">Tipo de víctima</h3>
+                            <div class="select top 5">
                                 <select name="victima" id="victima">
                                     <?php
                                     $query = "SELECT * FROM tbl_vehiculo";
@@ -226,13 +227,13 @@ include('../processes/PDOconn.php');
                     <div class="front-content">
                         <form action="" method="POST" id="formDane" class="form_loadout">
                             
-                            <div class="top_area_d">
+                            <div class="top_1_d">
                                 <h2 class="h2-drop">Poblacion Dane</h2>
                             </div>
 
-                            <h3>Municipio</h3>
+                            <h3 class="top_2_d">Municipio</h3>
 
-                            <div class="select">
+                            <div class="select top_3_d">
                                 <select name="municipio_dane" id="municipio_dane">
                                     <?php
                                     $query = "SELECT * FROM tbl_municipio";
@@ -247,12 +248,12 @@ include('../processes/PDOconn.php');
                                 </select>
                             </div>
 
-                            <div class="input-group" id="cant_group_d">
+                            <div class="input-group top_4_d" id="cant_group_d">
                                 <input required="" type="number" name="cantidad_dane" min="0" id="cantidad_dane" class="input" autocomplete="off">
                                 <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf" aria-hidden="true"></i> de población</label>
                             </div>
 
-                            <div class="input-group" id="anio_group_d">
+                            <div class="input-group top_5_d" id="anio_group_d">
                                 <input required="" type="number" name="anio_dane" id="anio_dane" min="2001" class="input" autocomplete="off" min="2001" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
                                 <label class="user-label">Año (YYYY) <i class="fa fa-calendar col-blue backdrop-blue" aria-hidden="true"></i></label>
                             </div>
