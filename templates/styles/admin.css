@@ -88,7 +88,7 @@ b{
 #anio_group, #cant_group{
   margin-left: 10%;
 }
-#accidente_send{
+.senders{
   width: 213px;
 }
 .top_1 { grid-area: top_1; }
@@ -96,26 +96,27 @@ b{
 .bot_2 { grid-area: bot_2; }
 .bot_3 { grid-area: bot_3; }
 
-.front-content{
-  display: grid;
-  grid-template-rows: 1fr .3fr;
-  place-items: center;
-}
 
 #formDane {
   height: 100%;
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1.3fr 0.7fr 0.7fr 1.3fr;  
+  grid-template-rows: 1.2fr 1fr 1fr 0.6fr 1.2fr;
   gap: 0px 0px; 
   grid-template-areas: 
   "top_area_d top_area_d"
-  ". ."
-  ". ."
-  ". ."; 
+    ". ."
+    ". ."
+    "bot_1_d bot_1_d"
+    ". ."; 
 }
 .top_area_d { grid-area: top_area_d; }
+.bot_1_d { grid-area: bot_1_d; }
 
+#cant_group_d, #anio_group_d{
+  width: 80%;
+  margin-left: 20%;
+}
 
 

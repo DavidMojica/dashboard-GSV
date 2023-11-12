@@ -152,10 +152,10 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div>
-                                <button type="button" class="btn_rainbow" id="toggle_dane">Formulario DANE</button>
+                                <button type="button" class="btn_rainbow" id="toggle_dane">Población</button>
                             </div>
 
-                            <button class="btn btn_star" id="accidente_send" type="submit" aria-expanded="false">
+                            <button class="btn btn_star senders" id="accidente_send" type="submit" aria-expanded="false">
                                 Guardar
                                 <i class="fa fa-diamond"></i>
                                 <div class="star-1">
@@ -229,7 +229,9 @@ include('../processes/PDOconn.php');
                             <div class="top_area_d">
                                 <h2 class="h2-drop">Poblacion Dane</h2>
                             </div>
+
                             <h3>Municipio</h3>
+
                             <div class="select">
                                 <select name="municipio_dane" id="municipio_dane">
                                     <?php
@@ -245,24 +247,22 @@ include('../processes/PDOconn.php');
                                 </select>
                             </div>
 
-                            <div class="input-group" id="cant_group">
+                            <div class="input-group" id="cant_group_d">
                                 <input required="" type="number" name="cantidad_dane" min="0" id="cantidad_dane" class="input" autocomplete="off">
                                 <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf" aria-hidden="true"></i> de población</label>
                             </div>
 
-                            <div class="input-group" id="anio_group">
+                            <div class="input-group" id="anio_group_d">
                                 <input required="" type="number" name="anio_dane" id="anio_dane" min="2001" class="input" autocomplete="off" min="2001" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
                                 <label class="user-label">Año (YYYY) <i class="fa fa-calendar col-blue backdrop-blue" aria-hidden="true"></i></label>
                             </div>
 
-                            <p id="msg_dane"></p>
+                            <p id="msg_dane" class="bot_1_d"></p>
 
                             <div>
-                                <div>
-                                    <button id="toggle_accidentes">Accidentes</button>
-                                </div>
-
-                                <button class="btn btn_star" id="dane_send" type="submit" aria-expanded="false">
+                                <button id="toggle_accidentes" class="btn_rainbow">Accidentes</button>
+                            </div>
+                            <button class="btn btn_star senders" id="dane_send" type="submit" aria-expanded="false">
                                     Guardar
                                     <i class="fa fa-diamond"></i>
                                     <div class="star-1">
@@ -320,7 +320,6 @@ include('../processes/PDOconn.php');
                                         </svg>
                                     </div>
                                 </button>
-                            </div>
                         </form>
                     </div>
                 </div>
