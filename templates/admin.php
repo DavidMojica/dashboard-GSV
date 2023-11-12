@@ -104,9 +104,10 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div class=" mid_1">
-                                <div class="input-group">
+                                <h4>Cantidad y letalidad </h4>
+                                <div class="input-group" id="cant_group">
                                     <input required="" type="number" name="cantidad" min="0" id="cantidad" class="input" autocomplete="off">
-                                    <label class="user-label"><i class="fa fa-hashtag" aria-hidden="true"></i> de víctimas</label>
+                                    <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf"  aria-hidden="true"></i> de víctimas</label>
                                 </div>
 
                                 <div class="griddle">
@@ -121,11 +122,11 @@ include('../processes/PDOconn.php');
 
 
                             <div class="mid_2">
-                                <h4>¿Cuándo? <i class="fa fa-calendar" aria-hidden="true"></i></h4>
+                                <h4>¿Cuándo?</h4>
 
                                 <div class="input-group" id="anio_group">
-                                    <input required="" type="number" name="anio" id="anio" class="input" autocomplete="off" min="2000">
-                                    <label class="user-label">Año (YYYY) <i class="fa fa-calendar" aria-hidden="true"></i></label>
+                                    <input required="" type="number" name="anio" id="anio" class="input" autocomplete="off" min="2001">
+                                    <label class="user-label">Año (YYYY) <i class="fa fa-calendar col-blue backdrop-blue" aria-hidden="true"></i></label>
                                 </div>
 
                                 <div class="select">
@@ -154,7 +155,7 @@ include('../processes/PDOconn.php');
                                 <button type="button" class="btn_rainbow" id="toggle_dane">Formulario DANE</button>
                             </div>
                             
-                            <button class="btn btn_star" type="submit" aria-expanded="false">
+                            <button class="btn btn_star" id="accidente_send" type="submit" aria-expanded="false">
                                 Guardar
                                 <i class="fa fa-diamond"></i>
                                 <div class="star-1">

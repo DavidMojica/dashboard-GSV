@@ -84,13 +84,13 @@ b{
   text-align: center;
   gap: 12px;
 }
-.mid_2 input{
-  width: 80%;
-}
-#anio_group{
+
+#anio_group, #cant_group{
   margin-left: 10%;
 }
-
+#accidente_send{
+  width: 213px;
+}
 .top_1 { grid-area: top_1; }
 .bot_1 { grid-area: bot_1; }
 .bot_2 { grid-area: bot_2; }
