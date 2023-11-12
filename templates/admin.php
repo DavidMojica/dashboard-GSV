@@ -227,9 +227,7 @@ include('../processes/PDOconn.php');
                     <div class="front-content">
                         <form action="" method="POST" id="formDane" class="form_loadout">
                             
-                            <div class="top_1_d">
-                                <h2 class="h2-drop">Poblacion Dane</h2>
-                            </div>
+                            <h2 class="h2-drop top_1_d">Poblacion Dane</h2>
 
                             <h3 class="top_2_d">Municipio</h3>
 
