@@ -30,6 +30,8 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">
+    <link rel="stylesheet" href="styles/btn_stars.css">
+    <link rel="stylesheet" href="styles/btn_rainbow.css">
     <link rel="stylesheet" href="styles/select_type_A.css">
     <link rel="stylesheet" href="styles/in_bright.css">
     <script src="../scripts/admin.js" defer></script>
@@ -65,7 +67,7 @@ include('../processes/PDOconn.php');
                     <div class="back-content">
                         <form action="" method="POST" id="formAccidentes">
                             <div class="top_1">
-                                <h2>Formulario de Accidentes</h2>
+                                <h2 class="text-orange">Formulario de Accidentes</h2>
                             </div>
 
                             <h3>¿Dónde?</h3>
@@ -118,11 +120,11 @@ include('../processes/PDOconn.php');
 
 
                             <div class="mid_2">
-                                <h4>¿Cuándo?</h4>
+                                <h4>¿Cuándo? <i class="fa fa-calendar" aria-hidden="true"></i></h4>
 
                                 <div class="input-group" id="anio_group">
                                     <input required="" type="number" name="anio" id="anio" class="input" autocomplete="off" min="2000">
-                                    <label class="user-label">Año (YYYY)</label>
+                                    <label class="user-label">Año (YYYY) <i class="fa fa-calendar" aria-hidden="true"></i></label>
                                 </div>
 
                                 <div class="select">
@@ -148,13 +150,69 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div>
-                                <button type="button" class="btn_type_A" id="toggle_dane">Formulario DANE</button>
-                            </div>
-
-                            <div>
-                                <button class="button">Ingresar</button>
+                                <button type="button" class="btn_rainbow" id="toggle_dane">Formulario DANE</button>
                             </div>
                             
+                            <button class="btn btn_star" type="submit" aria-expanded="false">
+                                Guardar
+                                <i class="fa fa-diamond"></i>
+                                <div class="star-1">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="star-2">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="star-3">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="star-4">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="star-5">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="star-6">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                        <defs></defs>
+                                        <g id="Layer_x0020_1">
+                                            <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                            <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </button>
+                           
+
                         </form>
                     </div>
                 </div>
