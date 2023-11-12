@@ -27,13 +27,14 @@ include('../processes/PDOconn.php');
 
 
     <link rel="stylesheet" href="styles/form_loadout.css">
-    <link rel="stylesheet" href="styles/base.css">
+    
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">
     <link rel="stylesheet" href="styles/btn_stars.css">
     <link rel="stylesheet" href="styles/btn_rainbow.css">
     <link rel="stylesheet" href="styles/select_type_A.css">
     <link rel="stylesheet" href="styles/in_bright.css">
+    <link rel="stylesheet" href="styles/base.css">
     <script src="../scripts/admin.js" defer></script>
 
     <title>Admin</title>
@@ -67,7 +68,7 @@ include('../processes/PDOconn.php');
                     <div class="back-content">
                         <form action="" method="POST" id="formAccidentes">
                             <div class="top_1">
-                                <h2 class="text-orange">Formulario de Accidentes</h2>
+                                <h2 class="h2-drop">Formulario de Accidentes</h2>
                             </div>
 
                             <h3>¿Dónde?</h3>
@@ -108,13 +109,13 @@ include('../processes/PDOconn.php');
                                     <label class="user-label"><i class="fa fa-hashtag" aria-hidden="true"></i> de víctimas</label>
                                 </div>
 
-                                <div>
-                                    <label for="toggle">Muerte</label>
+                                <div class="griddle">
+                                    <b class="col-red">Muerte <i class="fa fa-times" aria-hidden="true"></i></b>
                                     <label class="switch">
                                         <input type="checkbox" id="toggle">
                                         <span class="slider"></span>
                                     </label>
-                                    <label for="toggle">Lesión</label>
+                                    <b class="col-orange"><i class="fa fa-heartbeat" aria-hidden="true"></i> Lesión</b>
                                 </div>
                             </div>
 

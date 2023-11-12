@@ -5,6 +5,15 @@
     width: 150px;
 }
 
-.text-orange{
+.col-red{
+    color: #BB2D3B;
+}
+
+.col-orange{
     color: #D99027;
+}
+
+.h2-drop{
+    filter: drop-shadow(3px 1px 6px #D99027);
+    font-size: 42px;
 }

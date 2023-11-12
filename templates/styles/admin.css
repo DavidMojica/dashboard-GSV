@@ -3,6 +3,14 @@ main {
   place-items: center;
   height: 85.7vh;
 }
+.griddle{
+  display: grid;
+  grid-template-columns: 1fr .8fr 1fr;
+  place-items: center;
+}
+b{
+  font-size: 20px;
+}
 /* The switch - the box around the slider */
 .switch {
   font-size: 17px;
@@ -24,7 +32,7 @@ main {
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background: #9fccfa;
+  background: #BB2D3B;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -40,11 +48,11 @@ main {
 }
 
 .switch input:checked + .slider {
-  background: #0974f1;
+  background: #D99027;
 }
 
 .switch input:focus + .slider {
-  box-shadow: 0 0 1px #0974f1;
+  box-shadow: 0 0 1px #D99027;
 }
 
 .switch input:checked + .slider:before {
