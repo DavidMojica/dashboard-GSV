@@ -3,6 +3,14 @@ main {
   place-items: center;
   height: 85.7vh;
 }
+.griddle{
+  display: grid;
+  grid-template-columns: 1fr .8fr 1fr;
+  place-items: center;
+}
+b{
+  font-size: 20px;
+}
 /* The switch - the box around the slider */
 .switch {
   font-size: 17px;
@@ -24,7 +32,7 @@ main {
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background: #9fccfa;
+  background: #BB2D3B;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -40,20 +48,21 @@ main {
 }
 
 .switch input:checked + .slider {
-  background: #0974f1;
+  background: #D99027;
 }
 
 .switch input:focus + .slider {
-  box-shadow: 0 0 1px #0974f1;
+  box-shadow: 0 0 1px #D99027;
 }
 
 .switch input:checked + .slider:before {
   transform: translateX(1.5em) rotate(90deg);
 }
 #formAccidentes{
+  height: 90%;
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1fr 0.8fr 0.8fr 1.6fr .2fr 0.4fr; 
+  grid-template-rows: 1fr 0.6fr 0.6fr 1.6fr .2fr .2fr 0.4fr; 
   place-items: center;
   grid-template-areas: 
     "top_1 top_1"
@@ -75,33 +84,80 @@ main {
   text-align: center;
   gap: 12px;
 }
-.mid_2 input{
-  width: 100%;
-}
 
+#anio_group, #cant_group{
+  margin-left: 10%;
+}
+.senders{
+  width: 213px;
+}
 .top_1 { grid-area: top_1; }
 .bot_1 { grid-area: bot_1; }
 .bot_2 { grid-area: bot_2; }
 .bot_3 { grid-area: bot_3; }
 
-.front-content{
-  display: grid;
-  grid-template-rows: 1fr .3fr;
-  place-items: center;
-}
 
 #formDane {
   height: 100%;
   display: grid;
   place-items: center;
-  grid-template-rows: 1.4fr 1.8fr 0.8fr 1fr; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1.2fr 1fr 1fr 0.6fr 1.2fr;
   gap: 0px 0px; 
+  grid-template-areas: 
+  "top_1_d top_1_d"
+    ". ."
+    ". ."
+    "bot_1_d bot_1_d"
+    ". ."; 
 }
-.interior_grid{
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr; 
-  grid-template-rows: 1fr 1fr 1fr; 
-  gap: 10px;
-  place-items: center; 
+.top_1_d { grid-area: top_1_d; }
+.bot_1_d { grid-area: bot_1_d; }
+
+#cant_group_d, #anio_group_d{
+  width: 80%;
+  margin-left: 20%;
+}
+
+@media (max-width: 768px) {
+  .navbar{
+    display: none;
+  }
+  main{
+    height: 100vh;
+  }
+  .card{
+    height: 110vh;
+    overflow: scroll;
+  }
+  #formAccidentes {
+    grid-template-columns: 1fr; /* Cambia a una columna en pantallas más pequeñas */
+    gap: 10px;
+    grid-template-areas: 
+    "top_1"
+    "top_2"
+    "top_3"
+    "top_4"
+    "top_5"
+    "mid_1"
+    "mid_2"
+    "bot_1";
+  }
+
+  #formDane{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr .3fr .4fr .4fr .4fr .1fr 1fr;
+    grid-template-areas: 
+    "top_1_d"
+    "top_2_d"
+    "top_3_d"
+    "top_4_d"
+    "top_5_d"
+    "bot_1_d";
+  }
+  
+  #anio_group_d, #cant_group_d {
+    width: 55%; /* Puedes ajustar este valor según sea necesario */
+  }
 }
 

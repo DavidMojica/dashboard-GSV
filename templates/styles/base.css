@@ -4,3 +4,31 @@
     padding: 10%;
     width: 150px;
 }
+
+.col-red{
+    color: #BB2D3B;
+}
+
+.col-blue{
+    color: #433df5;
+}
+.backdrop-blue{
+    filter: drop-shadow(2px 1px 6px #433df5);
+}
+.col-green-fosforescent{
+    color: #2DBB3B;
+}
+.backdrop-greenf{
+    filter: drop-shadow(2px 1px 6px #2DBB3B);
+}
+
+.col-orange{
+    color: #D99027;
+}
+
+
+
+.h2-drop{
+    filter: drop-shadow(1px 1px 1px #fff);
+    font-size: 42px;
+}
