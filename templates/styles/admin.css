@@ -1,3 +1,8 @@
+main{
+  display: grid;
+    place-items: center;
+    height: 85.7vh;
+}
 /* The switch - the box around the slider */
 .switch {
     font-size: 17px;
