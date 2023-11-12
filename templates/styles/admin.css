@@ -51,9 +51,10 @@ main {
   transform: translateX(1.5em) rotate(90deg);
 }
 #formAccidentes{
+  height: 90%;
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1fr 0.8fr 0.8fr 1.6fr .2fr 0.4fr; 
+  grid-template-rows: 1fr 0.6fr 0.6fr 1.6fr .2fr .2fr 0.4fr; 
   place-items: center;
   grid-template-areas: 
     "top_1 top_1"
@@ -76,7 +77,10 @@ main {
   gap: 12px;
 }
 .mid_2 input{
-  width: 100%;
+  width: 80%;
+}
+#anio_group{
+  margin-left: 10%;
 }
 
 .top_1 { grid-area: top_1; }

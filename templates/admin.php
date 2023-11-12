@@ -120,8 +120,8 @@ include('../processes/PDOconn.php');
                             <div class="mid_2">
                                 <h4>¿Cuándo?</h4>
 
-                                <div class="input-group">
-                                    <input required="" type="number" name="cantidad" id="cantidad" class="input" autocomplete="off">
+                                <div class="input-group" id="anio_group">
+                                    <input required="" type="number" name="anio" id="anio" class="input" autocomplete="off" min="2000">
                                     <label class="user-label">Año (YYYY)</label>
                                 </div>
 
