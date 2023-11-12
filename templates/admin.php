@@ -29,6 +29,7 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/form_loadout.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/bg_dotted.css">
+    <link rel="stylesheet" href="styles/btn_type_A.css">
     <script src="../scripts/admin.js" defer></script>
 
     <title>Admin</title>
@@ -47,7 +48,7 @@ include('../processes/PDOconn.php');
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item m-1">
                         <form action="../processes/logout.php" method="post">
-                            <input type="submit" value="Cerrar Sesión" class="button hbt">
+                            <input type="submit" value="Cerrar Sesión" class="btn_type_A">
                         </form>
                     </li>
                 </ul>

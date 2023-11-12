@@ -67,19 +67,28 @@ main {
     "bot_2 bot_2"
     "bot_3 bot_3"; 
 }
-
 .top_area { grid-area: top_area; }
 .bot_1 { grid-area: bot_1; }
 .bot_2 { grid-area: bot_2; }
 .bot_3 { grid-area: bot_3; }
 
+#formAccidentes input, select{
+  width: 100%;
+}
+#formDane input, select{
+  width: 100%;
+}
+
+
+
 .front-content{
   display: grid;
+  grid-template-rows: 1fr .3fr;
   place-items: center;
 }
 
 #formDane {
-  height: 80%;
+  height: 100%;
   display: grid;
   place-items: center;
   grid-template-rows: 1.4fr 1.8fr 0.8fr 1fr; 
