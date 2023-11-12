@@ -50,9 +50,36 @@ main {
 .switch input:checked + .slider:before {
   transform: translateX(1.5em) rotate(90deg);
 }
+#formAccidentes{
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1.6fr 0.8fr 0.8fr 0.8fr .8fr 0.8fr .8fr .8fr 1.5fr; 
+  gap: 10px; 
+  place-items: center;
+  grid-template-areas: 
+    "top_area top_area"
+    ". ."
+    ". ."
+    ". ."
+    ". ."
+    ". ."
+    "bot_1 bot_1"
+    "bot_2 bot_2"
+    "bot_3 bot_3"; 
+}
+
+.top_area { grid-area: top_area; }
+.bot_1 { grid-area: bot_1; }
+.bot_2 { grid-area: bot_2; }
+.bot_3 { grid-area: bot_3; }
+
+.front-content{
+  display: grid;
+  place-items: center;
+}
 
 #formDane {
-  height: 100%;
+  height: 80%;
   display: grid;
   place-items: center;
   grid-template-rows: 1.4fr 1.8fr 0.8fr 1fr; 

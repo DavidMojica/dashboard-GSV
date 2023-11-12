@@ -56,12 +56,14 @@ include('../processes/PDOconn.php');
     </nav>
 
     <main>
-        <div class="card">
-            <div class="content">
+        <div class="card" >
+            <div class="content" id="form_card">
                 <div class="back">
                     <div class="back-content">
-
                         <form action="" method="POST" id="formAccidentes">
+                            <div class="top_area">
+                                <h2>Accidentes</h2>
+                            </div>
 
                             <label for="municipio" aria-hidden="true">Municipio</label>
                             <select name="municipio" id="municipio">
@@ -78,14 +80,8 @@ include('../processes/PDOconn.php');
                                 ?>
                             </select>
 
-                            <br>
-                            <label for="toggle">Muerte</label>
-                            <label class="switch">
-                                <input type="checkbox" id="toggle">
-                                <span class="slider"></span>
-                            </label>
-                            <label for="toggle">Lesión</label>
-                            <br>
+                            
+                            
 
                             <label for="victima">Tipo de víctima</label>
                             <select name="victima" id="victima">
@@ -102,14 +98,15 @@ include('../processes/PDOconn.php');
                                 ?>
                             </select>
 
-                            <br>
+                            
                             <label for="cantidad">cantidad</label>
                             <input type="number" name="cantidad" id="cantidad" class="input">
 
-                            <br>
+                            
                             <label for="anio">Ingrese el año</label>
                             <input type="number" class="input" id="anio" min="0" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
 
+                            <label for="mes">Mes</label>
                             <select name="mes" id="mes">
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
@@ -125,12 +122,24 @@ include('../processes/PDOconn.php');
                                 <option value="12">Diciembre</option>
                             </select>
 
-                            <p id="msg_error"></p>
-                            <br>
-                            <button class="button">Ingresar</button>
+                            <div class="bot_1">
+                            <p id="msg_error" class="msg_error"></p>
+                            </div>
+                            
+                            <div class="bot_2">
+                                <label for="toggle">Muerte</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggle">
+                                    <span class="slider"></span>
+                                </label>
+                                <label for="toggle">Lesión</label>
+                            </div>
 
+                            <div class="bot_3">
+                                <button class="button">Ingresar</button>
+                            </div>
                         </form>
-                        <button type="button">Población DANE</button>
+                        <button type="button" id="toggle_dane">Población DANE</button>
                     </div>
                 </div>
 
@@ -138,7 +147,7 @@ include('../processes/PDOconn.php');
                 <div class="front">
                     <div class="front-content">
                         <form action="" method="POST" id="formDane" class="form_loadout">
-                            <label for="chk" aria-hidden="true">Poblacion Dane</label>
+                            <h2>Poblacion Dane</h2>
 
                             <div class="interior_grid">
                                 <label for="municipio_dane">Municipio</label>
@@ -156,7 +165,7 @@ include('../processes/PDOconn.php');
                                     ?>
                                 </select>
 
-                                <label for="cantidad_dane">cantidad</label>
+                                <label for="cantidad_dane">Cantidad</label>
                                 <input type="number" class="input_loadout" name="cantidad_dane" id="cantidad_dane" min="0">
 
                                 <label for="anio_dane">Año</label>
@@ -167,6 +176,7 @@ include('../processes/PDOconn.php');
                             <button>Ingresar</button>
 
                         </form>
+                        <button id="toggle_accidentes">Accidentes</button>
                     </div>
                 </div>
             </div>

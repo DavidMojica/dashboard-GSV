@@ -7,6 +7,8 @@ const anio = document.getElementById('anio');
 const mes = document.getElementById('mes');
 const formAccidentes = document.getElementById('formAccidentes');
 const msg =document.getElementById('msg_error');
+const toggle_dane = document.getElementById('toggle_dane');
+const form_card = document.getElementById('form_card');
 
 //DANE
 const municipio_dane = document.getElementById('municipio_dane');
@@ -22,6 +24,10 @@ var anio_actual = fechaActual.getFullYear();
 const cantidadMunicipiosAntioquia = 125;
 const cantidadTiposVictimas = 6;
 const regex = /^\d{4}$/
+
+toggle_dane.addEventListener('click', function(event){
+    form_card.style.transform = "rotateY(180deg)";
+});
 
 formAccidentes.addEventListener('submit', function(event){
     event.preventDefault();
