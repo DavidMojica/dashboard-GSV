@@ -1,47 +1,107 @@
+main {
+  display: grid;
+  place-items: center;
+  height: 85.7vh;
+}
 /* The switch - the box around the slider */
 .switch {
-    font-size: 17px;
-    position: relative;
-    display: inline-block;
-    width: 3.5em;
-    height: 2em;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background: #9fccfa;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1.4em;
-    width: 1.4em;
-    left: 0.3em;
-    bottom: 0.3em;
-    background-color: white;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .switch input:checked + .slider {
-    background: #0974f1;
-  }
-  
-  .switch input:focus + .slider {
-    box-shadow: 0 0 1px #0974f1;
-  }
-  
-  .switch input:checked + .slider:before {
-    transform: translateX(1.5em) rotate(90deg);
-  }
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #9fccfa;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: #0974f1;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #0974f1;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.5em) rotate(90deg);
+}
+#formAccidentes{
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr 0.8fr 0.8fr 1.6fr .2fr 0.4fr; 
+  place-items: center;
+  grid-template-areas: 
+    "top_1 top_1"
+    ". ."
+    ". ."
+    "mid_1 mid_2"
+    "mid_1 mid_2"
+    "bot_1 bot_1"
+    ". ."; 
+}
+.mid_1 {
+  grid-area: mid_1; 
+  display: grid;
+  gap: 12px;
+}
+.mid_2 {
+  grid-area: mid_2; 
+  display: grid;
+  text-align: center;
+  gap: 12px;
+}
+.mid_2 input{
+  width: 100%;
+}
+
+.top_1 { grid-area: top_1; }
+.bot_1 { grid-area: bot_1; }
+.bot_2 { grid-area: bot_2; }
+.bot_3 { grid-area: bot_3; }
+
+.front-content{
+  display: grid;
+  grid-template-rows: 1fr .3fr;
+  place-items: center;
+}
+
+#formDane {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-rows: 1.4fr 1.8fr 0.8fr 1fr; 
+  gap: 0px 0px; 
+}
+.interior_grid{
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 10px;
+  place-items: center; 
+}
+
