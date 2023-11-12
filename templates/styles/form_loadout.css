@@ -33,13 +33,13 @@
     overflow: hidden;
   }
   
-  .back::before {
+  .back::before{
     position: absolute;
     content: ' ';
     display: block;
-    width: 160px;
-    height: 160%;
-    background: linear-gradient(90deg, transparent, #ff9966, #ff9966, #ff9966, #ff9966, transparent);
+    width: 260px;
+    height: 300%;
+    background: linear-gradient(90deg, transparent, #d166ff, #ff66f0, #66d1ff, #66fff0, transparent);
     animation: rotation_481 5000ms infinite linear;
   }
   
