@@ -140,142 +140,38 @@ include('../processes/PDOconn.php');
                         <form action="" method="POST" id="formDane" class="form_loadout">
                             <label for="chk" aria-hidden="true">Poblacion Dane</label>
 
-                            <label for="municipio_dane">Municipio</label>
-                            <select name="municipio_dane" id="municipio_dane">
-                                <option value="-1">Seleccione...</option>
-                                <?php
-                                $query = "SELECT * FROM tbl_municipio";
-                                $stmt = $pdo->prepare($query);
-                                $stmt->execute();
-                                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            <div class="interior_grid">
+                                <label for="municipio_dane">Municipio</label>
+                                <select name="municipio_dane" id="municipio_dane">
+                                    <option value="-1">Seleccione...</option>
+                                    <?php
+                                    $query = "SELECT * FROM tbl_municipio";
+                                    $stmt = $pdo->prepare($query);
+                                    $stmt->execute();
+                                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                                foreach ($result as $row) {
-                                    echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . "</option>";
-                                }
-                                ?>
-                            </select>
+                                    foreach ($result as $row) {
+                                        echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
 
-                            <label for="cantidad_dane">cantidad</label>
-                            <input type="number" class="input_loadout" name="cantidad_dane" id="cantidad_dane" min="0">
+                                <label for="cantidad_dane">cantidad</label>
+                                <input type="number" class="input_loadout" name="cantidad_dane" id="cantidad_dane" min="0">
 
-                            <label for="anio_dane">Año</label>
-                            <input type="number" class="input_loadout" id="anio_dane" min="0" name="anio_dane" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+                                <label for="anio_dane">Año</label>
+                                <input type="number" class="input_loadout" id="anio_dane" min="0" name="anio_dane" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+                            </div>
 
                             <p id="msg_dane"></p>
                             <button>Ingresar</button>
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- <main class="main_loadout">
-        <div class="login_loadout">
-            <form action="" method="POST" id="formAccidentes">
-                <label for="chk_loadout" aria-hidden="true">Accidentes</label>
-
-
-                <label for="municipio" aria-hidden="true">Municipio</label>
-                <select name="municipio" id="municipio">
-                    <option value="-1">Seleccione...</option>
-                    <?php
-                    $query = "SELECT * FROM tbl_municipio";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($result as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . "</option>";
-                    }
-                    ?>
-                </select>
-
-                <br>
-                <label for="toggle">Muerte</label>
-                <label class="switch">
-                    <input type="checkbox" id="toggle">
-                    <span class="slider"></span>
-                </label>
-                <label for="toggle">Lesión</label>
-                <br>
-
-                <label for="victima">Tipo de víctima</label>
-                <select name="victima" id="victima">
-                    <option value="-1">Seleccione...</option>
-                    <?php
-                    $query = "SELECT * FROM tbl_vehiculo";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($result as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . "</option>";
-                    }
-                    ?>
-                </select>
-
-                <br>
-                <label for="cantidad">cantidad</label>
-                <input type="number" name="cantidad" id="cantidad" class="input_loadout">
-
-                <br>
-                <label for="anio">Ingrese el año</label>
-                <input type="number" class="input_loadout" id="anio" min="0" name="anio" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
-
-                <select name="mes" id="mes">
-                    <option value="1">Enero</option>
-                    <option value="2">Febrero</option>
-                    <option value="3">Marzo</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Mayo</option>
-                    <option value="6">Junio</option>
-                    <option value="7">Julio</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Septiembre</option>
-                    <option value="10">Octubre</option>
-                    <option value="11">Noviembre</option>
-                    <option value="12">Diciembre</option>
-                </select>
-
-                <p id="msg_error"></p>
-                <br>
-                <button class="button_loadout">Ingresar</button>
-
-            </form>
-        </div>
-
-        <div class="register_loadout">
-            <form action="" method="POST" id="formDane" class="form_loadout">
-                <label for="chk" aria-hidden="true">Poblacion Dane</label>
-
-                <label for="municipio_dane">Municipio</label>
-                <select name="municipio_dane" id="municipio_dane">
-                    <option value="-1">Seleccione...</option>
-                    <?php
-                    $query = "SELECT * FROM tbl_municipio";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($result as $row) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . "</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="cantidad_dane">cantidad</label>
-                <input type="number" class="input_loadout" name="cantidad_dane" id="cantidad_dane" min="0">
-
-                <label for="anio_dane">Año</label>
-                <input type="number" class="input_loadout" id="anio_dane" min="0" name="anio_dane" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
-
-                <p id="msg_dane"></p>
-                <button>Ingresar</button>
-            </form>
-        </div>
-    </main> -->
-
 </body>
 
 </html>
