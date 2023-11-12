@@ -106,14 +106,16 @@ b{
   height: 100%;
   display: grid;
   place-items: center;
-  grid-template-rows: 1.4fr 1.8fr 0.8fr 1fr; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1.3fr 0.7fr 0.7fr 1.3fr;  
   gap: 0px 0px; 
+  grid-template-areas: 
+  "top_area_d top_area_d"
+  ". ."
+  ". ."
+  ". ."; 
 }
-.interior_grid{
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr; 
-  grid-template-rows: 1fr 1fr 1fr; 
-  gap: 10px;
-  place-items: center; 
-}
+.top_area_d { grid-area: top_area_d; }
+
+
 

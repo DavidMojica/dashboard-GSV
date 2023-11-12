@@ -27,7 +27,7 @@ include('../processes/PDOconn.php');
 
 
     <link rel="stylesheet" href="styles/form_loadout.css">
-    
+
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">
     <link rel="stylesheet" href="styles/btn_stars.css">
@@ -107,7 +107,7 @@ include('../processes/PDOconn.php');
                                 <h4>Cantidad y letalidad </h4>
                                 <div class="input-group" id="cant_group">
                                     <input required="" type="number" name="cantidad" min="0" id="cantidad" class="input" autocomplete="off">
-                                    <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf"  aria-hidden="true"></i> de víctimas</label>
+                                    <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf" aria-hidden="true"></i> de víctimas</label>
                                 </div>
 
                                 <div class="griddle">
@@ -154,7 +154,7 @@ include('../processes/PDOconn.php');
                             <div>
                                 <button type="button" class="btn_rainbow" id="toggle_dane">Formulario DANE</button>
                             </div>
-                            
+
                             <button class="btn btn_star" id="accidente_send" type="submit" aria-expanded="false">
                                 Guardar
                                 <i class="fa fa-diamond"></i>
@@ -213,7 +213,7 @@ include('../processes/PDOconn.php');
                                     </svg>
                                 </div>
                             </button>
-                           
+
 
                         </form>
                     </div>
@@ -225,12 +225,13 @@ include('../processes/PDOconn.php');
                 <div class="front">
                     <div class="front-content">
                         <form action="" method="POST" id="formDane" class="form_loadout">
-                            <h2>Poblacion Dane</h2>
-
-                            <div class="interior_grid">
-                                <label for="municipio_dane">Municipio</label>
+                            
+                            <div class="top_area_d">
+                                <h2 class="h2-drop">Poblacion Dane</h2>
+                            </div>
+                            <h3>Municipio</h3>
+                            <div class="select">
                                 <select name="municipio_dane" id="municipio_dane">
-                                    <option value="-1">Seleccione...</option>
                                     <?php
                                     $query = "SELECT * FROM tbl_municipio";
                                     $stmt = $pdo->prepare($query);
@@ -242,19 +243,85 @@ include('../processes/PDOconn.php');
                                     }
                                     ?>
                                 </select>
+                            </div>
 
-                                <label for="cantidad_dane">Cantidad</label>
-                                <input type="number" class="input_loadout" name="cantidad_dane" id="cantidad_dane" min="0">
+                            <div class="input-group" id="cant_group">
+                                <input required="" type="number" name="cantidad_dane" min="0" id="cantidad_dane" class="input" autocomplete="off">
+                                <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf" aria-hidden="true"></i> de población</label>
+                            </div>
 
-                                <label for="anio_dane">Año</label>
-                                <input type="number" class="input_loadout" id="anio_dane" min="0" name="anio_dane" placeholder="YYYY" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+                            <div class="input-group" id="anio_group">
+                                <input required="" type="number" name="anio_dane" id="anio_dane" min="2001" class="input" autocomplete="off" min="2001" pattern="\d{4}" title="Ingrese un formato válido (YYYY)">
+                                <label class="user-label">Año (YYYY) <i class="fa fa-calendar col-blue backdrop-blue" aria-hidden="true"></i></label>
                             </div>
 
                             <p id="msg_dane"></p>
-                            <button>Ingresar</button>
 
+                            <div>
+                                <div>
+                                    <button id="toggle_accidentes">Accidentes</button>
+                                </div>
+
+                                <button class="btn btn_star" id="dane_send" type="submit" aria-expanded="false">
+                                    Guardar
+                                    <i class="fa fa-diamond"></i>
+                                    <div class="star-1">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="star-2">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="star-3">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="star-4">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="star-5">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="star-6">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                            <defs></defs>
+                                            <g id="Layer_x0020_1">
+                                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
                         </form>
-                        <button id="toggle_accidentes">Accidentes</button>
                     </div>
                 </div>
             </div>
