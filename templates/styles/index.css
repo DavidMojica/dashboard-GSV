@@ -3,6 +3,12 @@
     /*Antioquia theme*/
     --green-ant:#216101;
     --blue-ant:#005dca;
+    --blue-sky:#509DE1;
+}
+main{
+    background-color: var(--blue-sky);
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 .div_top{
     display: grid;
@@ -23,4 +29,25 @@
 .navbar_d1 { grid-area: navbar_d1; background: var(--blue-ant);}
 .navbar_d2 { 
     grid-area: navbar_d2;
+}
+
+.cont{
+    position: relative;
+    background-image: url(https://www.bureaumedellin.com/wp-content/uploads/2021/05/Montanas1.jpg);
+}
+
+.dash-legend{
+    display: grid;
+    place-items: center;
+    color: azure;
+}
+h1{
+    font-weight: 700;
+    font-size: 46px;
+}
+.dash-legend p{
+    max-width: 600px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    font-weight: 400;
 }

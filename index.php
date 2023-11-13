@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="templates/styles/btn_light.css">
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
+    <script src="scripts/main.js" defer></script>
+
     <title>Dashboard</title>
 </head>
 
@@ -64,9 +66,33 @@
         </nav>
     </div>
 
-    <main class="dashboard">
+    <main>
+        <div class="dash-legend">
+            <h1>ANSV Dashboard</h1>
+            <p>
+                Bienvenido al Dashoard de accidentalidad en el departamento de Antioquia. <br>
+                Aquí podrás encontrar visualizaciones interactivas que te ayudarán a entender la distribución y características de los accidentes en el Departamento de Antioquia.
+            </p>
+        </div>
+        <div class="text-success">
+            <hr>
+        </div>
+
+        <div class="dashboard container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div id="chart1" ></div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div id="chart2"></div>
+                </div>
+            </div>
+
+        </div>
 
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 </body>
 
 </html>
