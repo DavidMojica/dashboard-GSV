@@ -239,7 +239,7 @@ include('../processes/PDOconn.php');
                             <a class="navbar-brand" href="../index.php">
                                 <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo_form" alt="logo_secretaria">
                             </a>
-                            
+
                             <h2 class="h2-drop top_1_d">Poblacion Dane</h2>
 
                             <h3 class="top_2_d">Municipio</h3>
@@ -271,7 +271,7 @@ include('../processes/PDOconn.php');
 
                             <p id="msg_dane" class="bot_1_d"></p>
 
-                            <div>
+                            <div class="bot_2_d">
                                 <button id="toggle_accidentes" class="btn_rainbow">Accidentes</button>
                                 <button class="btn btn_star senders" id="dane_send" type="submit" aria-expanded="false">
                                 Guardar

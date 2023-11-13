@@ -117,21 +117,31 @@ b{
   place-items: center;
   grid-template-columns: 1fr ; 
   grid-template-rows: 1.2fr 1fr 1fr 0.6fr 1.2fr;
-  gap: 0px 0px; 
   grid-template-areas: 
   "top_1_d "
     "top_2_d"
     "top_3_d"
     "top_4_d" 
-    "bot_1_d";
+    "top_5_d" 
+    "bot_1_d"
+    "bot_2_d";
 }
 .top_1_d { grid-area: top_1_d; }
-.bot_1_d { grid-area: bot_1_d; }
+.top_2_d { grid-area: top_2_d; }
+.top_3_d { grid-area: top_3_d;  }
+.top_4_d { grid-area: top_4_d; margin-left: 61%;}
+.top_5_d { grid-area: top_5_d; margin-left: 61%;}
+.bot_1_d { 
+  grid-area: bot_1_d; 
+  
+ }
+ .bot_2_d{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+ }
 
-#cant_group_d, #anio_group_d{
-  width: 80%;
-  margin-left: 20%;
-}
+
 
 @media (max-width: 768px) {
   .logo_form{
@@ -211,6 +221,11 @@ b{
   .front{
     width: 100vw;
   }
-
+  .top_4_d{
+    margin-left: 42%;
+  }
+  .top_5_d{
+    margin-left: 42%;
+  }
 }
 
