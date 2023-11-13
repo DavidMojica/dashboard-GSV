@@ -79,7 +79,7 @@
         </div>
 
         <div class="dashboard container">
-            <div class="row">
+            <div class="row my-4">
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div id="chart1" class="chart"></div>
                 </div>
