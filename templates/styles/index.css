@@ -1,0 +1,31 @@
+:root{
+    --gray-soft:#DEDEDE;
+    /*Antioquia theme*/
+    --green-ant:#216101;
+    --blue-ant:#005dca;
+}
+.div_top{
+    display: grid;
+    border-top: 8px solid var(--green-ant);
+    min-height: 135px;
+    grid-template-columns: 1fr;
+    grid-template-rows: .3fr .7fr;
+    grid-template-areas: 
+    "navbar_d1"
+    "navbar_d2";
+}
+
+.ans_logo{
+    height:110px ;
+}
+.gov_logo{
+    height: 40px;
+}
+
+.navbar_d1 { grid-area: navbar_d1; background: var(--blue-ant);}
+.navbar_d2 { 
+    grid-area: navbar_d2;
+    display: grid;
+    grid-template-columns: .3fr .7fr;
+    place-items: center; 
+}

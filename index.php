@@ -13,16 +13,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="templates/styles/btn_type_A.css">
-    <link rel="stylesheet" href="templates/styles/index.css">
     <link rel="stylesheet" href="templates/styles/base.css">
+    <link rel="stylesheet" href="templates/styles/index.css">
     <title>Dashboard</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-primary bg-gradient">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo" alt="logo_secretaria">
+    <div class="div_top">
+        <div class="navbar_d1">
+            <img src="https://www.antioquia.gov.co/images/PDF2/Comunicaciones/imagen-de-marca/logo.svg" alt="GOV.CO" class="gov_logo">
+        </div>
+        <nav class="navbar navbar-expand-lg navbar_d2">
+            <a href="https://antioquia.gov.co/" class="ans_logo">
+                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" alt="Logo Gobernacion Antioquia" class="ans_logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,7 +34,6 @@
                 <ul class="navbar-nav ms-auto">
                     <?php
                     session_start();
-
                     // Comprueba si la sesión está iniciada
                     if (!isset($_SESSION['username'])) {
                     ?>
@@ -43,18 +45,18 @@
 
                     <?php
                     } else {
-                    ?> <li class="nav-item m-1">
+                    ?>
+                        <li class="nav-item m-1"><a href="templates/admin.php"><button class="btn_type_A">Administración</button></a></li>
+                        <li class="nav-item m-1">
                             <form action="processes/logout.php" method="post">
-                                <button type="btn_type_A"></button>
+                                <button class="btn_type_A">Cerrar Sesión</button>
                             </form>
                         </li>
-                        <li class="nav-item m-1"><a href="templates/admin.php"><button type="btn_type_A"></button></a></li>
-
                     <?php } ?>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <main class="dashboard">
 

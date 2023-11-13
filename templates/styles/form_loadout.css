@@ -1,4 +1,5 @@
 .card {
+  background-color: transparent;
   overflow: visible;
   width: 35vw;
   min-width: 600px;

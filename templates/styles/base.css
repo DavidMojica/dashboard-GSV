@@ -4,6 +4,13 @@
     padding: 10%;
     width: 150px;
 }
+.logo_form{
+    display: block;
+    width: 170px;
+    background: #fff;
+    border-radius: 1.5em 1em;
+    padding: 10%;
+}
 
 .col-red{
     color: #BB2D3B;
