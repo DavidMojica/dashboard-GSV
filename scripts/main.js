@@ -53,11 +53,13 @@ function getDataChart1(anio) {
         url: '../processes/get_data.php',
         type: 'POST',
         data:{
-            anio: anio
+            anio: anio,
+            action: 'getDataChart1'
         },
         success: function(response){
             let jsonString = JSON.stringify(response);
             let data       = JSON.parse(jsonString);
+            console.log(data);
             return data.content
         },
         error: function(jqXHR, textStatus, errorThrown){
