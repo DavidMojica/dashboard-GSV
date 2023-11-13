@@ -58,7 +58,7 @@ if (isset($_SESSION['username'])) {
     <main>
         <div class="form-container">
             <form action="" class="form" method="POST" id="loginForm">
-                <a class="navbar-brand" href="../index.php">
+                <a class="navbar-brand logo_form" href="../index.php">
                     <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo_form" alt="logo_secretaria">
                 </a>
             

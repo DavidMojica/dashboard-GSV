@@ -26,7 +26,9 @@ b{
   width: 0;
   height: 0;
 }
-
+.logo_form{
+  display: none;
+}
 /* The slider */
 .slider {
   position: absolute;
@@ -62,12 +64,13 @@ b{
   height: 90%;
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 1fr 0.6fr 0.6fr 1.6fr .2fr .2fr 0.4fr; 
+  grid-template-rows: .0001fr 1fr 0.6fr 0.6fr 1.6fr .2fr .2fr 0.4fr; 
   place-items: center;
   grid-template-areas: 
-    "top_1 top_1"
-    ". ."
-    ". ."
+   "top_1 top_1"
+    "top_2 top_3"
+    "top_4 top_5"
+    
     "mid_1 mid_2"
     "mid_1 mid_2"
     "bot_1 bot_1"
@@ -86,12 +89,16 @@ b{
 }
 
 #anio_group, #cant_group{
-  margin-left: 10%;
+  margin-left: 9%;
 }
 .senders{
   width: 213px;
 }
 .top_1 { grid-area: top_1; }
+.top_2 { grid-area: top_2; }
+.top_3 { grid-area: top_3; }
+.top_4 { grid-area: top_4; }
+.top_5 { grid-area: top_5; }
 .bot_1 { grid-area: bot_1; }
 .bot_2 { grid-area: bot_2; }
 .bot_3 { grid-area: bot_3; }
@@ -131,12 +138,13 @@ b{
   }
   .card{
     height: 110vh;
-    overflow: scroll;
+    
   }
   #formAccidentes {
     grid-template-columns: 1fr; /* Cambia a una columna en pantallas más pequeñas */
-    gap: 10px;
+    grid-template-rows: .8fr .2fr 0.3fr 0.3fr 0.3fr .3fr .6fr 0.6fr 0.3fr;
     grid-template-areas: 
+    "."
     "top_1"
     "top_2"
     "top_3"
@@ -144,7 +152,10 @@ b{
     "top_5"
     "mid_1"
     "mid_2"
-    "bot_1";
+    "bot_1"
+    ".";
+    height: auto;
+    
   }
 
   #formDane{
@@ -159,6 +170,9 @@ b{
     "bot_1_d";
   }
   
+  #anio_group{
+    margin-left:17% ;
+  }
   #anio_group_d, #cant_group_d {
     width: 55%; /* Puedes ajustar este valor según sea necesario */
   }
@@ -173,9 +187,12 @@ b{
   }
   .back{
     width: 100vw;
+    overflow-y:auto ;
+    overflow-x: hidden;
   }
   .front{
     width: 100vw;
   }
+
 }
 
