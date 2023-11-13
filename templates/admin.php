@@ -72,7 +72,7 @@ include('../processes/PDOconn.php');
                                 <h2 class="h2-drop">Formulario de Accidentes</h2>
                             </div>
 
-                            <h3 class="top_2">¿Dónde?</h3>
+                            <h4 class="top_2">¿Dónde?</h4>
                             <div class="select top_3">
                                 <select name="municipio" id="municipio" class="select_A">
                                     <?php
@@ -88,7 +88,7 @@ include('../processes/PDOconn.php');
                                 </select>
                             </div>
 
-                            <h3 class="top_4">Tipo de víctima</h3>
+                            <h4 class="top_4">Tipo de víctima</h4>
                             <div class="select top 5">
                                 <select name="victima" id="victima">
                                     <?php
@@ -105,7 +105,7 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div class=" mid_1">
-                                <h4>Cantidad y letalidad </h4>
+                                <h3>Cantidad y letalidad </h3>
                                 <div class="input-group" id="cant_group">
                                     <input required="" type="number" name="cantidad" min="0" id="cantidad" class="input" autocomplete="off">
                                     <label class="user-label"><i class="fa fa-hashtag col-green-fosforescent backdrop-greenf" aria-hidden="true"></i> de víctimas</label>
@@ -123,7 +123,7 @@ include('../processes/PDOconn.php');
 
 
                             <div class="mid_2">
-                                <h4>¿Cuándo?</h4>
+                                <h3>¿Cuándo?</h3>
 
                                 <div class="input-group" id="anio_group">
                                     <input required="" type="number" name="anio" id="anio" class="input" autocomplete="off" min="2001">

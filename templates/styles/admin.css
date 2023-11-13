@@ -120,6 +120,9 @@ b{
 }
 
 @media (max-width: 768px) {
+  .h2-drop{
+    font-size: 24px;
+  }
   .navbar{
     display: none;
   }
@@ -158,6 +161,21 @@ b{
   
   #anio_group_d, #cant_group_d {
     width: 55%; /* Puedes ajustar este valor según sea necesario */
+  }
+
+  .card{
+    width: 100vw;
+    min-width: 0;
+    
+  }
+  .content{
+    width: 100vw;
+  }
+  .back{
+    width: 100vw;
+  }
+  .front{
+    width: 100vw;
   }
 }
 
