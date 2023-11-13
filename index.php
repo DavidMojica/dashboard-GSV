@@ -81,10 +81,10 @@
         <div class="dashboard container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div id="chart1" ></div>
+                    <div id="chart1" class="chart"></div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div id="chart2"></div>
+                    <div id="chart2" class="chart"></div>
                 </div>
             </div>
 

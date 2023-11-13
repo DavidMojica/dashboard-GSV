@@ -51,3 +51,12 @@ h1{
     flex-wrap: nowrap;
     font-weight: 400;
 }
+
+/* CHART */
+.chart{
+    width: 100%;
+    min-height: 400px;
+    background: #fff;
+    padding: 2em;
+    border-radius: 2em;
+}
