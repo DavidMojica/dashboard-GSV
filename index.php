@@ -45,7 +45,7 @@
                         ?>
                             <li class="nav-item m-1">
                                 <a href="templates/login.php">
-                                    <button class="button-light">Iniciar Sesión   <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                                    <button class="button-light">Iniciar Sesión <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                                 </a>
                             </li>
 
@@ -67,27 +67,32 @@
     </div>
 
     <main>
-        <div class="dash-legend">
-            <h1>ANSV Dashboard</h1>
-            <p>
-                Bienvenido al Dashoard de accidentalidad en el departamento de Antioquia. <br>
-                Aquí podrás encontrar visualizaciones interactivas que te ayudarán a entender la distribución y características de los accidentes en el Departamento de Antioquia.
+        <div class="dash-legend container">
+            <h1 class="">ANSV Dashboard</h1>
+            <h4 class="">Dashboard de accidentalidad vial en Antioquia.</h4>
+            <p class="lead">
+                Aquí podrás encontrar visualizaciones interactivas que te ayudarán a entender
+                la distribución y características de los accidentes en Antioquia.
+                Pasa el mouse por encima de cada gráfico para obtener mayores detalles
+                y datos más específicos.
             </p>
         </div>
+
         <div class="text-success">
             <hr>
         </div>
 
+
         <div class="dashboard container">
+            <h2 class="display-3">Actores viales.</h2>
             <div class="row my-4">
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4">
                     <div id="chart1" class="chart"></div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8">
                     <div id="chart2" class="chart"></div>
                 </div>
             </div>
-
         </div>
 
     </main>

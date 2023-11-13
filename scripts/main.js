@@ -1,28 +1,47 @@
 const getOptionChart1 = () => {
     return {
         title: {
-            text: 'Stacked Line'
+            text: 'Accidentalidad por actor vial.'
         },
         tooltip: {
-            show: true,
-            trigger: "axis",
-            triggerOn: "mousemove|click"
-
+            trigger: 'item'
         },
-        dataZoom: {
-            show: true
-        },
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
+        legend: {
+            top: '5%',
+            left: 'center'
         },
         series: [
             {
-                data: [150, 230, 224, 218, 135, 147, 260],
-                type: 'line'
+                name: 'Access From',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 40,
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: 1048, name: 'Search Engine' },
+                    { value: 735, name: 'Direct' },
+                    { value: 580, name: 'Email' },
+                    { value: 484, name: 'Union Ads' },
+                    { value: 300, name: 'Video Ads' }
+                ]
             }
         ]
     };
@@ -92,10 +111,10 @@ const getOptionChart2 = () => {
     };
 };
 
-
+let chart1, chart2;
 const initCharts = () => {
-    const chart1 = echarts.init(document.getElementById("chart1"));
-    const chart2 = echarts.init(document.getElementById("chart2"));
+    chart1 = echarts.init(document.getElementById("chart1"));
+    chart2 = echarts.init(document.getElementById("chart2"));
 
     chart1.setOption(getOptionChart1());
     chart2.setOption(getOptionChart2());
@@ -107,4 +126,10 @@ function getDataChart1() {
 
 window.addEventListener('load', () => {
     initCharts();
+});
+
+//Echarts-Responsividad
+window.addEventListener('resize', function () {
+    chart1.resize();
+    chart2.resize();
 });

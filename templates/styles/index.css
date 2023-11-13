@@ -10,6 +10,9 @@ main{
     padding-top: 5%;
     padding-bottom: 5%;
 }
+h1, h2, h4, p{
+    color: azure;
+}
 .div_top{
     display: grid;
     border-top: 8px solid var(--green-ant);
@@ -31,26 +34,25 @@ main{
     grid-area: navbar_d2;
 }
 
-.cont{
-    position: relative;
-    background-image: url(https://www.bureaumedellin.com/wp-content/uploads/2021/05/Montanas1.jpg);
-}
-
 .dash-legend{
     display: grid;
     place-items: center;
-    color: azure;
 }
 h1{
     font-weight: 700;
     font-size: 46px;
 }
+
+
+
+
 .dash-legend p{
     max-width: 600px;
     margin: 0 auto;
     flex-wrap: nowrap;
     font-weight: 400;
 }
+
 
 /* CHART */
 .chart{
