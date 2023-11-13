@@ -61,20 +61,21 @@ b{
   transform: translateX(1.5em) rotate(90deg);
 }
 #formAccidentes{
+  text-align: center;
   height: 90%;
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  grid-template-rows: .0001fr 1fr 0.6fr 0.6fr 1.6fr .2fr .2fr 0.4fr; 
+  grid-template-rows: .55fr .55fr .55fr .1fr .5fr 1.5fr .2fr .2fr; 
   place-items: center;
   grid-template-areas: 
    "top_1 top_1"
     "top_2 top_3"
     "top_4 top_5"
-    
+    "blank_1 blank_1"
     "mid_1 mid_2"
     "mid_1 mid_2"
     "bot_1 bot_1"
-    ". ."; 
+    "bot_2 bot_2"; 
 }
 .mid_1 {
   grid-area: mid_1; 
@@ -92,16 +93,22 @@ b{
   margin-left: 9%;
 }
 .senders{
-  width: 213px;
+  width: 170px;
 }
 .top_1 { grid-area: top_1; }
 .top_2 { grid-area: top_2; }
 .top_3 { grid-area: top_3; }
 .top_4 { grid-area: top_4; }
 .top_5 { grid-area: top_5; }
+.blank_1 { grid-area: blank_1; }
 .bot_1 { grid-area: bot_1; }
-.bot_2 { grid-area: bot_2; }
-.bot_3 { grid-area: bot_3; }
+.bot_2 { 
+  grid-area: bot_2;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+ }
+
 
 
 #formDane {
@@ -127,6 +134,9 @@ b{
 }
 
 @media (max-width: 768px) {
+  .logo_form{
+    display: block;
+  }
   .h2-drop{
     font-size: 24px;
   }
@@ -141,11 +151,13 @@ b{
     
   }
   #formAccidentes {
+    text-align: center;
     grid-template-columns: 1fr; /* Cambia a una columna en pantallas más pequeñas */
-    grid-template-rows: .8fr .2fr 0.3fr 0.3fr 0.3fr .3fr .6fr 0.6fr 0.3fr;
+    grid-template-rows: .8fr .2fr 0.1fr 0.1fr 0.4fr .2fr .4fr 1fr 1.1fr;
     grid-template-areas: 
     "."
     "top_1"
+    "blank_1"
     "top_2"
     "top_3"
     "top_4"
@@ -153,10 +165,18 @@ b{
     "mid_1"
     "mid_2"
     "bot_1"
+    "bot_2"
     ".";
     height: auto;
-    
+    overflow-y:auto ;
+    overflow-x: hidden;
   }
+  .bot_2 { 
+    display: block;
+   }
+   .top_2, .top_4{
+    font-size: 18px;
+   }
 
   #formDane{
     grid-template-columns: 1fr;
@@ -187,8 +207,6 @@ b{
   }
   .back{
     width: 100vw;
-    overflow-y:auto ;
-    overflow-x: hidden;
   }
   .front{
     width: 100vw;
