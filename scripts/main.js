@@ -50,7 +50,7 @@ const getOptionChart1 = () => {
 };
 function getDataChart1(anio) {
     $.ajax({
-        url: '../processes/get_data.php',
+        url: 'processes/get_data.php',
         type: 'POST',
         data:{
             anio: anio,

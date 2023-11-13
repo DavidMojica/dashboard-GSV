@@ -1,16 +1,17 @@
 <?php
+
+include('essentials.php');
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 $anio = isset($_POST['anio']) ? $_POST['anio'] : null;
 
 switch ($action) {
-    case 'getChartData1':
-        $result = getDataChart1($anio);
+    case 'getDataChart1':
+        returnDataResponse(getDataChart1($anio));
 
         break;
 
 }
 function getDataChart1($anio){
-    include('essentials.php');
     include('PDOconn.php');
 
 
@@ -34,7 +35,6 @@ function getDataChart1($anio){
         LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
         GROUP BY v.id, v.nombre";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
         $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
