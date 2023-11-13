@@ -1,4 +1,5 @@
 const getOptionChart1 = () => {
+    let data = getDataChart1("all");
     return {
         title: {
             text: 'Accidentalidad por actor vial.'
@@ -36,16 +37,39 @@ const getOptionChart1 = () => {
                     show: false
                 },
                 data: [
-                    { value: 1048, name: 'Search Engine' },
-                    { value: 735, name: 'Direct' },
-                    { value: 580, name: 'Email' },
-                    { value: 484, name: 'Union Ads' },
-                    { value: 300, name: 'Video Ads' }
+                    { value: 148, name: 'Motos' },
+                    { value: 735, name: 'Peatones' },
+                    { value: 580, name: 'Vehículos' },
+                    { value: 484, name: 'Bicicletas' },
+                    { value: 300, name: 'Sin Información' },
+                    { value: 200, name: 'Otros' }
                 ]
             }
         ]
     };
 };
+function getDataChart1(anio) {
+    $.ajax({
+        url: '../processes/get_data.php',
+        type: 'POST',
+        data:{
+            anio: anio
+        },
+        success: function(response){
+            let jsonString = JSON.stringify(response);
+            let data       = JSON.parse(jsonString);
+            return data.content
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            // Error en la solicitud AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+}
+
 const getOptionChart2 = () => {
     return {
         title: {
@@ -120,9 +144,7 @@ const initCharts = () => {
     chart2.setOption(getOptionChart2());
 }
 
-function getDataChart1() {
 
-}
 
 window.addEventListener('load', () => {
     initCharts();
