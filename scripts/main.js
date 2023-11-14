@@ -140,15 +140,27 @@ let chart2;
 //init
 const getOptionChart2 = (callback) => {
     getDataChart1("init",'getDataChart2', function (data) {
-        let nombres = []
-        
-        console.log(data)
-        for (let i of data){ 
-            if (!nombres.includes(i.nombre_vehiculo)) nombres.push(i.nombre_vehiculo);
+       
+        let nombres = [];
+    let lesionadosDict = {};
+    let muertosDict = {};
 
-
-            console.log(i.nombre_vehiculo)
+    for (let i of data) {
+        if (!nombres.includes(i.nombre_vehiculo)) {
+            nombres.push(i.nombre_vehiculo);
+            lesionadosDict[i.nombre_vehiculo] = 0;
+            muertosDict[i.nombre_vehiculo] = 0;
         }
+
+        if (i.tipo_accidente === 'Lesion') {
+            lesionadosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+        } else {
+            muertosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+        }
+    }
+
+    let lesionadosData = Object.values(lesionadosDict);
+    let muertosData = Object.values(muertosDict);
 
         let option = {
             title: {
@@ -160,7 +172,7 @@ const getOptionChart2 = (callback) => {
                 type: 'shadow'
               }
             },
-            legend: {right: '5%'},
+            legend: {top: '5%', right: '5%'},
             grid: {
               left: '3%',
               right: '4%',
@@ -170,7 +182,7 @@ const getOptionChart2 = (callback) => {
             xAxis: [
               {
                 type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                data: nombres
               }
             ],
             yAxis: [
@@ -180,39 +192,22 @@ const getOptionChart2 = (callback) => {
             ],
             series: [
               {
-                name: 'Direct',
+                name: 'Lesionados',
                 type: 'bar',
+                stack: 'let',
                 emphasis: {
                   focus: 'series'
                 },
-                data: [320, 332, 301, 334, 390, 330, 320]
+                data: lesionadosData
               },
               {
-                name: 'Email',
+                name: 'Muertos',
                 type: 'bar',
-                stack: 'Ad',
+                stack: 'let',
                 emphasis: {
                   focus: 'series'
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                name: 'Union Ads',
-                type: 'bar',
-                stack: 'Ad',
-                emphasis: {
-                  focus: 'series'
-                },
-                data: [220, 182, 191, 234, 290, 330, 310]
-              },
-              {
-                name: 'Video Ads',
-                type: 'bar',
-                stack: 'Ad',
-                emphasis: {
-                  focus: 'series'
-                },
-                data: [150, 232, 201, 154, 190, 330, 410]
+                data: muertosData
               },
             ]
           };
@@ -296,7 +291,7 @@ chart2Select.addEventListener('change', function () {
           };
 
         // Actualiza el gráfico con la nueva opción
-        chart1.setOption(updatedOption);
+        chart2.setOption(updatedOption);
     });
 });
 
