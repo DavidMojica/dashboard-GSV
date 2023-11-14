@@ -14,14 +14,16 @@ switch ($action) {
 function getDataChart1($anio){
     include('PDOconn.php');
 
+    $anioMinimo = 2016;
+    $anioActual = date('Y');
 
-    if (is_int($anio)) {
-        if($anio >= $anioMinimo and $anio < $anioActual) {
+    if (is_numeric($anio)) {
+        if($anio >= $anioMinimo && $anio < $anioActual) {
             $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
             FROM tbl_vehiculo v
             LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
-            WHERE anio = :anio
-            GROUP BY v.id, v.nombre";
+            WHERE a.anio = :anio
+            GROUP BY  v.nombre";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
             $stmt->execute();
