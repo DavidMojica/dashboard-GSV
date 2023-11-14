@@ -4,6 +4,8 @@ let chart1;
 
 chart1Select.addEventListener('change', function () {
     getDataChart1(chart1Select.value, function (data) {
+        console.log(data)
+        console.log(chart1Select.value)
         let graph_data = [];
 
         // Procesa los datos según sea necesario

@@ -95,7 +95,7 @@
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                     <option value="2022">2022</option>
-                    <option value="2022">2023</option>
+                    <option value="2023">2023</option>
                 </select>
                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4">
                     <div id="chart1" class="chart"></div>

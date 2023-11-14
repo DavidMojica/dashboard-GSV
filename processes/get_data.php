@@ -18,7 +18,7 @@ function getDataChart1($anio){
     $anioActual = date('Y');
 
     if (is_numeric($anio)) {
-        if($anio >= $anioMinimo && $anio < $anioActual) {
+        if($anio >= $anioMinimo && $anio <= $anioActual) {
             $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
             FROM tbl_vehiculo v
             LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
