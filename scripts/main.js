@@ -448,6 +448,55 @@ chart3Select.addEventListener('change', function () {
 });
 
 //-------------CHART 4: Comparativo lesiones por incidentes viales (casos)
+let chart4;
+const chart4Select = document.getElementById('chart4Select');
+
+const getOptionChart4 = (callback) => {
+    getDataChart1("init", 'getDataChart4', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        
+        newData.forEach(element =>{
+            console.log(element[0]['pob_total'])
+        });
+
+
+        let option = {
+            title: {
+                text: 'Muertes por incidentes viales por año'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: series
+        };
+        // Llama a la función de devolución de llamada con las opciones del gráfico
+        callback(option);
+    });
+};
 
 
 
@@ -468,6 +517,12 @@ function initCharts() {
     getOptionChart3(function (option) {
         chart3.setOption(option);
     });
+
+    chart4 = echarts.init(document.getElementById("chart4"));
+    getOptionChart4(function (option) {
+        chart4.setOption(option);
+    });
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -479,4 +534,5 @@ window.addEventListener('resize', function () {
     chart1.resize();
     chart2.resize();
     chart3.resize();
+    chart4.resize();
 });
