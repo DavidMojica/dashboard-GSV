@@ -7,8 +7,22 @@ $anio = isset($_POST['anio']) ? $_POST['anio'] : null;
 switch ($action) {
     case 'getDataChart1':
         returnDataResponse(getDataChart1($anio));
-
         break;
+    case 'getDataChart2':
+        returnDataResponse(getDataChart2($anio));
+        break;
+
+}
+function getDataChart2($anio) {
+    include('PDOconn.php');
+    $anioMinimo = 2016;
+    $anioActual = date('Y');
+
+    if(is_numeric($anio)) {
+        if($anio >= $anioMinimo && $anio <= $anioActual) {
+
+        }
+    }
 
 }
 function getDataChart1($anio){
@@ -19,11 +33,12 @@ function getDataChart1($anio){
 
     if (is_numeric($anio)) {
         if($anio >= $anioMinimo && $anio <= $anioActual) {
-            $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
-            FROM tbl_vehiculo v
-            LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
+            $query = "SELECT v.nombre as nombre_vehiculo, SUM(a.cantidad) as total_accidentes
+            FROM tbl_accidente a
+            JOIN tbl_vehiculo v ON a.vehiculo = v.id
             WHERE a.anio = :anio
-            GROUP BY  v.nombre";
+            GROUP BY v.nombre";
+            
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
             $stmt->execute();
@@ -31,10 +46,10 @@ function getDataChart1($anio){
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-     $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
-        FROM tbl_vehiculo v
-        LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
-        GROUP BY v.id, v.nombre";
+     $query = "SELECT v.nombre as nombre_vehiculo, SUM(a.cantidad) as total_accidentes
+        FROM tbl_accidente a
+        JOIN tbl_vehiculo v ON a.vehiculo = v.id
+        GROUP BY v.nombre;";
         $stmt = $pdo->prepare($query);
         $stmt->execute();
         

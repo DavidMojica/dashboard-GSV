@@ -106,7 +106,7 @@ include("processes/essentials.php");
                         Estos accidentes incluyen muertos o lesionados.
                     </p>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 chartContainer">
+                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 mb-4 chartContainer">
                     <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
 
                         <?php
