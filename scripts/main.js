@@ -299,69 +299,89 @@ let chart3;
 
 const getOptionChart3 = (callback) => {
     getDataChart1("init", 'getDataChart3', function (data) {
+        let datosPorAnio = {};
+
+        data.forEach(element => {
+            let { anio, mes, total_muertes } = element
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = [];
+            }
+
+            datosPorAnio[anio].push({ mes, total_muertes });
+        });
+
+        for (let anio in datosPorAnio) {
+            datosPorAnio[anio].sort((a, b) => {
+                let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                return meses.indexOf(a.mes) - meses.indexOf(b.mes);
+            });
+        }
+
+        // Imprimir los resultados organizados
+        console.log(datosPorAnio);
 
         let option = {
             title: {
-              text: 'Stacked Line'
+                text: 'Stacked Line'
             },
             tooltip: {
-              trigger: 'axis'
+                trigger: 'axis'
             },
             legend: {
-              data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+                data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
             },
             grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
             toolbox: {
-              feature: {
-                saveAsImage: {}
-              }
+                feature: {
+                    saveAsImage: {}
+                }
             },
             xAxis: {
-              type: 'category',
-              boundaryGap: false,
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                type: 'category',
+                boundaryGap: false,
+                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
             },
             yAxis: {
-              type: 'value'
+                type: 'value'
             },
             series: [
-              {
-                name: 'Email',
-                type: 'line',
-                stack: 'Total',
-                data: [120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                name: 'Union Ads',
-                type: 'line',
-                stack: 'Total',
-                data: [220, 182, 191, 234, 290, 330, 310]
-              },
-              {
-                name: 'Video Ads',
-                type: 'line',
-                stack: 'Total',
-                data: [150, 232, 201, 154, 190, 330, 410]
-              },
-              {
-                name: 'Direct',
-                type: 'line',
-                stack: 'Total',
-                data: [320, 332, 301, 334, 390, 330, 320]
-              },
-              {
-                name: 'Search Engine',
-                type: 'line',
-                stack: 'Total',
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
-              }
+                {
+                    name: 'Email',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Union Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Video Ads',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Direct',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Search Engine',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
             ]
-          };
+        };
         // Llama a la función de devolución de llamada con las opciones del gráfico
         callback(option);
     });
@@ -383,7 +403,7 @@ function initCharts() {
     });
 
     chart3 = echarts.init(document.getElementById("chart3"));
-    getOptionChart2(function (option) {
+    getOptionChart3(function (option) {
         chart3.setOption(option);
     });
 }
