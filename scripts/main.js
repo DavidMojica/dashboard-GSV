@@ -16,7 +16,7 @@ chart1Select.addEventListener('change', function () {
         // Actualiza la opción del gráfico
         let updatedOption = {
             title: {
-                text: 'Accidentalidad por actor vial.'
+                text: `Accidentalidad por actor vial en ${chart1Select.value}`,
             },
             tooltip: {
                 trigger: 'item'
@@ -62,7 +62,7 @@ chart1Select.addEventListener('change', function () {
 
 
 const getOptionChart1 = (callback) => {
-    getDataChart1("all", function (data) {
+    getDataChart1("init", function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
