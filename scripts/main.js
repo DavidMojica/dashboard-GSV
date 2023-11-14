@@ -1,6 +1,6 @@
 //Globals
 let meses = {
-    "Enero":1, "Febrero":2, "Marzo":3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto":8, "Septiembre":9, "Octubre": 10, "Noviembre": 11, "Diciembre":12
+    "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12
 }
 
 // ----------- CHART 1: Incidentes viales-------------------
@@ -128,6 +128,7 @@ function getDataChart1(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
+            console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -301,12 +302,12 @@ chart2Select.addEventListener('change', function () {
 
 //------------CHART 3: Comparativo muertes por incidentes viales (casos)--------------//
 let chart3;
+const chart3Select = document.getElementById('chart3Select');
 
 const getOptionChart3 = (callback) => {
     getDataChart1("init", 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
-
         // Inicializar datosPorAnio y anios
         newData.forEach(element => {
             let { anio, mes, total_muertes } = element;
@@ -317,16 +318,18 @@ const getOptionChart3 = (callback) => {
             if (!datosPorAnio[anio][mes]) {
                 datosPorAnio[anio][mes] = 0;
             }
-            datosPorAnio[anio][mes] += parseInt(total_muertes);
+            datosPorAnio[anio][mes] = parseInt(total_muertes);
         });
-        
+        console.log(datosPorAnio)
+
         // Crear series con relleno de 0 para meses faltantes
         let series = anios.map(anio => {
-            let data = Array.from({ length: 12 }).fill(0); 
-        
+            let data = Array.from({ length: 12 }).fill(0);
+
             for (let mes in datosPorAnio[anio]) {
-                let mesIndex = meses[mes]; 
-                data[mesIndex] += datosPorAnio[anio][mes]; 
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
             }
             return {
                 name: anio.toString(),
@@ -335,6 +338,7 @@ const getOptionChart3 = (callback) => {
                 data: data
             };
         });
+        console.log(series)
 
         let option = {
             title: {
@@ -372,6 +376,78 @@ const getOptionChart3 = (callback) => {
         callback(option);
     });
 };
+
+chart3Select.addEventListener('change', function () {
+    getDataChart1(chart3Select.value, 'getDataChart3', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        console.log(newData)
+        // Inicializar datosPorAnio y anios
+        newData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+            }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+            datosPorAnio[anio][mes] += parseInt(total_muertes);
+        });
+
+        // Crear series con relleno de 0 para meses faltantes
+        let nseries = anios.map(anio => {
+            let data = Array.from({ length: 12 }).fill(0);
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            return {
+                name: anio.toString(),
+                type: 'line',
+                stack: 'Total',
+                data: data
+            };
+        });
+
+        console.log(nseries)
+
+        let updatedOption = {
+            title: {
+                text: 'Muertes por incidentes viales por año'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: nseries
+        };
+        chart3.setOption(updatedOption);
+    });
+});
 
 
 

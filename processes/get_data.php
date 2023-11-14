@@ -12,11 +12,26 @@ switch ($action) {
         returnDataResponse(getDataChart2($anio));
         break;
     case 'getDataChart3':
-        returnDataResponse(getDataChart3());
+        returnDataResponse(getDataChart3($anio));
 }
-function getDataChart3()
+function getDataChart3($municipio)
 {
     include('PDOconn.php');
+
+
+    if(is_numeric($municipio)){
+        $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
+        FROM tbl_accidente a
+        JOIN tbl_meses m ON a.mes = m.id
+        WHERE a.tipo_accidente = 1 AND a.anio BETWEEN 2018 AND 2023 AND a.municipio = :municipio
+        GROUP BY a.anio, m.nombre
+        ORDER BY a.anio, CAST(a.mes AS SIGNED);";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":municipio", $municipio);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
             FROM tbl_accidente a
