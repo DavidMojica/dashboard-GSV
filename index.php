@@ -117,7 +117,6 @@ include("processes/essentials.php");
                         ?>
                     </select>
                     <div id="chart2" class="chart"></div>
-
                 </div>
             </div>
         </div>
