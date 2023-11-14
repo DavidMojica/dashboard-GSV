@@ -31,8 +31,7 @@ function getDataChart1($anio){
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    else{
-        $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
+     $query = "SELECT v.id AS id_vehiculo, v.nombre AS nombre_vehiculo, COUNT(a.id) AS total_accidentes
         FROM tbl_vehiculo v
         LEFT JOIN tbl_accidente a ON v.id = a.vehiculo
         GROUP BY v.id, v.nombre";
@@ -40,7 +39,6 @@ function getDataChart1($anio){
         $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
 
 ?>

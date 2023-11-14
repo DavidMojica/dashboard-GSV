@@ -4,6 +4,7 @@ include("processes/essentials.php");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,9 +92,9 @@ include("processes/essentials.php");
             <div class="row my-4">
                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4 chartContainer">
                     <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
-                        
+
                         <?php
-                        echo "<option value='todos los años'>Todos los años (".$anioMinimo." - ".$anioActual.")</option>";
+                        echo "<option value='todos los años'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
                         for ($i = $anioMinimo; $i <= $anioActual; $i++) {
                             echo '<option value=' . $i . '>' . $i . '</option>';
                         }
@@ -104,10 +105,19 @@ include("processes/essentials.php");
                     <p style="color:black;">
                         Estos accidentes incluyen muertos o lesionados.
                     </p>
-
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8">
+                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 chartContainer">
+                    <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+
+                        <?php
+                        echo "<option value='todos los años'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
                     <div id="chart2" class="chart"></div>
+
                 </div>
             </div>
         </div>
