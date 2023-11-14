@@ -92,9 +92,8 @@ include("processes/essentials.php");
             <div class="row gap-4">
                 <div class="col-sm-12 col-md-5 col-lg-5 col-xl-4  chartContainer">
                     <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
-
                         <?php
-                        echo "<option value='todos los años'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
                         for ($i = $anioMinimo; $i <= $anioActual; $i++) {
                             echo '<option value=' . $i . '>' . $i . '</option>';
                         }
@@ -108,15 +107,23 @@ include("processes/essentials.php");
 
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-7 chartContainer">
                     <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
-
                         <?php
-                        echo "<option value='todos los años'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
                         for ($i = $anioMinimo; $i <= $anioActual; $i++) {
                             echo '<option value=' . $i . '>' . $i . '</option>';
                         }
                         ?>
                     </select>
-                    <div id="chart2" class="chart"></div>
+                    <div id="chart2" class="chart">
+                        
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-6 chartContainer">
+                    <div id="chart3" class="chart"></div>
+                </div>
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <div class="chart" id="chart4"></div>
                 </div>
             </div>
         </div>

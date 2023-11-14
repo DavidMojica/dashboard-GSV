@@ -56,8 +56,8 @@ h1{
 
 /* CHART */
 .chart{
-    width: 100%;
-    min-height: 450px;
+    width: 90%;
+    min-height: 400px;
 }
 
 .chartContainer{   

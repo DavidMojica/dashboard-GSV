@@ -1,19 +1,19 @@
-// ----------- CHART 1: Accidentalidad por actor vial-------------------
+// ----------- CHART 1: Incidentes viales-------------------
 const chart1Select = document.getElementById('chart1Select');
 let chart1;
 //init
 const getOptionChart1 = (callback) => {
-    getDataChart1("init",'getDataChart1', function (data) {
+    getDataChart1("init", 'getDataChart1', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
-        for (let i of data){
-            graph_data.push({value: i.total_accidentes, name: i.nombre_vehiculo})
+        for (let i of data) {
+            graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo })
         }
 
         let option = {
             title: {
-                text: 'Accidentalidad por actor vial'
+                text: `Incidentes viales (${chart1Select.value})`,
             },
             tooltip: {
                 trigger: 'item'
@@ -57,7 +57,7 @@ const getOptionChart1 = (callback) => {
 };
 //Filter
 chart1Select.addEventListener('change', function () {
-    getDataChart1(chart1Select.value,'getDataChart1', function (data) {
+    getDataChart1(chart1Select.value, 'getDataChart1', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
@@ -68,7 +68,7 @@ chart1Select.addEventListener('change', function () {
         // Actualiza la opción del gráfico
         let updatedOption = {
             title: {
-                text: `Accidentalidad por actor vial (${chart1Select.value})`,
+                text: `Incidentes viales (${chart1Select.value})`,
             },
             tooltip: {
                 trigger: 'item'
@@ -112,7 +112,7 @@ chart1Select.addEventListener('change', function () {
     });
 });
 //Get data
-function getDataChart1(anio,action, callback) {
+function getDataChart1(anio, action, callback) {
     $.ajax({
         url: 'processes/get_data.php',
         type: 'POST',
@@ -139,156 +139,155 @@ const chart2Select = document.getElementById('chart2Select');
 let chart2;
 //init
 const getOptionChart2 = (callback) => {
-    getDataChart1("init",'getDataChart2', function (data) {
-       
+    getDataChart1("init", 'getDataChart2', function (data) {
+
         let nombres = [];
-    let lesionadosDict = {};
-    let muertosDict = {};
+        let lesionadosDict = {};
+        let muertosDict = {};
 
-    for (let i of data) {
-        if (!nombres.includes(i.nombre_vehiculo)) {
-            nombres.push(i.nombre_vehiculo);
-            lesionadosDict[i.nombre_vehiculo] = 0;
-            muertosDict[i.nombre_vehiculo] = 0;
+        for (let i of data) {
+            if (!nombres.includes(i.nombre_vehiculo)) {
+                nombres.push(i.nombre_vehiculo);
+                lesionadosDict[i.nombre_vehiculo] = 0;
+                muertosDict[i.nombre_vehiculo] = 0;
+            }
+
+            if (i.tipo_accidente === 'Lesion') {
+                lesionadosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+            } else {
+                muertosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+            }
         }
 
-        if (i.tipo_accidente === 'Lesion') {
-            lesionadosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
-        } else {
-            muertosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
-        }
-    }
-
-    let lesionadosData = Object.values(lesionadosDict);
-    let muertosData = Object.values(muertosDict);
+        let lesionadosData = Object.values(lesionadosDict);
+        let muertosData = Object.values(muertosDict);
 
         let option = {
             title: {
                 text: 'Fatalidad por actor vial'
             },
             tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                type: 'shadow'
-              }
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
             },
-            legend: {top: '5%', right: '5%'},
+            legend: { top: '5%', right: '5%' },
             grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
             xAxis: [
-              {
-                type: 'category',
-                data: nombres
-              }
+                {
+                    type: 'category',
+                    data: nombres
+                }
             ],
             yAxis: [
-              {
-                type: 'value'
-              }
+                {
+                    type: 'value'
+                }
             ],
             series: [
-              {
-                name: 'Lesionados',
-                type: 'bar',
-                stack: 'let',
-                emphasis: {
-                  focus: 'series'
+                {
+                    name: 'Lesionados',
+                    type: 'bar',
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: lesionadosData
                 },
-                data: lesionadosData
-              },
-              {
-                name: 'Muertos',
-                type: 'bar',
-                stack: 'let',
-                emphasis: {
-                  focus: 'series'
+                {
+                    name: 'Muertos',
+                    type: 'bar',
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: muertosData
                 },
-                data: muertosData
-              },
             ]
-          };
+        };
         // Llama a la función de devolución de llamada con las opciones del gráfico
         callback(option);
     });
 };
 // Filter
 chart2Select.addEventListener('change', function () {
-    getDataChart1(chart2Select.value,'getDataChart2', function (data) {
-        let graph_data = [];
+    getDataChart1(chart2Select.value, 'getDataChart2', function (data) {
+        let nombres = [];
+        let lesionadosDict = {};
+        let muertosDict = {};
 
-        // Procesa los datos según sea necesario
-        // for (let i of data) {
-        //     graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo });
-        // }
+        for (let i of data) {
+            if (!nombres.includes(i.nombre_vehiculo)) {
+                nombres.push(i.nombre_vehiculo);
+                lesionadosDict[i.nombre_vehiculo] = 0;
+                muertosDict[i.nombre_vehiculo] = 0;
+            }
 
-        // Actualiza la opción del gráfico
+            if (i.tipo_accidente === 'Lesion') {
+                lesionadosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+            } else {
+                muertosDict[i.nombre_vehiculo] += parseInt(i.total_accidentes);
+            }
+        }
+
+        let lesionadosData = Object.values(lesionadosDict);
+        let muertosData = Object.values(muertosDict);
+
         let updatedOption = {
-            tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                type: 'shadow'
-              }
+            title: {
+                text: `Fatalidad por actor vial (${chart2Select.value})`
             },
-            legend: {},
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: { top: '5%', right: '5%' },
             grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
             xAxis: [
-              {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-              }
+                {
+                    type: 'category',
+                    data: nombres
+                }
             ],
             yAxis: [
-              {
-                type: 'value'
-              }
+                {
+                    type: 'value'
+                }
             ],
             series: [
-              {
-                name: 'Direct',
-                type: 'bar',
-                emphasis: {
-                  focus: 'series'
+                {
+                    name: 'Lesionados',
+                    type: 'bar',
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: lesionadosData
                 },
-                data: [320, 332, 301, 334, 390, 330, 320]
-              },
-              {
-                name: 'Email',
-                type: 'bar',
-                stack: 'Ad',
-                emphasis: {
-                  focus: 'series'
+                {
+                    name: 'Muertos',
+                    type: 'bar',
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: muertosData
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                name: 'Union Ads',
-                type: 'bar',
-                stack: 'Ad',
-                emphasis: {
-                  focus: 'series'
-                },
-                data: [220, 182, 191, 234, 290, 330, 310]
-              },
-              {
-                name: 'Video Ads',
-                type: 'bar',
-                stack: 'Ad',
-                emphasis: {
-                  focus: 'series'
-                },
-                data: [150, 232, 201, 154, 190, 330, 410]
-              },
             ]
-          };
+        };
 
         // Actualiza el gráfico con la nueva opción
         chart2.setOption(updatedOption);
@@ -304,7 +303,7 @@ function initCharts() {
     getOptionChart1(function (option) {
         chart1.setOption(option);
     });
-    
+
     chart2 = echarts.init(document.getElementById("chart2"));
     getOptionChart2(function (option) {
         chart2.setOption(option);
