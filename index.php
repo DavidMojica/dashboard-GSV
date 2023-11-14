@@ -107,7 +107,7 @@ include("processes/essentials.php");
                     </p>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 mb-4 chartContainer">
-                    <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                    <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
 
                         <?php
                         echo "<option value='todos los años'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
