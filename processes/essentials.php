@@ -1,4 +1,6 @@
 <?php
+$anioActual = date('Y');
+$anioMinimo = 2016;
 
 /**
  * Regresa la respuesta a Ajax.
@@ -14,4 +16,10 @@ function return_response($success, $mensaje){
     exit($jsonResponse);
 }
 
+function returnDataResponse($data){
+    $response['content'] = $data;
+    $jsonResponse = json_encode($response);
+    header('Content-Type: application/json');
+    exit($jsonResponse);
+}
 ?>

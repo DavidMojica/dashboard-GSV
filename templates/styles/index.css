@@ -3,6 +3,15 @@
     /*Antioquia theme*/
     --green-ant:#216101;
     --blue-ant:#005dca;
+    --blue-sky:#509DE1;
+}
+main{
+    background-color: var(--blue-sky);
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+h1, h2, h4, p{
+    color: azure;
 }
 .div_top{
     display: grid;
@@ -14,18 +23,46 @@
     "navbar_d1"
     "navbar_d2";
 }
-
 .ans_logo{
     height:110px ;
 }
 .gov_logo{
     height: 40px;
 }
-
 .navbar_d1 { grid-area: navbar_d1; background: var(--blue-ant);}
 .navbar_d2 { 
     grid-area: navbar_d2;
+}
+
+.dash-legend{
     display: grid;
-    grid-template-columns: .3fr .7fr;
-    place-items: center; 
+    place-items: center;
+}
+h1{
+    font-weight: 700;
+    font-size: 46px;
+}
+
+
+
+
+.dash-legend p{
+    max-width: 600px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    font-weight: 400;
+}
+
+
+/* CHART */
+.chart{
+    width: 100%;
+    min-height: 450px;
+}
+
+.chartContainer{
+    
+    background: #fff;
+    padding: 1em;
+    border-radius: 2em;
 }
