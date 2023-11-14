@@ -1,3 +1,8 @@
+//Globals
+let meses = {
+    "Enero":1, "Febrero":2, "Marzo":3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto":8, "Septiembre":9, "Octubre": 10, "Noviembre": 11, "Diciembre":12
+}
+
 // ----------- CHART 1: Incidentes viales-------------------
 const chart1Select = document.getElementById('chart1Select');
 let chart1;
@@ -314,20 +319,14 @@ const getOptionChart3 = (callback) => {
             }
             datosPorAnio[anio][mes] += parseInt(total_muertes);
         });
-        console.log(datosPorAnio)
-        console.log(datosPorAnio[2018]['Enero'])
         
         // Crear series con relleno de 0 para meses faltantes
         let series = anios.map(anio => {
-            let data = Array.from({ length: 12 }).fill(0); // Inicializar array con 0 para cada mes
+            let data = Array.from({ length: 12 }).fill(0); 
         
             for (let mes in datosPorAnio[anio]) {
-                let mesIndex = parseInt(mes) - 1; // Restar 1 porque los índices de los arrays comienzan en 0
-                
-                console.log(mes)
-                console.log(mesIndex)
-                
-                data[mesIndex] += datosPorAnio[anio][mes]; // Sumar al valor existente en lugar de asignar
+                let mesIndex = meses[mes]; 
+                data[mesIndex] += datosPorAnio[anio][mes]; 
             }
             return {
                 name: anio.toString(),
@@ -336,12 +335,6 @@ const getOptionChart3 = (callback) => {
                 data: data
             };
         });
-
-        console.log(series);
-
-        console.log(anios)
-        // Imprimir los resultados organizados
-        console.log(datosPorAnio);
 
         let option = {
             title: {
