@@ -128,7 +128,6 @@ function getDataChart1(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
-            console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -320,7 +319,7 @@ const getOptionChart3 = (callback) => {
             }
             datosPorAnio[anio][mes] = parseInt(total_muertes);
         });
-        console.log(datosPorAnio)
+        
 
         // Crear series con relleno de 0 para meses faltantes
         let series = anios.map(anio => {
@@ -331,14 +330,14 @@ const getOptionChart3 = (callback) => {
 
                 data[mesIndex] = datosPorAnio[anio][mes];
             }
+           
             return {
                 name: anio.toString(),
                 type: 'line',
-                stack: 'Total',
                 data: data
             };
         });
-        console.log(series)
+
 
         let option = {
             title: {
@@ -378,10 +377,11 @@ const getOptionChart3 = (callback) => {
 };
 
 chart3Select.addEventListener('change', function () {
+    chart3.dispose();
+    chart3 = echarts.init(document.getElementById("chart3"));
     getDataChart1(chart3Select.value, 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
-        console.log(newData)
         // Inicializar datosPorAnio y anios
         newData.forEach(element => {
             let { anio, mes, total_muertes } = element;
@@ -392,7 +392,7 @@ chart3Select.addEventListener('change', function () {
             if (!datosPorAnio[anio][mes]) {
                 datosPorAnio[anio][mes] = 0;
             }
-            datosPorAnio[anio][mes] += parseInt(total_muertes);
+            datosPorAnio[anio][mes] = parseInt(total_muertes);
         });
 
         // Crear series con relleno de 0 para meses faltantes
@@ -406,12 +406,10 @@ chart3Select.addEventListener('change', function () {
             return {
                 name: anio.toString(),
                 type: 'line',
-                stack: 'Total',
                 data: data
             };
         });
-
-        console.log(nseries)
+        console.log(nseries);
 
         let updatedOption = {
             title: {
