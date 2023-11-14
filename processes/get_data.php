@@ -11,8 +11,26 @@ switch ($action) {
     case 'getDataChart2':
         returnDataResponse(getDataChart2($anio));
         break;
+    case'getDataChart3':
+        returnDataResponse(getDataChart3($anio));
+}
+function getDataChart3($anio){
+    include('PDOconn.php');
+
+    $query = "SELECT m.nombre as mes, SUM(a.cantidad) as total_accidentes 
+    FROM tbl_accidente a
+    JOIN tbl_meses m ON a.mes = m.id
+    WHERE a.tipo_accidente = 1 AND a.anio = 2021
+    GROUP BY m.nombre
+    ORDER BY CAST(a.mes AS SIGNED);";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 }
+
 function getDataChart2($anio) {
     include('PDOconn.php');
     $anioMinimo = 2016;

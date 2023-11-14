@@ -87,7 +87,7 @@ formAccidentes.addEventListener('submit', function(event){
     AJAXaccidentes(municipio_text, toggle_text, victima_text, cantidad_text, anio_text, mes_text);
 });
 
-function AJAXaccidentes(municipio, fatalidad, victima, cantidad, anio, mes){ 
+function AJAXaccidentes(municipio, fatalidad, victima, cantidadPost, anio, mes){ 
     $.ajax({
         url: '../processes/AJAX_a.php',
         type: 'POST',
@@ -95,7 +95,7 @@ function AJAXaccidentes(municipio, fatalidad, victima, cantidad, anio, mes){
             municipio: municipio,
             fatalidad: fatalidad,
             victima: victima,
-            cantidad: cantidad,
+            cantidad: cantidadPost,
             anio: anio,
             mes: mes
         },
@@ -103,7 +103,7 @@ function AJAXaccidentes(municipio, fatalidad, victima, cantidad, anio, mes){
             let jsonString = JSON.stringify(response);
             let data       = JSON.parse(jsonString);
             if(data.success){
-                // cantidad.value = cantidad.defaultValue;
+                cantidad.value = "";
                 msg.textContent = "Datos insertados correctamente.";
             }
             else alert(data.mensaje);
