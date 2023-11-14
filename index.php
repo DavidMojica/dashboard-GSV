@@ -89,8 +89,8 @@ include("processes/essentials.php");
 
         <div class="dashboard container">
             <h2 class="display-3">Actores viales.</h2>
-            <div class="row my-4">
-                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4 chartContainer">
+            <div class="row gap-4">
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-4  chartContainer">
                     <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
 
                         <?php
@@ -101,12 +101,12 @@ include("processes/essentials.php");
                         ?>
                     </select>
                     <div id="chart1" class="chart"></div>
-
                     <p style="color:black;">
                         Estos accidentes incluyen muertos o lesionados.
                     </p>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 mb-4 chartContainer">
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-7 chartContainer">
                     <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
 
                         <?php
@@ -121,7 +121,6 @@ include("processes/essentials.php");
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Apache Echarts -->
