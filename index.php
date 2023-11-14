@@ -120,6 +120,17 @@ include("processes/essentials.php");
                 </div>
 
                 <h2 class="display-3">Mortalidad / año</h2>
+                <select name="" id="chart3Select">
+                    <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        
+                        
+                        ?>
+
+
+                </select>
+
+
                 <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
                     <div id="chart3" class="chart"></div>
                 </div>

@@ -300,35 +300,44 @@ let chart3;
 const getOptionChart3 = (callback) => {
     getDataChart1("init", 'getDataChart3', function (data) {
         let datosPorAnio = {};
+        let anios = [];
 
         data.forEach(element => {
-            let { anio, mes, total_muertes } = element
+            let { anio, mes, total_muertes } = element;
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = [];
             }
 
-            datosPorAnio[anio].push({ mes, total_muertes });
+            if(!anios.includes(anio.toString())){
+                anios.push(anio.toString());
+            }
+
+            datosPorAnio[anio].push(parseInt(total_muertes));
         });
 
-        for (let anio in datosPorAnio) {
-            datosPorAnio[anio].sort((a, b) => {
-                let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-                return meses.indexOf(a.mes) - meses.indexOf(b.mes);
-            });
-        }
-
+        let series = Object.keys(datosPorAnio).map(anio => {
+            return {
+                name: anio.toString(),
+                type: 'line',
+                stack: 'Total',
+                data: datosPorAnio[anio]
+            };
+        });
+       
+        console.log(anios)
         // Imprimir los resultados organizados
         console.log(datosPorAnio);
 
         let option = {
             title: {
-                text: 'Stacked Line'
+                text: 'Muertes por incidentes viales por año'
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
-                data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+                data: anios,
+                right: '5%'
             },
             grid: {
                 left: '3%',
@@ -349,38 +358,7 @@ const getOptionChart3 = (callback) => {
             yAxis: {
                 type: 'value'
             },
-            series: [
-                {
-                    name: 'Email',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                },
-                {
-                    name: 'Union Ads',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [220, 182, 191, 234, 290, 330, 310]
-                },
-                {
-                    name: 'Video Ads',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [150, 232, 201, 154, 190, 330, 410]
-                },
-                {
-                    name: 'Direct',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: 'Search Engine',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [820, 932, 901, 934, 1290, 1330, 1320]
-                }
-            ]
+            series: series
         };
         // Llama a la función de devolución de llamada con las opciones del gráfico
         callback(option);
