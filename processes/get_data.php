@@ -13,7 +13,41 @@ switch ($action) {
         break;
     case 'getDataChart3':
         returnDataResponse(getDataChart3($anio));
+        break;
+    case 'getDataChart4':
+        returnDataResponse(getDataChart4($anio));
+        break;
+    
 }
+
+function getDataChart4($municipio){
+    include('PDOconn.php');
+    $anioMinimo = 2018;
+    $anioActual = date('Y');
+
+    if(is_numeric($municipio)){
+
+    }
+    $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
+            FROM tbl_accidente a
+            JOIN tbl_meses m ON a.mes = m.id
+            WHERE a.tipo_accidente = 1 AND a.anio BETWEEN :a_m AND :a_y
+            GROUP BY a.anio, m.nombre
+            ORDER BY a.anio, CAST(a.mes AS SIGNED);";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":a_m", $anioMinimo, PDO::PARAM_INT);
+    $stmt->bindParam(":a_y", $anioActual, PDO::PARAM_INT);
+    $stmt->execute();
+    $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $query = "SELECT SUM(p.cantidad) as pob_total
+    from tbl_poblacion p;";
+    $stmt->execute();
+    $resultQ2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
 function getDataChart3($municipio)
 {
     include('PDOconn.php');
