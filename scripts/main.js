@@ -455,11 +455,38 @@ const getOptionChart4 = (callback) => {
     getDataChart1("init", 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
-        
-        newData.forEach(element =>{
-            console.log(element[0]['pob_total'])
+        let pobTotalAntioquia = newData[1][0]['pob_total'];
+        let quarryData = newData[0];
+
+        quarryData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+            }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+            datosPorAnio[anio][mes] = parseFloat((total_muertes/pobTotalAntioquia)*100000).toFixed(2);
+        });
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 }).fill(0);
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            
+           
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
         });
 
+        console.log(series);
 
         let option = {
             title: {
