@@ -1,5 +1,6 @@
 <?php
 include("processes/essentials.php");
+include("processes/PDOconn.php");
 ?>
 
 <!DOCTYPE html>
@@ -115,23 +116,28 @@ include("processes/essentials.php");
                         ?>
                     </select>
                     <div id="chart2" class="chart">
-                        
+
                     </div>
                 </div>
 
                 <h2 class="display-3">Mortalidad / año</h2>
-                <select name="" id="chart3Select">
-                    <option value="Todos los municipios">Todos los municipios</option>
-                        <?php
-                        
-                        
-                        ?>
 
-
-                </select>
 
 
                 <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
+                    <select name="" id="chart3Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
                     <div id="chart3" class="chart"></div>
                 </div>
 

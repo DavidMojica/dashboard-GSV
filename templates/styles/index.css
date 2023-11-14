@@ -52,7 +52,9 @@ h1{
     flex-wrap: nowrap;
     font-weight: 400;
 }
-
+select{
+    cursor: pointer;
+}
 
 /* CHART */
 .chart{

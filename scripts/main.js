@@ -298,32 +298,47 @@ chart2Select.addEventListener('change', function () {
 let chart3;
 
 const getOptionChart3 = (callback) => {
-    getDataChart1("init", 'getDataChart3', function (data) {
+    getDataChart1("init", 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
 
-        data.forEach(element => {
+        // Inicializar datosPorAnio y anios
+        newData.forEach(element => {
             let { anio, mes, total_muertes } = element;
             if (!datosPorAnio[anio]) {
-                datosPorAnio[anio] = [];
-            }
-
-            if(!anios.includes(anio.toString())){
+                datosPorAnio[anio] = {};
                 anios.push(anio.toString());
             }
-
-            datosPorAnio[anio].push(parseInt(total_muertes));
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+            datosPorAnio[anio][mes] += parseInt(total_muertes);
         });
-
-        let series = Object.keys(datosPorAnio).map(anio => {
+        console.log(datosPorAnio)
+        console.log(datosPorAnio[2018]['Enero'])
+        
+        // Crear series con relleno de 0 para meses faltantes
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 }).fill(0); // Inicializar array con 0 para cada mes
+        
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = parseInt(mes) - 1; // Restar 1 porque los índices de los arrays comienzan en 0
+                
+                console.log(mes)
+                console.log(mesIndex)
+                
+                data[mesIndex] += datosPorAnio[anio][mes]; // Sumar al valor existente en lugar de asignar
+            }
             return {
                 name: anio.toString(),
                 type: 'line',
                 stack: 'Total',
-                data: datosPorAnio[anio]
+                data: data
             };
         });
-       
+
+        console.log(series);
+
         console.log(anios)
         // Imprimir los resultados organizados
         console.log(datosPorAnio);
