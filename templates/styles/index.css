@@ -58,6 +58,10 @@ h1{
 .chart{
     width: 100%;
     min-height: 450px;
+}
+
+.chartContainer{
+    
     background: #fff;
     padding: 1em;
     border-radius: 2em;

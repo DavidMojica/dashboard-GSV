@@ -86,18 +86,18 @@
         <div class="dashboard container">
             <h2 class="display-3">Actores viales.</h2>
             <div class="row my-4">
-                <select name="" id="chart1Select">
-                    <option value="all">Todos los años</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                </select>
-                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4">
+                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4 chartContainer">
+                    <select name="" id="chart1Select">
+                        <option value="all">Todos los años</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
                     <div id="chart1" class="chart"></div>
                     
 
