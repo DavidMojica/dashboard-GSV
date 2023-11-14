@@ -447,6 +447,8 @@ chart3Select.addEventListener('change', function () {
     });
 });
 
+//-------------CHART 4: Comparativo lesiones por incidentes viales (casos)
+
 
 
 // ------------INIT CHARTS - RESPONSIVITY--------------//
