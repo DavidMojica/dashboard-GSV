@@ -606,7 +606,7 @@ let chart5;
 
 const getOptionChart5 = (callback) => {
     getData("init", 'getDataChart5', function (newData) {
-
+        console.log(newData);
 
 
 
@@ -629,13 +629,7 @@ const getOptionChart5 = (callback) => {
                 name: 'Access From',
                 type: 'pie',
                 radius: '50%',
-                data: [
-                  { value: 1048, name: 'Search Engine' },
-                  { value: 735, name: 'Direct' },
-                  { value: 580, name: 'Email' },
-                  { value: 484, name: 'Union Ads' },
-                  { value: 300, name: 'Video Ads' }
-                ],
+                data: newData,
                 emphasis: {
                   itemStyle: {
                     shadowBlur: 10,
@@ -663,7 +657,7 @@ function getData(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
-            console.log(data)
+            // console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {

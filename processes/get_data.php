@@ -20,26 +20,43 @@ switch ($action) {
     case 'getDataChart5':
         returnDataResponse(getDataChart5($anio));
         break;
-
-    
 }
-function getDataChart5($municipio){
+function getDataChart5($municipio)
+{
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
 
-    if(is_numeric($municipio)){
-        
+    if (is_numeric($municipio)) {
+        $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
+        FROM tbl_accidente a
+        JOIN tbl_vehiculo v on a.vehiculo = v.id
+        WHERE a.municipio = :mpio
+        GROUP BY v.id;";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':mpio', $municipio, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
+    FROM tbl_accidente a
+    JOIN tbl_vehiculo v on a.vehiculo = v.id
+    GROUP BY v.id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-function getDataChart4($municipio){
+function getDataChart4($municipio)
+{
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
 
-    if(is_numeric($municipio)){
+    if (is_numeric($municipio)) {
         $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
         FROM tbl_accidente a
         JOIN tbl_meses m ON a.mes = m.id
@@ -81,7 +98,7 @@ function getDataChart4($municipio){
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $resultQ2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     return [$resultQ1, $resultQ2];
 }
 
@@ -92,7 +109,7 @@ function getDataChart3($municipio)
     $anioActual = date('Y');
 
 
-    if(is_numeric($municipio)){
+    if (is_numeric($municipio)) {
         $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
         FROM tbl_accidente a
         JOIN tbl_meses m ON a.mes = m.id
