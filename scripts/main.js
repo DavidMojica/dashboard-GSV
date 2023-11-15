@@ -533,6 +533,7 @@ chart4Select.addEventListener('change', function(){
     getDataChart1(chart4Select.value, 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
+        console.log(newData)
         let pobTotalAntioquia = newData[1][0]['pob_total'];
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
