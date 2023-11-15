@@ -193,8 +193,16 @@ include("processes/PDOconn.php");
                 </div>
 
                 <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart7Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chart" id="chart7">
 
-                    <div class="chart" id="chart7"></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -739,10 +739,14 @@ chart6Select.addEventListener('change', function () {
 
 //-----------CHART 7: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
 let chart7;
+let chart7Select = document.getElementById('chart7Select');
 
 const getOptionChart7 = (callback) => {
-    getData(2020, 'getDataChart7', function (newData) {
+    getData(chart7Select.value, 'getDataChart7', function (newData) {
+        const añoActual = new Date().getFullYear();
 
+        // Seleccionar automáticamente el option con el valor del año actual
+        document.getElementById("chart7Select").value = añoActual;
         
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
@@ -764,7 +768,7 @@ const getOptionChart7 = (callback) => {
         let option = {
             title: {
                 text: 'Mortalidad vs Tasa departamental',
-                subtext: toString(2020),
+                subtext: chart7Select.value,
                 x: 'center',
             },
             tooltip: {
@@ -820,9 +824,84 @@ const getOptionChart7 = (callback) => {
     });
 }
 
+chart7Select.addEventListener('change', function(){
+    chart7.dispose();
+    chart7 = echarts.init(document.getElementById("chart7"));
+    getData(chart7Select.value, 'getDataChart7', function (newData) {
+        const pobTotalAntioquia = newData[1][0]['value'];
+        const dict = newData[0];
 
+        const barData = dict.map(function(objeto){
+            return parseInt(objeto.value);
+        });
 
-//-----------CHART 8: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
+        let acumMuertes = 0;
+        const tasaPor100000Data = barData.map((value, index, array) => {
+            acumMuertes += value; // Acumula las muertes
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            return tasaPor100000;
+        });
+
+        let updatedOption = {
+            title: {
+                text: 'Mortalidad vs Tasa departamental',
+                subtext: chart7Select.value,
+                x: 'center',
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                },
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2,
+                    },
+                },
+            },
+            grid: {
+                top: 80,
+                bottom: 30,
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: { show: false },
+                    data: arrayMeses,
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'No. Muertos',
+                },
+                {
+                    type: 'value',
+                    name: 'Tasa x 100.000 hab',
+                },
+            ],
+            series: [
+                {
+                    name: 'No. Muertos',
+                    type: 'bar',
+                    data: barData,
+                },
+                {
+                    name: 'Tasa x 100.000 hab',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: tasaPor100000Data,
+                },
+            ],
+        };
+        chart7.setOption(updatedOption);
+    });
+});
+
+//-----------CHART 8: Lesionados VS TASA DEPARTAMENTAL POR I.V -------------//
 
 
 

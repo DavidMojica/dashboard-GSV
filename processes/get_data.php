@@ -24,7 +24,7 @@ switch ($action) {
         returnDataResponse(getDataCircular($anio, 2));
         break;
     case 'getDataChart7':
-        returnDataResponse(getDataPareto(2020, 1));
+        returnDataResponse(getDataPareto($anio, 1));
 }
 function getDataPareto($anio, $tpa){
     include('PDOconn.php');
