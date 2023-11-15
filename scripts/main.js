@@ -667,6 +667,7 @@ let chart6Select = document.getElementById('chart6Select');
 
 const getOptionChart6 = (callback) =>{
     getData("init", 'getDataChart6', function (newData) {
+        console.log(newData)
         let option = {
             title: {
               text: 'Mortalidad por actor vial',
@@ -747,7 +748,7 @@ function getData(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
-            // console.log(data)
+            console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -787,6 +788,11 @@ function initCharts() {
     getOptionChart5(function (option) {
         chart5.setOption(option);
     });
+
+    chart6 = echarts.init(document.getElementById("chart6"));
+    getOptionChart6(function (option) {
+        chart6.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -800,4 +806,5 @@ window.addEventListener('resize', function () {
     chart3.resize();
     chart4.resize();
     chart5.resize();
+    chart6.resize();
 });
