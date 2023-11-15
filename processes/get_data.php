@@ -23,11 +23,13 @@ switch ($action) {
     case 'getDataChart6':
         returnDataResponse(getDataCircular($anio, 2));
         break;
+    case 'getDataChart7':
+        returnDataResponse(getDataPareto(2020, 1));
 }
 function getDataPareto($anio, $tpa){
     include('PDOconn.php');
 
-    $query1 = "SELECT a.mes as mes, SUM(a.cantidad) as value
+    $query1 = "SELECT a.mes as name, SUM(a.cantidad) as value
             FROM tbl_accidente a
             WHERE a.tipo_accidente = :tpa and a.anio = :anio
             GROUP BY a.mes
@@ -39,7 +41,7 @@ function getDataPareto($anio, $tpa){
     
     $result1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    $query2 = "SELECT SUM(p.cantidad) as VALUE
+    $query2 = "SELECT SUM(p.cantidad) as value
     FROM tbl_poblacion p;";
     $stmt = $pdo->prepare($query2);
     $stmt->execute();

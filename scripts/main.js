@@ -596,68 +596,68 @@ const getOptionChart5 = (callback) => {
     getData("init", 'getDataChart5', function (newData) {
         let option = {
             title: {
-              text: 'Mortalidad por actor vial',
-              subtext: '(2016 - 2023)',
-              left: 'center'
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
             },
             tooltip: {
-              trigger: 'item'
+                trigger: 'item'
             },
             legend: {
-              orient: 'horizontal',
-              bottom: '5%'
+                orient: 'horizontal',
+                bottom: '5%'
             },
             series: [
-              {
-                name: 'Muertes por:',
-                type: 'pie',
-                radius: '55%',
-                data: newData,
-                emphasis: {
-                  itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
-              }
             ]
-          };
+        };
         callback(option);
     });
 };
 
-chart5Select.addEventListener('change', function(){
+chart5Select.addEventListener('change', function () {
     getData(chart5Select.value, 'getDataChart5', function (newData) {
         let updatedOption = {
             title: {
-              text: 'Mortalidad por actor vial',
-              subtext: '(2016 - 2023)',
-              left: 'center'
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
             },
             tooltip: {
-              trigger: 'item'
+                trigger: 'item'
             },
             legend: {
-              orient: 'horizontal',
-              bottom: '5%'
+                orient: 'horizontal',
+                bottom: '5%'
             },
             series: [
-              {
-                name: 'Muertes por:',
-                type: 'pie',
-                radius: '55%',
-                data: newData,
-                emphasis: {
-                  itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
-              }
             ]
-          };
+        };
         chart5.setOption(updatedOption);
     });
 });
@@ -666,72 +666,72 @@ chart5Select.addEventListener('change', function(){
 let chart6;
 let chart6Select = document.getElementById('chart6Select');
 
-const getOptionChart6 = (callback) =>{
+const getOptionChart6 = (callback) => {
     getData("init", 'getDataChart6', function (newData) {
         let option = {
             title: {
-              text: 'Lesionados por actor vial',
-              subtext: '(2016 - 2023)',
-              left: 'center'
+                text: 'Lesionados por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
             },
             tooltip: {
-              trigger: 'item'
+                trigger: 'item'
             },
             legend: {
-              orient: 'horizontal',
-              bottom: '5%'
+                orient: 'horizontal',
+                bottom: '5%'
             },
             series: [
-              {
-                name: 'Muertes por:',
-                type: 'pie',
-                radius: '55%',
-                data: newData,
-                emphasis: {
-                  itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
-              }
             ]
-          };
+        };
         callback(option);
     });
 }
 
-chart6Select.addEventListener('change', function(){
+chart6Select.addEventListener('change', function () {
     getData(chart6Select.value, 'getDataChart6', function (newData) {
         let updatedOption = {
             title: {
-              text: 'Mortalidad por actor vial',
-              subtext: '(2016 - 2023)',
-              left: 'center'
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
             },
             tooltip: {
-              trigger: 'item'
+                trigger: 'item'
             },
             legend: {
-              orient: 'horizontal',
-              bottom: '5%'
+                orient: 'horizontal',
+                bottom: '5%'
             },
             series: [
-              {
-                name: 'Muertes por:',
-                type: 'pie',
-                radius: '55%',
-                data: newData,
-                emphasis: {
-                  itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
-              }
             ]
-          };
+        };
         chart6.setOption(updatedOption);
     });
 });
@@ -741,9 +741,18 @@ chart6Select.addEventListener('change', function(){
 let chart7;
 
 const getOptionChart7 = (callback) => {
-    getData("init", 'getDataChart7', function (newData) {
+    getData(2020, 'getDataChart7', function (newData) {
 
-        const barData = [50, 30, 20, 10, 45];
+        
+        const pobTotalAntioquia = newData[1][0]['value'];
+        const dict = newData[0];
+
+        console.log(dict)
+        const barData = dict.map(function(objeto){
+            return parseInt(objeto.value);
+        });
+
+        console.log(barData)
 
         // Calcula el porcentaje acumulado
         const total = barData.reduce((sum, value) => sum + value, 0);
@@ -865,7 +874,7 @@ function initCharts() {
     getOptionChart4(function (option) {
         chart4.setOption(option);
     });
-    
+
     chart5 = echarts.init(document.getElementById("chart5"));
     getOptionChart5(function (option) {
         chart5.setOption(option);
