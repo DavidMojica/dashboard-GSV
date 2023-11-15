@@ -554,22 +554,17 @@ chart4Select.addEventListener('change', function(){
                 anios.push(anio.toString());
                 acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
             }
-            if(isNaN(chart4Select.value)){
                 if (!datosPorAnio[anio][mes]) {
                     datosPorAnio[anio][mes] = 0;
                 }
     
                 acumMuertesPorAnio[anio] += parseInt(total_muertes);
-                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
-            }        
-            else{
-                anios.forEach(a => {
-                    
-                    console.log(a)
-
-
-                });
-            }
+                if(isNaN(chart4Select.value)){
+                    datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+                }
+                else{
+                    datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
+                }
         });
 
         let series = anios.map(anio => {
@@ -589,7 +584,7 @@ chart4Select.addEventListener('change', function(){
 
         let updatedOption = {
             title: {
-                text: 'Muertes por incidentes viales por año'
+                text: `Muertes x 100.000 hab. ${chart4Select.selectedIndex.text}`
             },
             tooltip: {
                 trigger: 'axis'
