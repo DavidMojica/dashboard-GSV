@@ -457,29 +457,32 @@ const getOptionChart4 = (callback) => {
         let anios = [];
         let pobTotalAntioquia = newData[1][0]['pob_total'];
         let quarryData = newData[0];
+        let acumMuertesPorAnio = {};
 
         quarryData.forEach(element => {
             let { anio, mes, total_muertes } = element;
+
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = {};
                 anios.push(anio.toString());
+                acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
             }
+
             if (!datosPorAnio[anio][mes]) {
                 datosPorAnio[anio][mes] = 0;
             }
-            datosPorAnio[anio][mes] = parseFloat((total_muertes / pobTotalAntioquia) * 100000).toFixed(2);
+
+            acumMuertesPorAnio[anio] += parseInt(total_muertes);
+            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
         });
         let series = anios.map(anio => {
-            let data = Array.from({ length: 12 }).fill(0);
+            let data = Array.from({ length: 12 });
 
             for (let mes in datosPorAnio[anio]) {
                 let mesIndex = meses[mes] - 1;
 
                 data[mesIndex] = datosPorAnio[anio][mes];
-                console.log(data[mesIndex])
             }
-
-
             return {
                 name: anio.toString(),
                 type: 'line',
