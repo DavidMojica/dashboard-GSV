@@ -2,6 +2,7 @@
 let meses = {
     "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12
 }
+let arrayMeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 // ----------- CHART 1: Incidentes viales-------------------
 const chart1Select = document.getElementById('chart1Select');
@@ -327,7 +328,7 @@ const getOptionChart3 = (callback) => {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -400,7 +401,7 @@ chart3Select.addEventListener('change', function () {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -481,7 +482,7 @@ const getOptionChart4 = (callback) => {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -576,7 +577,7 @@ chart4Select.addEventListener('change', function () {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -669,7 +670,7 @@ const getOptionChart6 = (callback) =>{
     getData("init", 'getDataChart6', function (newData) {
         let option = {
             title: {
-              text: 'Mortalidad por actor vial',
+              text: 'Lesionados por actor vial',
               subtext: '(2016 - 2023)',
               left: 'center'
             },
@@ -735,6 +736,88 @@ chart6Select.addEventListener('change', function(){
     });
 });
 
+
+//-----------CHART 7: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
+let chart7;
+
+const getOptionChart7 = (callback) => {
+    getData("init", 'getDataChart7', function (newData) {
+
+        const barData = [50, 30, 20, 10, 45];
+
+        // Calcula el porcentaje acumulado
+        const total = barData.reduce((sum, value) => sum + value, 0);
+        const cumulativePercentageData = barData.map((value, index, array) => {
+            const cumulativeSum = array.slice(0, index + 1).reduce((sum, v) => sum + v, 0);
+            return ((cumulativeSum / total) * 100).toFixed(2);
+        });
+
+
+        let option = {
+            title: {
+                text: 'Pareto Chart',
+                subtext: 'Top causas de problemas',
+                x: 'center',
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                },
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2,
+                    },
+                },
+            },
+            grid: {
+                top: 80,
+                bottom: 30,
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: { show: false },
+                    data: arrayMeses,
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Frecuencia',
+                },
+                {
+                    type: 'value',
+                    name: 'Porcentaje acumulado',
+                },
+            ],
+            series: [
+                {
+                    name: 'Frecuencia',
+                    type: 'bar',
+                    data: barData,
+                },
+                {
+                    name: 'Porcentaje acumulado',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: cumulativePercentageData,
+                },
+            ],
+        };
+        callback(option);
+    });
+}
+
+
+
+//-----------CHART 8: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
+
+
+
 //Get data
 function getData(anio, action, callback) {
     $.ajax({
@@ -792,6 +875,11 @@ function initCharts() {
     getOptionChart6(function (option) {
         chart6.setOption(option);
     });
+
+    chart7 = echarts.init(document.getElementById("chart7"));
+    getOptionChart7(function (option) {
+        chart7.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -806,4 +894,5 @@ window.addEventListener('resize', function () {
     chart4.resize();
     chart5.resize();
     chart6.resize();
+    chart7.resize();
 });

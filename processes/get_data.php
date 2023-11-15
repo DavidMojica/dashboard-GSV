@@ -24,6 +24,32 @@ switch ($action) {
         returnDataResponse(getDataCircular($anio, 2));
         break;
 }
+function getDataPareto($anio, $tpa){
+    include('PDOconn.php');
+
+    $query1 = "SELECT a.mes as mes, SUM(a.cantidad) as value
+            FROM tbl_accidente a
+            WHERE a.tipo_accidente = :tpa and a.anio = :anio
+            GROUP BY a.mes
+            ORDER BY a.mes ASC;";
+    $stmt = $pdo->prepare($query1);
+    $stmt->bindParam(":tpa", $tpa, PDO::PARAM_INT);
+    $stmt->bindParam(":anio", $anio, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    $result1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    $query2 = "SELECT SUM(p.cantidad) as VALUE
+    FROM tbl_poblacion p;";
+    $stmt = $pdo->prepare($query2);
+    $stmt->execute();
+
+    $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return [$result1, $result2];
+}
+
+
 function getDataCircular($municipio, $tpa){
     include('PDOconn.php');
 
