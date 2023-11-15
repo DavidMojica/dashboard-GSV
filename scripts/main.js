@@ -490,7 +490,6 @@ const getOptionChart4 = (callback) => {
             };
         });
 
-
         let option = {
             title: {
                 text: 'Muertes por incidentes viales por año'
@@ -528,6 +527,82 @@ const getOptionChart4 = (callback) => {
     });
 };
 
+chart4Select.addEventListener('change', function(){
+    chart4.dispose();
+    chart4 = echarts.init(document.getElementById("chart4"))
+    getDataChart1(chart4Select.value, 'getDataChart4', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        let pobTotalAntioquia = newData[1][0]['pob_total'];
+        let quarryData = newData[0];
+        let acumMuertesPorAnio = {};
+
+        quarryData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+                acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
+            }
+
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+
+            acumMuertesPorAnio[anio] += parseInt(total_muertes);
+            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+        });
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 });
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
+        });
+
+        let updatedOption = {
+            title: {
+                text: 'Muertes por incidentes viales por año'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: series
+        };
+       chart4.setOption(updatedOption);
+    });
+});
 
 
 // ------------INIT CHARTS - RESPONSIVITY--------------//
