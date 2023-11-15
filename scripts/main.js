@@ -929,7 +929,7 @@ const getOptionChart8 = (callback) =>{
 
         let option = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -1006,7 +1006,7 @@ chart8Select.addEventListener('change', function(){
 
         let updatedOption = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },

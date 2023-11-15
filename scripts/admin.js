@@ -42,26 +42,27 @@ formAccidentes.addEventListener('submit', function(event){
     const cantidad_text = cantidad.value.trim();
     const anio_text = anio.value.trim();
     const mes_text = mes.value.trim();
+    let ban = true;
 
 
     if(municipio_text.length == 0 || victima_text.length == 0 || cantidad_text.length == 0 || anio_text.length==0 || mes_text.length==0){
         msg.textContent = "Algún campo está vacío";
-        return;
+        ban = false;
     }
 
     if(municipio_text <= 0 || municipio_text > cantidadMunicipiosAntioquia){
         msg.textContent = "Valor de municipio inválido.";
-        return;
+        ban = false;
     }
 
     if(victima_text <= 0 || victima_text > cantidadTiposVictimas){
         msg.textContent = "Valor de tipo de víctima no válido.";
-        return;
+        ban = false;
     }
 
     if(cantidad_text <= 0 || isNaN(cantidad_text)){
         msg.textContent = "Valor de cantidad no válido.";
-        return;
+        ban = false;
     }
 
     if(regex.test(anio_text)){
@@ -70,22 +71,31 @@ formAccidentes.addEventListener('submit', function(event){
         }
         else{
             msg.textContent = "Error en el año.";
-            return;
+            ban = false;
         }
     }    
     else{
         msg.textContent = "Error en el formato del año.";
-        return;
+        ban = false;
     }
 
 
     if(mes_text <= 0 || mes > 12){
         msg.textContent = "Error en el mes";
-        return;
+        ban = false;
     }
-    console.log(`${municipio_text}\n${toggle_text},\n${victima_text}\n${cantidad_text}\n${anio_text}\n${mes_text}`);
-    AJAXaccidentes(municipio_text, toggle_text, victima_text, cantidad_text, anio_text, mes_text);
+    
+    setTimeout(clearSubtx, 2000);
+    if (ban) AJAXaccidentes(municipio_text, toggle_text, victima_text, cantidad_text, anio_text, mes_text);
 });
+
+
+function clearSubtx(){
+    msg.textContent = "";
+    msg_dane.textContent = "";
+    
+    
+}
 
 function AJAXaccidentes(municipio, fatalidad, victima, cantidadPost, anio, mes){ 
     $.ajax({
@@ -105,6 +115,7 @@ function AJAXaccidentes(municipio, fatalidad, victima, cantidadPost, anio, mes){
             if(data.success){
                 cantidad.value = "";
                 msg.textContent = "Datos insertados correctamente.";
+                setTimeout(clearSubtx, 2000);
             }
             else alert(data.mensaje);
         },
@@ -124,20 +135,21 @@ formDane.addEventListener('submit', function(event){
     let municipio_dane_text = municipio_dane.value.trim(); 
     let cantidad_dane_text = cantidad_dane.value.trim(); 
     let anio_dane_text = anio_dane.value.trim(); 
+    ban = true;
 
     if(municipio_dane_text.length == 0 || cantidad_dane_text.length == 0 || anio_dane_text.length == 0){
         msg_dane.textContent = "Algún campo está vacío";
-        return;
+        ban = false;
     }
 
     if(municipio_dane_text <= 0 || municipio_dane_text > cantidadMunicipiosAntioquia){
         msg_dane.textContent = "Valor de municipio inválido.";
-        return;
+        ban = false;
     }
 
     if(cantidad_dane_text <= 0 || isNaN(cantidad_dane_text)){
         msg_dane.textContent = "Valor de cantidad no válido.";
-        return;
+        ban = false;
     }
 
     if(regex.test(anio_dane_text)){
@@ -146,16 +158,18 @@ formDane.addEventListener('submit', function(event){
         }
         else{
             msg_dane.textContent = "Error en el año.";
-            return;
+            ban = false;
         }
     }    
     else{
         msg_dane.textContent = "Error en el formato del año.";
-        return;
+        ban = false;
     }
 
-    AJAXdane(municipio_dane_text, cantidad_dane_text, anio_dane_text);
+    setTimeout(clearSubtx, 2000);
+    if (ban) AJAXdane(municipio_dane_text, cantidad_dane_text, anio_dane_text);
 });
+
 
 function AJAXdane(municipio, cantidad, anio){
     $.ajax({
@@ -170,7 +184,9 @@ function AJAXdane(municipio, cantidad, anio){
             let jsonString = JSON.stringify(response);
             let data       = JSON.parse(jsonString);
             if(data.success){
+                cantidad_dane.value = "";
                 msg_dane.textContent = "Datos insertados correctamente.";
+                setTimeout(clearSubtx, 2000);
             }
             else alert(data.mensaje);
         },
