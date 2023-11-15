@@ -6,7 +6,7 @@ $anio = isset($_POST['anio']) ? $_POST['anio'] : null;
 
 switch ($action) {
     case 'getDataChart1':
-        returnDataResponse(getDataChart1($anio));
+        returnDataResponse(getDataCircular($anio));
         break;
     case 'getDataChart2':
         returnDataResponse(getDataChart2($anio));
@@ -18,36 +18,49 @@ switch ($action) {
         returnDataResponse(getDataChart4($anio));
         break;
     case 'getDataChart5':
-        returnDataResponse(getDataChart5($anio));
+        returnDataResponse(getDataCircular($anio, 1));
+        break;
+    case 'getDataChart6':
+        returnDataResponse(getDataCircular($anio, 2));
         break;
 }
-function getDataChart5($municipio)
+function getDataCircular($tpa, $municipio = null, $anio = null)
 {
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
 
-    if (is_numeric($municipio)) {
-        $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
-        FROM tbl_accidente a
-        JOIN tbl_vehiculo v on a.vehiculo = v.id
-        WHERE a.municipio = :mpio
-        GROUP BY v.id;";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':mpio', $municipio, PDO::PARAM_INT);
-        $stmt->execute();
+    $whereClause = '';
+    $queryParams = [];
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (is_numeric($municipio)) {
+        $whereClause .= " AND a.municipio = :mpio";
+        $queryParams[':mpio'] = $municipio;
     }
+
+    if (is_numeric($anio) && $anio >= $anioMinimo && $anio <= $anioActual) {
+        $whereClause .= " AND a.anio = :anio";
+        $queryParams[':anio'] = $anio;
+    }
+
     $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
-    FROM tbl_accidente a
-    JOIN tbl_vehiculo v on a.vehiculo = v.id
-    GROUP BY v.id;";
+        FROM tbl_accidente a
+        JOIN tbl_vehiculo v ON a.vehiculo = v.id
+        WHERE a.tipo_accidente = :tpa $whereClause
+        GROUP BY v.id;";
+
     $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':tpa', $tpa, PDO::PARAM_INT);
+
+    foreach ($queryParams as $param => $value) {
+        $stmt->bindParam($param, $value, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 
 function getDataChart4($municipio)
@@ -165,37 +178,6 @@ function getDataChart2($anio)
     JOIN tbl_vehiculo v ON a.vehiculo = v.id
     JOIN tbl_tipo_accidente t ON a.tipo_accidente = t.id
     GROUP BY v.nombre, t.nombre";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-function getDataChart1($anio)
-{
-    include('PDOconn.php');
-
-    $anioMinimo = 2018;
-    $anioActual = date('Y');
-
-    if (is_numeric($anio)) {
-        if ($anio >= $anioMinimo && $anio <= $anioActual) {
-            $query = "SELECT v.nombre as nombre_vehiculo, SUM(a.cantidad) as total_accidentes
-            FROM tbl_accidente a
-            JOIN tbl_vehiculo v ON a.vehiculo = v.id
-            WHERE a.anio = :anio
-            GROUP BY v.nombre";
-
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
-            $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-    }
-    $query = "SELECT v.nombre as nombre_vehiculo, SUM(a.cantidad) as total_accidentes
-        FROM tbl_accidente a
-        JOIN tbl_vehiculo v ON a.vehiculo = v.id
-        GROUP BY v.nombre;";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
 

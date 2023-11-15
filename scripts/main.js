@@ -9,13 +9,6 @@ let chart1;
 //init
 const getOptionChart1 = (callback) => {
     getData("init", 'getDataChart1', function (data) {
-        let graph_data = [];
-
-        // Procesa los datos según sea necesario
-        for (let i of data) {
-            graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo })
-        }
-
         let option = {
             title: {
                 text: `Incidentes viales (${chart1Select.value})`,
@@ -52,7 +45,7 @@ const getOptionChart1 = (callback) => {
                     labelLine: {
                         show: false
                     },
-                    data: graph_data
+                    data: data
                 }
             ]
         };
@@ -63,13 +56,6 @@ const getOptionChart1 = (callback) => {
 //Filter
 chart1Select.addEventListener('change', function () {
     getData(chart1Select.value, 'getDataChart1', function (data) {
-        let graph_data = [];
-
-        // Procesa los datos según sea necesario
-        for (let i of data) {
-            graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo });
-        }
-
         // Actualiza la opción del gráfico
         let updatedOption = {
             title: {
@@ -107,7 +93,7 @@ chart1Select.addEventListener('change', function () {
                     labelLine: {
                         show: false
                     },
-                    data: graph_data
+                    data: data
                 }
             ]
         };
@@ -603,32 +589,28 @@ chart4Select.addEventListener('change', function () {
 
 //--------------CHART 5: Mortalidad por actor vial----------------
 let chart5;
+let chart5Select = document.getElementById('chart5Select');
 
 const getOptionChart5 = (callback) => {
     getData("init", 'getDataChart5', function (newData) {
-        console.log(newData);
-
-
-
         let option = {
             title: {
-              text: 'Referer of a Website',
-              subtext: 'Fake Data',
+              text: 'Mortalidad por actor vial',
+              subtext: '(2016 - 2023)',
               left: 'center'
             },
             tooltip: {
               trigger: 'item'
             },
             legend: {
-              orient: 'vertical',
-              left: '5%',
-              top: '5%'
+              orient: 'horizontal',
+              bottom: '5%'
             },
             series: [
               {
-                name: 'Access From',
+                name: 'Muertes por:',
                 type: 'pie',
-                radius: '50%',
+                radius: '55%',
                 data: newData,
                 emphasis: {
                   itemStyle: {
@@ -644,6 +626,114 @@ const getOptionChart5 = (callback) => {
     });
 };
 
+chart5Select.addEventListener('change', function(){
+    getData(chart5Select.value, 'getDataChart5', function (newData) {
+        let updatedOption = {
+            title: {
+              text: 'Mortalidad por actor vial',
+              subtext: '(2016 - 2023)',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              bottom: '5%'
+            },
+            series: [
+              {
+                name: 'Muertes por:',
+                type: 'pie',
+                radius: '55%',
+                data: newData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          };
+        chart5.setOption(updatedOption);
+    });
+});
+
+//-----------CHART 6: Lesionados por actor vial-----------------
+let chart6;
+let chart6Select = document.getElementById('chart6Select');
+
+const getOptionChart6 = (callback) =>{
+    getData("init", 'getDataChart6', function (newData) {
+        let option = {
+            title: {
+              text: 'Mortalidad por actor vial',
+              subtext: '(2016 - 2023)',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              bottom: '5%'
+            },
+            series: [
+              {
+                name: 'Muertes por:',
+                type: 'pie',
+                radius: '55%',
+                data: newData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          };
+        callback(option);
+    });
+}
+
+chart6Select.addEventListener('change', function(){
+    getData(chart6Select.value, 'getDataChart6', function (newData) {
+        let updatedOption = {
+            title: {
+              text: 'Mortalidad por actor vial',
+              subtext: '(2016 - 2023)',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              bottom: '5%'
+            },
+            series: [
+              {
+                name: 'Muertes por:',
+                type: 'pie',
+                radius: '55%',
+                data: newData,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          };
+        chart6.setOption(updatedOption);
+    });
+});
 
 //Get data
 function getData(anio, action, callback) {
