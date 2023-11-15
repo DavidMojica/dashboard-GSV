@@ -158,6 +158,12 @@ include("processes/PDOconn.php");
                     </select>
                 <div class="chart" id="chart4"></div>
                 </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 chartContainer">
+                    <div class="chart" id="chart5"></div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 chartContainer"></div>
+                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 chartContainer"></div>
             </div>
         </div>
     </main>

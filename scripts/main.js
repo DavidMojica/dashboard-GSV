@@ -8,7 +8,7 @@ const chart1Select = document.getElementById('chart1Select');
 let chart1;
 //init
 const getOptionChart1 = (callback) => {
-    getDataChart1("init", 'getDataChart1', function (data) {
+    getData("init", 'getData', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
@@ -62,7 +62,7 @@ const getOptionChart1 = (callback) => {
 };
 //Filter
 chart1Select.addEventListener('change', function () {
-    getDataChart1(chart1Select.value, 'getDataChart1', function (data) {
+    getData(chart1Select.value, 'getData', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
@@ -116,35 +116,12 @@ chart1Select.addEventListener('change', function () {
         chart1.setOption(updatedOption);
     });
 });
-//Get data
-function getDataChart1(anio, action, callback) {
-    $.ajax({
-        url: 'processes/get_data.php',
-        type: 'POST',
-        data: {
-            anio: anio,
-            action: action
-        },
-        success: function (response) {
-            let jsonString = JSON.stringify(response);
-            let data = JSON.parse(jsonString);
-            callback(data.content);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            // Manejar errores AJAX
-            console.log('Error en la solicitud');
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
-}
 //------------CHART 2: Letalidad/Vehiculos-------------//
 const chart2Select = document.getElementById('chart2Select');
 let chart2;
 //init
 const getOptionChart2 = (callback) => {
-    getDataChart1("init", 'getDataChart2', function (data) {
+    getData("init", 'getDataChart2', function (data) {
 
         let nombres = [];
         let lesionadosDict = {};
@@ -222,7 +199,7 @@ const getOptionChart2 = (callback) => {
 };
 // Filter
 chart2Select.addEventListener('change', function () {
-    getDataChart1(chart2Select.value, 'getDataChart2', function (data) {
+    getData(chart2Select.value, 'getDataChart2', function (data) {
         let nombres = [];
         let lesionadosDict = {};
         let muertosDict = {};
@@ -304,7 +281,7 @@ let chart3;
 const chart3Select = document.getElementById('chart3Select');
 
 const getOptionChart3 = (callback) => {
-    getDataChart1("init", 'getDataChart3', function (newData) {
+    getData("init", 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         // Inicializar datosPorAnio y anios
@@ -348,7 +325,7 @@ const getOptionChart3 = (callback) => {
             },
             legend: {
                 data: anios,
-                right: '5%'
+                top: '5%', right: '5%'
             },
             grid: {
                 left: '3%',
@@ -379,7 +356,7 @@ const getOptionChart3 = (callback) => {
 chart3Select.addEventListener('change', function () {
     chart3.dispose();
     chart3 = echarts.init(document.getElementById("chart3"));
-    getDataChart1(chart3Select.value, 'getDataChart3', function (newData) {
+    getData(chart3Select.value, 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         // Inicializar datosPorAnio y anios
@@ -420,6 +397,7 @@ chart3Select.addEventListener('change', function () {
             },
             legend: {
                 data: anios,
+                top: '5%',
                 right: '5%'
             },
             grid: {
@@ -447,12 +425,14 @@ chart3Select.addEventListener('change', function () {
     });
 });
 
-//-------------CHART 4: Comparativo lesiones por incidentes viales (casos)
+//-------------CHART 4: Tasa de muerte * 100hab
 let chart4;
 const chart4Select = document.getElementById('chart4Select');
 
 const getOptionChart4 = (callback) => {
-    getDataChart1("init", 'getDataChart4', function (newData) {
+    let selectedIndex = chart4Select.selectedIndex;
+    let selectedText = chart4Select.options[selectedIndex].text;
+    getData("init", 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         let pobTotalAntioquia = newData[1][0]['pob_total'];
@@ -492,14 +472,14 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: 'Muertes por incidentes viales por año'
+                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
                 data: anios,
-                right: '5%'
+                top: '5%', right: '5%'
             },
             grid: {
                 left: '3%',
@@ -527,22 +507,24 @@ const getOptionChart4 = (callback) => {
     });
 };
 
-chart4Select.addEventListener('change', function(){
+chart4Select.addEventListener('change', function () {
     chart4.dispose();
     chart4 = echarts.init(document.getElementById("chart4"))
-    getDataChart1(chart4Select.value, 'getDataChart4', function (newData) {
+    getData(chart4Select.value, 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         var pobTotalMpioPorAnio = {};
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
-        
-        if(isNaN(chart4Select.value)){
+        let selectedIndex = chart4Select.selectedIndex;
+        let selectedText = chart4Select.options[selectedIndex].text;
+
+        if (isNaN(chart4Select.value)) {
             var pobTotalAntioquia = newData[1][0]['pob_total'];
         }
-        else{
+        else {
             var pobTotalMpioAnios = newData[1]
-            for (let i of pobTotalMpioAnios){
+            for (let i of pobTotalMpioAnios) {
                 pobTotalMpioPorAnio[i.anio] = i.cantidad
             }
         }
@@ -554,17 +536,17 @@ chart4Select.addEventListener('change', function(){
                 anios.push(anio.toString());
                 acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
             }
-                if (!datosPorAnio[anio][mes]) {
-                    datosPorAnio[anio][mes] = 0;
-                }
-    
-                acumMuertesPorAnio[anio] += parseInt(total_muertes);
-                if(isNaN(chart4Select.value)){
-                    datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
-                }
-                else{
-                    datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
-                }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+
+            acumMuertesPorAnio[anio] += parseInt(total_muertes);
+            if (isNaN(chart4Select.value)) {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+            }
+            else {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
+            }
         });
 
         let series = anios.map(anio => {
@@ -582,9 +564,10 @@ chart4Select.addEventListener('change', function(){
             };
         });
 
+
         let updatedOption = {
             title: {
-                text: `Muertes x 100.000 hab. ${chart4Select.selectedIndex.text}`
+                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -614,10 +597,78 @@ chart4Select.addEventListener('change', function(){
             },
             series: series
         };
-       chart4.setOption(updatedOption);
+        chart4.setOption(updatedOption);
     });
 });
 
+//--------------CHART 5: Mortalidad por actor vial----------------
+let chart5;
+
+const getOptionChart5 = (callback) => {
+    getData("init", 'getDataChart4', function (newData) {
+        option = {
+            legend: {
+                top: 'bottom'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            series: [
+                {
+                    name: 'Nightingale Chart',
+                    type: 'pie',
+                    radius: [50, 250],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: [
+                        { value: 40, name: 'rose 1' },
+                        { value: 38, name: 'rose 2' },
+                        { value: 32, name: 'rose 3' },
+                        { value: 30, name: 'rose 4' },
+                        { value: 28, name: 'rose 5' },
+                        { value: 26, name: 'rose 6' },
+                        { value: 22, name: 'rose 7' },
+                        { value: 18, name: 'rose 8' }
+                    ]
+                }
+            ]
+        };
+    });
+};
+
+
+//Get data
+function getData(anio, action, callback) {
+    $.ajax({
+        url: 'processes/get_data.php',
+        type: 'POST',
+        data: {
+            anio: anio,
+            action: action
+        },
+        success: function (response) {
+            let jsonString = JSON.stringify(response);
+            let data = JSON.parse(jsonString);
+            callback(data.content);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Manejar errores AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+}
 
 // ------------INIT CHARTS - RESPONSIVITY--------------//
 
