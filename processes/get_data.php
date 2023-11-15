@@ -25,7 +25,12 @@ switch ($action) {
         break;
     case 'getDataChart7':
         returnDataResponse(getDataPareto($anio, 1));
+        break;
+    case 'getDataChart8':
+        returnDataResponse(getDataPareto($anio,2));
+        break;
 }
+
 function getDataPareto($anio, $tpa){
     include('PDOconn.php');
 

@@ -21,6 +21,7 @@ INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Bajo Cauca');
 INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Norte');
 INSERT INTO `tbl_subregion`(`nombre`) VALUES ('Magdalena Medio');
 
+INSERT INTO `tbl_usuario`(`username`, `pass`) VALUES ('root',SHA2('wm2023', 256));
 -------TBL MUNICIPIO-----
 --ALTER TABLE tbl_municipio AUTO_INCREMENT = 1;
 -- 1: valle aburra
@@ -161,9 +162,9 @@ INSERT INTO `tbl_municipio`(`codigo`, `subregion`, `nombre`) VALUES ('05895',7,'
 
 --tbl vehiculo--
 
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Moto');
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Peatón');
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Vehículo');
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario de Bicicleta');
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Sin información');
-INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Usuario Otro');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Motos');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Peatones');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Vehiculos');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Bicicletas');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Desconocido');
+INSERT INTO `tbl_vehiculo`(`nombre`) VALUES ('Otro');
