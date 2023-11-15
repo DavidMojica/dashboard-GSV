@@ -17,8 +17,22 @@ switch ($action) {
     case 'getDataChart4':
         returnDataResponse(getDataChart4($anio));
         break;
+    case 'getDataChart5':
+        returnDataResponse(getDataChart5($anio));
+        break;
+
     
 }
+function getDataChart5($municipio){
+    include('PDOconn.php');
+    $anioMinimo = 2018;
+    $anioActual = date('Y');
+
+    if(is_numeric($municipio)){
+        
+    }
+}
+
 
 function getDataChart4($municipio){
     include('PDOconn.php');

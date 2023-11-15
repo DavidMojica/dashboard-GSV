@@ -8,7 +8,7 @@ const chart1Select = document.getElementById('chart1Select');
 let chart1;
 //init
 const getOptionChart1 = (callback) => {
-    getData("init", 'getData', function (data) {
+    getData("init", 'getDataChart1', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
@@ -62,7 +62,7 @@ const getOptionChart1 = (callback) => {
 };
 //Filter
 chart1Select.addEventListener('change', function () {
-    getData(chart1Select.value, 'getData', function (data) {
+    getData(chart1Select.value, 'getDataChart1', function (data) {
         let graph_data = [];
 
         // Procesa los datos según sea necesario
@@ -605,43 +605,48 @@ chart4Select.addEventListener('change', function () {
 let chart5;
 
 const getOptionChart5 = (callback) => {
-    getData("init", 'getDataChart4', function (newData) {
-        option = {
-            legend: {
-                top: 'bottom'
+    getData("init", 'getDataChart5', function (newData) {
+
+
+
+
+        let option = {
+            title: {
+              text: 'Referer of a Website',
+              subtext: 'Fake Data',
+              left: 'center'
             },
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
-                }
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'vertical',
+              left: '5%',
+              top: '5%'
             },
             series: [
-                {
-                    name: 'Nightingale Chart',
-                    type: 'pie',
-                    radius: [50, 250],
-                    center: ['50%', '50%'],
-                    roseType: 'area',
-                    itemStyle: {
-                        borderRadius: 8
-                    },
-                    data: [
-                        { value: 40, name: 'rose 1' },
-                        { value: 38, name: 'rose 2' },
-                        { value: 32, name: 'rose 3' },
-                        { value: 30, name: 'rose 4' },
-                        { value: 28, name: 'rose 5' },
-                        { value: 26, name: 'rose 6' },
-                        { value: 22, name: 'rose 7' },
-                        { value: 18, name: 'rose 8' }
-                    ]
+              {
+                name: 'Access From',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                  { value: 1048, name: 'Search Engine' },
+                  { value: 735, name: 'Direct' },
+                  { value: 580, name: 'Email' },
+                  { value: 484, name: 'Union Ads' },
+                  { value: 300, name: 'Video Ads' }
+                ],
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
                 }
+              }
             ]
-        };
+          };
+        callback(option);
     });
 };
 
@@ -658,6 +663,7 @@ function getData(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
+            console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -692,7 +698,11 @@ function initCharts() {
     getOptionChart4(function (option) {
         chart4.setOption(option);
     });
-
+    
+    chart5 = echarts.init(document.getElementById("chart5"));
+    getOptionChart5(function (option) {
+        chart5.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -705,4 +715,5 @@ window.addEventListener('resize', function () {
     chart2.resize();
     chart3.resize();
     chart4.resize();
+    chart5.resize();
 });
