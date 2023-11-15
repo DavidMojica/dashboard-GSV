@@ -1,3 +1,8 @@
+<?php
+include("processes/essentials.php");
+include("processes/PDOconn.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,31 +90,79 @@
 
         <div class="dashboard container">
             <h2 class="display-3">Actores viales.</h2>
-            <div class="row my-4">
-                <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 mb-4 chartContainer">
-                    <select name="" id="chart1Select">
-                        <option value="all">Todos los años</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
+            <div class="row gap-4">
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-4  chartContainer">
+                    <select name="" id="chart1Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
                     </select>
                     <div id="chart1" class="chart"></div>
-                    
-
+                    <p style="color:black;">
+                        Estos accidentes incluyen muertos o lesionados.
+                    </p>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8">
-                    <div id="chart2" class="chart"></div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-7 chartContainer">
+                    <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div id="chart2" class="chart">
+
+                    </div>
+                </div>
+
+                <h2 class="display-3">Mortalidad / año</h2>
+
+
+
+                <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
+                    <select name="" id="chart3Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div id="chart3" class="chart"></div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
+                <select name="" id="chart4Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                <div class="chart" id="chart4"></div>
                 </div>
             </div>
         </div>
-
     </main>
 
+    <!-- Apache Echarts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 </body>
 
