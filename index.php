@@ -143,7 +143,7 @@ include("processes/PDOconn.php");
 
 
                 <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
-                <select name="" id="chart4Select" class="form-select form-select-lg mb-3">
+                    <select name="" id="chart4Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
                         $query = "SELECT id, nombre FROM tbl_municipio";
@@ -156,7 +156,53 @@ include("processes/PDOconn.php");
                         }
                         ?>
                     </select>
-                <div class="chart" id="chart4"></div>
+                    <div class="chart" id="chart4"></div>
+                </div>
+
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart5Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chart" id="chart5"></div>
+                </div>
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart6Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chart" id="chart6"></div>
+                </div>
+
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart7Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chart" id="chart7">
+
+                    </div>
                 </div>
             </div>
         </div>

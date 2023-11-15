@@ -2,20 +2,14 @@
 let meses = {
     "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6, "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12
 }
+let arrayMeses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 // ----------- CHART 1: Incidentes viales-------------------
 const chart1Select = document.getElementById('chart1Select');
 let chart1;
 //init
 const getOptionChart1 = (callback) => {
-    getDataChart1("init", 'getDataChart1', function (data) {
-        let graph_data = [];
-
-        // Procesa los datos según sea necesario
-        for (let i of data) {
-            graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo })
-        }
-
+    getData("init", 'getDataChart1', function (data) {
         let option = {
             title: {
                 text: `Incidentes viales (${chart1Select.value})`,
@@ -52,7 +46,7 @@ const getOptionChart1 = (callback) => {
                     labelLine: {
                         show: false
                     },
-                    data: graph_data
+                    data: data
                 }
             ]
         };
@@ -62,14 +56,7 @@ const getOptionChart1 = (callback) => {
 };
 //Filter
 chart1Select.addEventListener('change', function () {
-    getDataChart1(chart1Select.value, 'getDataChart1', function (data) {
-        let graph_data = [];
-
-        // Procesa los datos según sea necesario
-        for (let i of data) {
-            graph_data.push({ value: i.total_accidentes, name: i.nombre_vehiculo });
-        }
-
+    getData(chart1Select.value, 'getDataChart1', function (data) {
         // Actualiza la opción del gráfico
         let updatedOption = {
             title: {
@@ -107,7 +94,7 @@ chart1Select.addEventListener('change', function () {
                     labelLine: {
                         show: false
                     },
-                    data: graph_data
+                    data: data
                 }
             ]
         };
@@ -116,35 +103,12 @@ chart1Select.addEventListener('change', function () {
         chart1.setOption(updatedOption);
     });
 });
-//Get data
-function getDataChart1(anio, action, callback) {
-    $.ajax({
-        url: 'processes/get_data.php',
-        type: 'POST',
-        data: {
-            anio: anio,
-            action: action
-        },
-        success: function (response) {
-            let jsonString = JSON.stringify(response);
-            let data = JSON.parse(jsonString);
-            callback(data.content);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            // Manejar errores AJAX
-            console.log('Error en la solicitud');
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
-}
 //------------CHART 2: Letalidad/Vehiculos-------------//
 const chart2Select = document.getElementById('chart2Select');
 let chart2;
 //init
 const getOptionChart2 = (callback) => {
-    getDataChart1("init", 'getDataChart2', function (data) {
+    getData("init", 'getDataChart2', function (data) {
 
         let nombres = [];
         let lesionadosDict = {};
@@ -222,7 +186,7 @@ const getOptionChart2 = (callback) => {
 };
 // Filter
 chart2Select.addEventListener('change', function () {
-    getDataChart1(chart2Select.value, 'getDataChart2', function (data) {
+    getData(chart2Select.value, 'getDataChart2', function (data) {
         let nombres = [];
         let lesionadosDict = {};
         let muertosDict = {};
@@ -304,7 +268,7 @@ let chart3;
 const chart3Select = document.getElementById('chart3Select');
 
 const getOptionChart3 = (callback) => {
-    getDataChart1("init", 'getDataChart3', function (newData) {
+    getData("init", 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         // Inicializar datosPorAnio y anios
@@ -348,7 +312,7 @@ const getOptionChart3 = (callback) => {
             },
             legend: {
                 data: anios,
-                right: '5%'
+                top: '5%', right: '5%'
             },
             grid: {
                 left: '3%',
@@ -364,7 +328,7 @@ const getOptionChart3 = (callback) => {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -379,7 +343,7 @@ const getOptionChart3 = (callback) => {
 chart3Select.addEventListener('change', function () {
     chart3.dispose();
     chart3 = echarts.init(document.getElementById("chart3"));
-    getDataChart1(chart3Select.value, 'getDataChart3', function (newData) {
+    getData(chart3Select.value, 'getDataChart3', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         // Inicializar datosPorAnio y anios
@@ -420,6 +384,7 @@ chart3Select.addEventListener('change', function () {
             },
             legend: {
                 data: anios,
+                top: '5%',
                 right: '5%'
             },
             grid: {
@@ -436,7 +401,7 @@ chart3Select.addEventListener('change', function () {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -447,12 +412,14 @@ chart3Select.addEventListener('change', function () {
     });
 });
 
-//-------------CHART 4: Comparativo lesiones por incidentes viales (casos)
+//-------------CHART 4: Tasa de muerte * 100hab
 let chart4;
 const chart4Select = document.getElementById('chart4Select');
 
 const getOptionChart4 = (callback) => {
-    getDataChart1("init", 'getDataChart4', function (newData) {
+    let selectedIndex = chart4Select.selectedIndex;
+    let selectedText = chart4Select.options[selectedIndex].text;
+    getData("init", 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         let pobTotalAntioquia = newData[1][0]['pob_total'];
@@ -492,14 +459,14 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: 'Muertes por incidentes viales por año'
+                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend: {
                 data: anios,
-                right: '5%'
+                top: '5%', right: '5%'
             },
             grid: {
                 left: '3%',
@@ -515,7 +482,7 @@ const getOptionChart4 = (callback) => {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
@@ -527,32 +494,48 @@ const getOptionChart4 = (callback) => {
     });
 };
 
-chart4Select.addEventListener('change', function(){
+chart4Select.addEventListener('change', function () {
     chart4.dispose();
     chart4 = echarts.init(document.getElementById("chart4"))
-    getDataChart1(chart4Select.value, 'getDataChart4', function (newData) {
+    getData(chart4Select.value, 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
-        let pobTotalAntioquia = newData[1][0]['pob_total'];
+        var pobTotalMpioPorAnio = {};
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
+        let selectedIndex = chart4Select.selectedIndex;
+        let selectedText = chart4Select.options[selectedIndex].text;
+
+        if (isNaN(chart4Select.value)) {
+            var pobTotalAntioquia = newData[1][0]['pob_total'];
+        }
+        else {
+            var pobTotalMpioAnios = newData[1]
+            for (let i of pobTotalMpioAnios) {
+                pobTotalMpioPorAnio[i.anio] = i.cantidad
+            }
+        }
 
         quarryData.forEach(element => {
             let { anio, mes, total_muertes } = element;
-
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = {};
                 anios.push(anio.toString());
                 acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
             }
-
             if (!datosPorAnio[anio][mes]) {
                 datosPorAnio[anio][mes] = 0;
             }
 
             acumMuertesPorAnio[anio] += parseInt(total_muertes);
-            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+            if (isNaN(chart4Select.value)) {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+            }
+            else {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
+            }
         });
+
         let series = anios.map(anio => {
             let data = Array.from({ length: 12 });
 
@@ -568,9 +551,10 @@ chart4Select.addEventListener('change', function(){
             };
         });
 
+
         let updatedOption = {
             title: {
-                text: 'Muertes por incidentes viales por año'
+                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -593,17 +577,358 @@ chart4Select.addEventListener('change', function(){
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                data: arrayMeses
             },
             yAxis: {
                 type: 'value'
             },
             series: series
         };
-       chart4.setOption(updatedOption);
+        chart4.setOption(updatedOption);
     });
 });
 
+//--------------CHART 5: Mortalidad por actor vial----------------
+let chart5;
+let chart5Select = document.getElementById('chart5Select');
+
+const getOptionChart5 = (callback) => {
+    getData("init", 'getDataChart5', function (newData) {
+        let option = {
+            title: {
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '5%'
+            },
+            series: [
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
+chart5Select.addEventListener('change', function () {
+    getData(chart5Select.value, 'getDataChart5', function (newData) {
+        let updatedOption = {
+            title: {
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '5%'
+            },
+            series: [
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        chart5.setOption(updatedOption);
+    });
+});
+
+//-----------CHART 6: Lesionados por actor vial-----------------
+let chart6;
+let chart6Select = document.getElementById('chart6Select');
+
+const getOptionChart6 = (callback) => {
+    getData("init", 'getDataChart6', function (newData) {
+        let option = {
+            title: {
+                text: 'Lesionados por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '5%'
+            },
+            series: [
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        callback(option);
+    });
+}
+
+chart6Select.addEventListener('change', function () {
+    getData(chart6Select.value, 'getDataChart6', function (newData) {
+        let updatedOption = {
+            title: {
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '5%'
+            },
+            series: [
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        chart6.setOption(updatedOption);
+    });
+});
+
+
+//-----------CHART 7: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
+let chart7;
+let chart7Select = document.getElementById('chart7Select');
+
+const getOptionChart7 = (callback) => {
+    getData(chart7Select.value, 'getDataChart7', function (newData) {
+        const añoActual = new Date().getFullYear();
+
+        // Seleccionar automáticamente el option con el valor del año actual
+        document.getElementById("chart7Select").value = añoActual;
+        
+        const pobTotalAntioquia = newData[1][0]['value'];
+        const dict = newData[0];
+
+        console.log(dict)
+        const barData = dict.map(function(objeto){
+            return parseInt(objeto.value);
+        });
+
+        console.log(barData)
+
+        let acumMuertes = 0;
+        const tasaPor100000Data = barData.map((value, index, array) => {
+            acumMuertes += value; // Acumula las muertes
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            return tasaPor100000;
+        });
+
+        let option = {
+            title: {
+                text: 'Mortalidad vs Tasa departamental',
+                subtext: chart7Select.value,
+                x: 'center',
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                },
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2,
+                    },
+                },
+            },
+            grid: {
+                top: 80,
+                bottom: 30,
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: { show: false },
+                    data: arrayMeses,
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'No. Muertos',
+                },
+                {
+                    type: 'value',
+                    name: 'Tasa x 100.000 hab',
+                },
+            ],
+            series: [
+                {
+                    name: 'No. Muertos',
+                    type: 'bar',
+                    data: barData,
+                },
+                {
+                    name: 'Tasa x 100.000 hab',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: tasaPor100000Data,
+                },
+            ],
+        };
+        callback(option);
+    });
+}
+
+chart7Select.addEventListener('change', function(){
+    chart7.dispose();
+    chart7 = echarts.init(document.getElementById("chart7"));
+    getData(chart7Select.value, 'getDataChart7', function (newData) {
+        const pobTotalAntioquia = newData[1][0]['value'];
+        const dict = newData[0];
+
+        const barData = dict.map(function(objeto){
+            return parseInt(objeto.value);
+        });
+
+        let acumMuertes = 0;
+        const tasaPor100000Data = barData.map((value, index, array) => {
+            acumMuertes += value; // Acumula las muertes
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            return tasaPor100000;
+        });
+
+        let updatedOption = {
+            title: {
+                text: 'Mortalidad vs Tasa departamental',
+                subtext: chart7Select.value,
+                x: 'center',
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                },
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {
+                        pixelRatio: 2,
+                    },
+                },
+            },
+            grid: {
+                top: 80,
+                bottom: 30,
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    axisTick: { show: false },
+                    data: arrayMeses,
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'No. Muertos',
+                },
+                {
+                    type: 'value',
+                    name: 'Tasa x 100.000 hab',
+                },
+            ],
+            series: [
+                {
+                    name: 'No. Muertos',
+                    type: 'bar',
+                    data: barData,
+                },
+                {
+                    name: 'Tasa x 100.000 hab',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: tasaPor100000Data,
+                },
+            ],
+        };
+        chart7.setOption(updatedOption);
+    });
+});
+
+//-----------CHART 8: Lesionados VS TASA DEPARTAMENTAL POR I.V -------------//
+
+
+
+//Get data
+function getData(anio, action, callback) {
+    $.ajax({
+        url: 'processes/get_data.php',
+        type: 'POST',
+        data: {
+            anio: anio,
+            action: action
+        },
+        success: function (response) {
+            let jsonString = JSON.stringify(response);
+            let data = JSON.parse(jsonString);
+            // console.log(data)
+            callback(data.content);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Manejar errores AJAX
+            console.log('Error en la solicitud');
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+}
 
 // ------------INIT CHARTS - RESPONSIVITY--------------//
 
@@ -628,6 +953,20 @@ function initCharts() {
         chart4.setOption(option);
     });
 
+    chart5 = echarts.init(document.getElementById("chart5"));
+    getOptionChart5(function (option) {
+        chart5.setOption(option);
+    });
+
+    chart6 = echarts.init(document.getElementById("chart6"));
+    getOptionChart6(function (option) {
+        chart6.setOption(option);
+    });
+
+    chart7 = echarts.init(document.getElementById("chart7"));
+    getOptionChart7(function (option) {
+        chart7.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -640,4 +979,7 @@ window.addEventListener('resize', function () {
     chart2.resize();
     chart3.resize();
     chart4.resize();
+    chart5.resize();
+    chart6.resize();
+    chart7.resize();
 });
