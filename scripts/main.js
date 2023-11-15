@@ -754,18 +754,17 @@ const getOptionChart7 = (callback) => {
 
         console.log(barData)
 
-        // Calcula el porcentaje acumulado
-        const total = barData.reduce((sum, value) => sum + value, 0);
-        const cumulativePercentageData = barData.map((value, index, array) => {
-            const cumulativeSum = array.slice(0, index + 1).reduce((sum, v) => sum + v, 0);
-            return ((cumulativeSum / total) * 100).toFixed(2);
+        let acumMuertes = 0;
+        const tasaPor100000Data = barData.map((value, index, array) => {
+            acumMuertes += value; // Acumula las muertes
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            return tasaPor100000;
         });
-
 
         let option = {
             title: {
-                text: 'Pareto Chart',
-                subtext: 'Top causas de problemas',
+                text: 'Mortalidad vs Tasa departamental',
+                subtext: toString(2020),
                 x: 'center',
             },
             tooltip: {
@@ -796,24 +795,24 @@ const getOptionChart7 = (callback) => {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'Frecuencia',
+                    name: 'No. Muertos',
                 },
                 {
                     type: 'value',
-                    name: 'Porcentaje acumulado',
+                    name: 'Tasa x 100.000 hab',
                 },
             ],
             series: [
                 {
-                    name: 'Frecuencia',
+                    name: 'No. Muertos',
                     type: 'bar',
                     data: barData,
                 },
                 {
-                    name: 'Porcentaje acumulado',
+                    name: 'Tasa x 100.000 hab',
                     type: 'line',
                     yAxisIndex: 1,
-                    data: cumulativePercentageData,
+                    data: tasaPor100000Data,
                 },
             ],
         };
