@@ -319,7 +319,7 @@ const getOptionChart3 = (callback) => {
             }
             datosPorAnio[anio][mes] = parseInt(total_muertes);
         });
-        
+
 
         // Crear series con relleno de 0 para meses faltantes
         let series = anios.map(anio => {
@@ -330,7 +330,7 @@ const getOptionChart3 = (callback) => {
 
                 data[mesIndex] = datosPorAnio[anio][mes];
             }
-           
+
             return {
                 name: anio.toString(),
                 type: 'line',
@@ -467,7 +467,7 @@ const getOptionChart4 = (callback) => {
             if (!datosPorAnio[anio][mes]) {
                 datosPorAnio[anio][mes] = 0;
             }
-            datosPorAnio[anio][mes] = parseFloat((total_muertes/pobTotalAntioquia)*100000).toFixed(2);
+            datosPorAnio[anio][mes] = parseFloat((total_muertes / pobTotalAntioquia) * 100000).toFixed(2);
         });
         let series = anios.map(anio => {
             let data = Array.from({ length: 12 }).fill(0);
@@ -476,9 +476,10 @@ const getOptionChart4 = (callback) => {
                 let mesIndex = meses[mes] - 1;
 
                 data[mesIndex] = datosPorAnio[anio][mes];
+                console.log(data[mesIndex])
             }
-            
-           
+
+
             return {
                 name: anio.toString(),
                 type: 'line',
@@ -486,7 +487,6 @@ const getOptionChart4 = (callback) => {
             };
         });
 
-        console.log(series);
 
         let option = {
             title: {

@@ -28,7 +28,7 @@ function getDataChart4($municipio){
     if(is_numeric($municipio)){
 
     }
-    $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
+    $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) OVER (PARTITION BY a.anio ORDER BY CAST(a.mes AS SIGNED)) as total_muertes
             FROM tbl_accidente a
             JOIN tbl_meses m ON a.mes = m.id
             WHERE a.tipo_accidente = 1 AND a.anio BETWEEN :a_m AND :a_y
