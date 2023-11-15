@@ -667,7 +667,6 @@ let chart6Select = document.getElementById('chart6Select');
 
 const getOptionChart6 = (callback) =>{
     getData("init", 'getDataChart6', function (newData) {
-        console.log(newData)
         let option = {
             title: {
               text: 'Mortalidad por actor vial',
@@ -748,7 +747,7 @@ function getData(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
-            console.log(data)
+            // console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {

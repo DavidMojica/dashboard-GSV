@@ -159,7 +159,7 @@ include("processes/PDOconn.php");
                     <div class="chart" id="chart4"></div>
                 </div>
 
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 chartContainer">
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart5Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -175,7 +175,7 @@ include("processes/PDOconn.php");
                     </select>
                     <div class="chart" id="chart5"></div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 chartContainer">
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart6Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -191,7 +191,11 @@ include("processes/PDOconn.php");
                     </select>
                     <div class="chart" id="chart6"></div>
                 </div>
-                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3 chartContainer"></div>
+
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+
+                    <div class="chart" id="chart7"></div>
+                </div>
             </div>
         </div>
     </main>
