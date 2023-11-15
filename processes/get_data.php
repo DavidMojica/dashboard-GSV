@@ -41,7 +41,7 @@ function getDataChart4($municipio){
         $stmt->execute();
         $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $query = "SELECT SUM(cantidad) as pob_total from  tbl_poblacion where id_municipio = :municipio";
+        $query = "SELECT * from  tbl_poblacion where id_municipio = :municipio";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":municipio", $municipio, PDO::PARAM_INT);
         $stmt->execute();

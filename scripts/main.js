@@ -533,27 +533,45 @@ chart4Select.addEventListener('change', function(){
     getDataChart1(chart4Select.value, 'getDataChart4', function (newData) {
         let datosPorAnio = {};
         let anios = [];
-        console.log(newData)
-        let pobTotalAntioquia = newData[1][0]['pob_total'];
+        var pobTotalMpioPorAnio = {};
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
+        
+        if(isNaN(chart4Select.value)){
+            var pobTotalAntioquia = newData[1][0]['pob_total'];
+        }
+        else{
+            var pobTotalMpioAnios = newData[1]
+            for (let i of pobTotalMpioAnios){
+                pobTotalMpioPorAnio[i.anio] = i.cantidad
+            }
+        }
 
         quarryData.forEach(element => {
             let { anio, mes, total_muertes } = element;
-
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = {};
                 anios.push(anio.toString());
                 acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
             }
+            if(isNaN(chart4Select.value)){
+                if (!datosPorAnio[anio][mes]) {
+                    datosPorAnio[anio][mes] = 0;
+                }
+    
+                acumMuertesPorAnio[anio] += parseInt(total_muertes);
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+            }        
+            else{
+                anios.forEach(a => {
+                    
+                    console.log(a)
 
-            if (!datosPorAnio[anio][mes]) {
-                datosPorAnio[anio][mes] = 0;
+
+                });
             }
-
-            acumMuertesPorAnio[anio] += parseInt(total_muertes);
-            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
         });
+
         let series = anios.map(anio => {
             let data = Array.from({ length: 12 });
 
