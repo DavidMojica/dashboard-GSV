@@ -21,7 +21,7 @@ include("processes/PDOconn.php");
     <link rel="stylesheet" href="templates/styles/btn_light.css">
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
-    <script src="scripts/main.js" defer></script>
+    <script src="scripts/charts.js" defer></script>
 
     <title>Dashboard | ANSV</title>
 </head>
@@ -86,7 +86,6 @@ include("processes/PDOconn.php");
         <div class="text-success">
             <hr>
         </div>
-
 
         <div class="dashboard container">
             <h2 class="display-3">Incidentalidad y consecuencias.</h2>
@@ -222,9 +221,18 @@ include("processes/PDOconn.php");
 
                 <h2>Regiones</h2>
 
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                    <div class="chart" id="chart9">
 
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="chart" id="chart10">
 
+                    </div>
+                </div>
             </div>
+            
         </div>
     </main>
 

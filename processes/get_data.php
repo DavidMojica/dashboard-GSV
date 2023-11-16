@@ -31,6 +31,8 @@ switch ($action) {
         break;
 }
 
+
+
 function getDataPareto($anio, $tpa){
     include('PDOconn.php');
 
@@ -55,8 +57,6 @@ function getDataPareto($anio, $tpa){
 
     return [$result1, $result2];
 }
-
-
 function getDataCircular($municipio, $tpa){
     include('PDOconn.php');
 
@@ -114,10 +114,7 @@ function getDataChart1($anio){
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-function getDataChart4($municipio)
-{
+function getDataChart4($municipio){
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
@@ -167,9 +164,7 @@ function getDataChart4($municipio)
 
     return [$resultQ1, $resultQ2];
 }
-
-function getDataChart3($municipio)
-{
+function getDataChart3($municipio){
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
@@ -204,9 +199,7 @@ function getDataChart3($municipio)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-function getDataChart2($anio)
-{
+function getDataChart2($anio){
     include('PDOconn.php');
     $anioMinimo = 2018;
     $anioActual = date('Y');
@@ -236,4 +229,3 @@ function getDataChart2($anio)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-

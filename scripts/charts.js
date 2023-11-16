@@ -1063,6 +1063,15 @@ chart8Select.addEventListener('change', function(){
     });
 });
 
+//----------CHART 9: I.V Por regiones------------//
+let chart9;
+
+const getOptionChart9 = (callback) =>{
+
+
+};
+
+
 //Get data
 function getData(anio, action, callback) {
     $.ajax({
@@ -1130,6 +1139,11 @@ function initCharts() {
     getOptionChart8(function (option) {
         chart8.setOption(option);
     });
+    
+    chart9 = echarts.init(document.getElementById("chart9"));
+    getOptionChart9(function (option) {
+        chart9.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1146,4 +1160,5 @@ window.addEventListener('resize', function () {
     chart6.resize();
     chart7.resize();
     chart8.resize();
+    chart9.resize();
 });
