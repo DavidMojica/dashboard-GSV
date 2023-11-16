@@ -90,6 +90,7 @@ select{
     font-size: 1.3em;
     width: 32px;
     height: 32px;
+    background: rgba(255, 255, 255, 0.3);
 }
 .col-7{
     display: grid;
@@ -108,8 +109,8 @@ select{
 .svg-inline--fa{
     display: inline-block;
     font-size: inherit;
-    height: 100%;
-    width: 100%;
+    height: 16px;
+    width: 16px;
     overflow: visible;
     vertical-align: -0.125em;
     border: 1px solid red;

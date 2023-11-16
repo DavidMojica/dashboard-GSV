@@ -222,7 +222,7 @@ include("processes/PDOconn.php");
     <footer id="footer-gov">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-sm-6"><a href="https://www.gov.co/" rel="noreferrer" target="_blank"><img alt="gov.co" class="gov_logo" src="https://www.antioquia.gov.co/images/PDF2/Comunicaciones/imagen-de-marca/logo.svg"> </a>
+                <div class="col-sm-4 col-lg-3"><a href="https://www.gov.co/" rel="noreferrer" target="_blank"><img alt="gov.co" class="gov_logo" src="https://www.antioquia.gov.co/images/PDF2/Comunicaciones/imagen-de-marca/logo.svg"> </a>
 
                     <div class="row">
                         <div class="col-5"><img alt="icono colombia oficial" class="img-responsive " id="govco" src="https://www.mintransporte.gov.co/info/mintransporte/media/bloque2387.png"></div>
@@ -252,7 +252,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-5 col-sm-6 text-left text-md-center agency-footer">
+                <div class="col-sm-4 col-lg-3 col-md-5  text-left text-md-center agency-footer">
                     <div class="text-left" style="width: 170px;">
                         <p class="smallTitles">Agencia Nacional de Seguridad Vial</p>
 
@@ -282,7 +282,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 no-padding text-left text-md-center info">
+                <div class="col-sm-4 col-lg-3 col-md-4 no-padding text-left text-md-center info">
                     <div class="text-left" style="width:180px">
                         <p class="smallTitles">Correo institucional</p>
 
@@ -302,7 +302,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-md-2 col-sm-6 no-padding text-md-left ">
+                <div class="col-sm-4 col-md-4 col-lg-3  no-padding text-md-left ">
                     <p class="smallTitles">Horario de atención canal virtual (PQRSD)</p>
 
                     <p>Lunes a viernes<br>
