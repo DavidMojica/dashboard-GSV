@@ -92,10 +92,18 @@ select{
     height: 32px;
     background: rgba(255, 255, 255, 0.3);
 }
-.col-7{
+#footer-gov .section:hover{
+    background: #fff;
+
+    .svg-inline--fa{
+        color: #005dca;
+    }
+}
+
+.col-3{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1px;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
 }
 .col-sm-6{
     -webkit-box-flex: 0;
@@ -113,7 +121,6 @@ select{
     width: 16px;
     overflow: visible;
     vertical-align: -0.125em;
-    border: 1px solid red;
 }
 
 #footer-gov a{
