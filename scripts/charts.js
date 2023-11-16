@@ -1147,9 +1147,12 @@ let chart10;
 
 const getOptionChart10 = (callback) => {
     getData("init", 'getDataChart10', function (newData) {
+        
+
+
         let option = {
             title: {
-                text: 'Gráfico de Pareto'
+                text: 'Actores viales y % de accidentes por regiones.'
             },
             tooltip: {
                 trigger: 'axis',
@@ -1157,41 +1160,43 @@ const getOptionChart10 = (callback) => {
                     type: 'shadow'
                 }
             },
-            legend: {
-                data: ['Cantidad de accidentes', '% Acumulado']
+            legend: { top: '5%', right: '5%' },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
             xAxis: [
                 {
                     type: 'category',
-                    data: categorias,
-                    axisTick: {
-                        alignWithLabel: true
-                    }
+                    data: nombres
                 }
             ],
             yAxis: [
                 {
-                    type: 'value',
-                    name: 'Cantidad de accidentes'
-                },
-                {
-                    type: 'value',
-                    name: '% Acumulado',
-                    max: 100
+                    type: 'value'
                 }
             ],
             series: [
                 {
-                    name: 'Cantidad de accidentes',
+                    name: 'Lesionados',
                     type: 'bar',
-                    data: cantidades
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: lesionadosData
                 },
                 {
-                    name: '% Acumulado',
-                    type: 'line',
-                    yAxisIndex: 1,
-                    data: porcentajesAcumulados
-                }
+                    name: 'Muertos',
+                    type: 'bar',
+                    stack: 'let',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: muertosData
+                },
             ]
         };
         // Utilizar la configuración para dibujar el gráfico
