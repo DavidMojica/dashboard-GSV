@@ -315,11 +315,11 @@ include("processes/PDOconn.php");
                         de 8:00 a.m. - 4:00 p.m.<br>
                         Jornada Continua</p>
 
-                    <p><a href="/atencion_ciudadania/contactenos/puntos">Canales virtuales</a><br>
-                        <a href="/atencion_ciudadania/contactenos/puntos">Canales físicos</a>
+                    <p><a href="https://www.ansv.gov.co/atencion_ciudadania/contactenos/puntos">Canales virtuales</a><br>
+                        <a href="https://www.ansv.gov.co/atencion_ciudadania/contactenos/puntos">Canales físicos</a>
                     </p>
 
-                    <p><a href="/sites/default/files/Documentos/Normativa/Decretos/CERTIFICACI%C3%93N%20ANEXO%201%20-%20ITA_2482023.pdf">Certificado de accesibilidad</a></p>
+                    <p><a href="https://www.ansv.gov.co/sites/default/files/Documentos/Normativa/Decretos/CERTIFICACI%C3%93N%20ANEXO%201%20-%20ITA_2482023.pdf">Certificado de accesibilidad</a></p>
 
                     <p><a href="https://www.ansv.gov.co/mapa_sitio">Mapa del sitio</a></p>
 
