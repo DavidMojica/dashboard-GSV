@@ -17,10 +17,9 @@ include("processes/PDOconn.php");
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="templates/styles/btn_type_A.css">
-    <link rel="stylesheet" href="templates/styles/btn_light.css">
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
+    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
     <script src="scripts/charts.js" defer></script>
 
     <title>Dashboard | ANSV</title>
