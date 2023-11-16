@@ -31,29 +31,30 @@ include("processes/PDOconn.php");
         <div class="navbar_d1">
             <img src="https://www.antioquia.gov.co/images/PDF2/Comunicaciones/imagen-de-marca/logo.svg" alt="GOV.CO" class="gov_logo">
             <div>
-            <?php
-                        session_start();
 
-                        // Comprueba si la sesión está iniciada
-                        if (!isset($_SESSION['username'])) {
-                        ?>
-                            <li class="nav-item m-1">
-                                <a href="templates/login.php">
-                                    Iniciar Sesion
-                                </a>
-                            </li>
+                <?php
+                session_start();
 
-                        <?php
-                        } else {
-                        ?>
-                            <li class="nav-item m-1"><a href="templates/admin.php"><button class="button-light">Administración</button></a></li>
-                            <li class="nav-item m-1">
-                                <form action="processes/logout.php" method="post">
-                                    <button class="button-light">Cerrar Sesión</button>
-                                </form>
-                            </li>
-
-                        <?php } ?>
+                // Comprueba si la sesión está iniciada
+                if (!isset($_SESSION['username'])) {
+                ?>
+                    <div class="p_info">
+                        <a href="templates/login.php">
+                            Iniciar Sesion
+                        </a>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <div class="p_info">
+                        <a href="templates/admin.php">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <form action="processes/logout.php" method="post">
+                            <button class="b_none"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar_d2">
@@ -71,7 +72,7 @@ include("processes/PDOconn.php");
                             <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" class="ans_logo" alt="Colombia Potencia Mundial de la Vida">
                         </li>
 
-                        
+
                     </ul>
                 </div>
             </div>
