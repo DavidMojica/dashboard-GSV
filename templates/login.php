@@ -27,14 +27,15 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../templates/styles/bg_dotted.css">
     <link rel="stylesheet" href="../templates/styles/form_slashing.css">
     <link rel="stylesheet" href="../templates/styles/login.css">
+    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
     <script src="../scripts/login.js" defer></script>
     <title>Document</title>
 </head>
 <body class="bg_dotted">
 <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo" alt="logo_secretaria">
+            <a class="navbar-brand" href="../index.php">
+                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,7 +60,7 @@ if (isset($_SESSION['username'])) {
         <div class="form-container">
             <form action="" class="form" method="POST" id="loginForm">
                 <a class="navbar-brand logo_form" href="../index.php">
-                    <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo_form" alt="logo_secretaria">
+                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
                 </a>
             
             

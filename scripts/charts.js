@@ -1069,7 +1069,7 @@ const getOptionChart9 = (callback) => {
     getData("init", 'getDataChart9', function (newData) {
         option = {
             title: {
-                text: 'I.V x Regiones',
+                text: 'Incidentes Viales por Región',
                 subtext: '(2016 - 2023)',
                 x: 'center',
             },
@@ -1107,7 +1107,7 @@ chart9Select.addEventListener('change', function () {
     getData(chart9Select.value, 'getDataChart9', function (newData) {
         updatedOption = {
             title: {
-                text: 'I.V x Regiones',
+                text: 'Incidentes Viales por Región',
                 subtext: chart9Select.value,
                 x: 'center',
             },
@@ -1216,7 +1216,7 @@ const getOptionChart10 = (callback) => {
 
         let option = {
             title: {
-                text: 'Actores viales y % de accidentes por regiones.'
+                text: 'I.V de actores viales por región'
             },
             tooltip: {
                 trigger: 'axis',
@@ -1224,10 +1224,8 @@ const getOptionChart10 = (callback) => {
                     type: 'shadow'
                 }
             },
-            legend: { top: '6%' },
+            legend: { top: 'bottom' },
             grid: {
-                bottom: '15%',
-
                 containLabel: true
             },
             xAxis: [
@@ -1238,7 +1236,8 @@ const getOptionChart10 = (callback) => {
             ],
             yAxis: [
                 {
-                    type: 'value'
+                    type: 'value',
+                    name: '# Incidentes Viales'
                 },
                 {
                     type: 'value',

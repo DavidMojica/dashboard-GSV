@@ -23,13 +23,36 @@ h1, h2, h4, p{
     "navbar_d1"
     "navbar_d2";
 }
+.no-deco{
+    list-style: none;
+}
+
+.b_none{
+    background: transparent;
+    border: none;
+}
+.p_info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+.p_info i{
+    color: #fff;
+}
+
+
 .ans_logo{
     height:110px ;
 }
 .gov_logo{
     height: 40px;
 }
-.navbar_d1 { grid-area: navbar_d1; background: var(--blue-ant);}
+.navbar_d1 { 
+    grid-area: navbar_d1; background: var(--blue-ant);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
 .navbar_d2 { 
     grid-area: navbar_d2;
 }
