@@ -30,19 +30,8 @@ include("processes/PDOconn.php");
     <div class="div_top">
         <div class="navbar_d1">
             <img src="https://www.antioquia.gov.co/images/PDF2/Comunicaciones/imagen-de-marca/logo.svg" alt="GOV.CO" class="gov_logo">
-        </div>
-        <nav class="navbar navbar-expand-lg navbar_d2">
-            <div class="container">
-                <a href="https://antioquia.gov.co/" class="ans_logo">
-                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" alt="Logo Gobernacion Antioquia" class="ans_logo">
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <?php
+            <div>
+            <?php
                         session_start();
 
                         // Comprueba si la sesión está iniciada
@@ -50,7 +39,7 @@ include("processes/PDOconn.php");
                         ?>
                             <li class="nav-item m-1">
                                 <a href="templates/login.php">
-                                    <button class="button-light">Iniciar Sesión <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                                    Iniciar Sesion
                                 </a>
                             </li>
 
@@ -65,6 +54,24 @@ include("processes/PDOconn.php");
                             </li>
 
                         <?php } ?>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar_d2">
+            <div class="container">
+                <a href="https://antioquia.gov.co/" class="ans_logo">
+                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" alt="Logo Gobernacion Antioquia" class="ans_logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item m-1">
+                            <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" class="ans_logo" alt="Colombia Potencia Mundial de la Vida">
+                        </li>
+
+                        
                     </ul>
                 </div>
             </div>
@@ -324,7 +331,7 @@ include("processes/PDOconn.php");
 
                         <p class="smallTitles">Última actualización:</p>
 
-                        <p class="last-date">15/11/2023 | 10:44 pm</p>
+                        <p class="last-date">16/11/2023 | 8:30 pm</p>
                     </div>
                 </div>
 

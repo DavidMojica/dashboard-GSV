@@ -1224,10 +1224,8 @@ const getOptionChart10 = (callback) => {
                     type: 'shadow'
                 }
             },
-            legend: { top: '6%' },
+            legend: { top: 'bottom' },
             grid: {
-                bottom: '15%',
-
                 containLabel: true
             },
             xAxis: [
@@ -1238,7 +1236,8 @@ const getOptionChart10 = (callback) => {
             ],
             yAxis: [
                 {
-                    type: 'value'
+                    type: 'value',
+                    name: '# Incidentes Viales'
                 },
                 {
                     type: 'value',
