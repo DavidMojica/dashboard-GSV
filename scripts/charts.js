@@ -460,7 +460,7 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
+                text: `Tasa de muertes x 100.000 hab por I.V. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -905,8 +905,6 @@ let chart8;
 let chart8Select = document.getElementById('chart8Select');
 
 const getOptionChart8 = (callback) =>{
-
-
     getData(chart8Select.value, 'getDataChart8', function (newData) {
         const añoActual = new Date().getFullYear();
 
@@ -1065,11 +1063,141 @@ chart8Select.addEventListener('change', function(){
 
 //----------CHART 9: I.V Por regiones------------//
 let chart9;
+const chart9Select = document.getElementById('chart9Select');
 
 const getOptionChart9 = (callback) =>{
-
-
+    getData("init", 'getDataChart9', function (newData) {
+        option = {
+            title: {
+                text: 'I.V x Regiones',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+              top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                mark: { show: true },
+              }
+            },
+            series: [
+              {
+                name: 'Incidentes Viales',
+                type: 'pie',
+                radius: [40, 160],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                  borderRadius: 8
+                },
+                data: newData
+              }
+            ]
+          };
+          callback(option);
+    });
 };
+
+chart9Select.addEventListener('change', function(){
+    getData(chart9Select.value, 'getDataChart9', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'I.V x Regiones',
+                subtext: chart9Select.value,
+                x: 'center',
+            },
+            legend: {
+              top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                mark: { show: true },
+              }
+            },
+            series: [
+              {
+                name: 'Incidentes Viales',
+                type: 'pie',
+                radius: [40, 160],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                  borderRadius: 8
+                },
+                data: newData
+              }
+            ]
+          };
+          chart9.setOption(updatedOption);
+    });
+});
+
+//----------CHART 10: Mixed Actores viales x regiones x % del total de accidentes x cantidad------------------//
+let chart10;
+
+
+const getOptionChart10 = (callback) => {
+    getData("init", 'getDataChart10', function (newData) {
+        let option = {
+            title: {
+                text: 'Gráfico de Pareto'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['Cantidad de accidentes', '% Acumulado']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: categorias,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Cantidad de accidentes'
+                },
+                {
+                    type: 'value',
+                    name: '% Acumulado',
+                    max: 100
+                }
+            ],
+            series: [
+                {
+                    name: 'Cantidad de accidentes',
+                    type: 'bar',
+                    data: cantidades
+                },
+                {
+                    name: '% Acumulado',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    data: porcentajesAcumulados
+                }
+            ]
+        };
+        // Utilizar la configuración para dibujar el gráfico
+        chart10.setOption(option);
+    })
+} ;
 
 
 //Get data
@@ -1094,6 +1222,7 @@ function getData(anio, action, callback) {
             console.log(textStatus);
             console.log(errorThrown);
         }
+        
     });
 }
 
@@ -1144,6 +1273,11 @@ function initCharts() {
     getOptionChart9(function (option) {
         chart9.setOption(option);
     });
+
+    chart10 = echarts.init(document.getElementById("chart10"));
+    getOptionChart10(function (option) {
+        chart10.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1161,4 +1295,5 @@ window.addEventListener('resize', function () {
     chart7.resize();
     chart8.resize();
     chart9.resize();
+    chart10.resize();
 });

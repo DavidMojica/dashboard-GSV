@@ -58,12 +58,18 @@ select{
     width: 90%;
     min-height: 400px;
 }
+.chartHxl{
+    width: 90%;
+    height: 500px;
+}
 
 .chartContainer{   
     background: #fff;
     padding: 1em;
     border-radius: 2em;
 }
+
+
 
 
 /*----------FOOTER---------*/

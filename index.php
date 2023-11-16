@@ -221,18 +221,26 @@ include("processes/PDOconn.php");
 
                 <h2>Regiones</h2>
 
-                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                    <div class="chart" id="chart9">
+                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart9Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chartHxl" id="chart9">
 
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="chart" id="chart10">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 chartContainer">
+                    <div class="chartHxl" id="chart10">
 
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </main>
 

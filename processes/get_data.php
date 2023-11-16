@@ -29,9 +29,41 @@ switch ($action) {
     case 'getDataChart8':
         returnDataResponse(getDataPareto($anio,2));
         break;
+    case 'getDataChart9':
+        returnDataResponse(getDataChart9($anio));
+        break;
+    default:
+        die();
 }
 
+function getDataChart9($anio) {
+    include('PDOconn.php');
+    if (is_numeric($anio)) {
+        $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
+        FROM tbl_accidente a
+        JOIN tbl_municipio m ON a.municipio = m.id
+        JOIN tbl_subregion s ON m.subregion = s.id
+        WHERE a.anio = :a
+        GROUP BY s.nombre
+        ORDER BY VALUE;";
 
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':a', $anio, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+    $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
+    FROM tbl_accidente a
+    JOIN tbl_municipio m ON a.municipio = m.id
+    JOIN tbl_subregion s ON m.subregion = s.id
+    GROUP BY s.nombre
+    ORDER BY VALUE;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+}
 
 function getDataPareto($anio, $tpa){
     include('PDOconn.php');
