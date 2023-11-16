@@ -1146,9 +1146,35 @@ let chart10;
 
 
 const getOptionChart10 = (callback) => {
-    getData("init", 'getDataChart10', function (newData) {
-        
+    getData("init", 'getDataChart10', function (datos) {
+        console.log(datos)
+        const names = [...new Set(datos.map(item => item.name))];
+        var datosOrganizados = {};
 
+        datos.forEach(function(item) {
+            if (!datosOrganizados[item.name]) {
+                datosOrganizados[item.name] = [];
+            }
+            datosOrganizados[item.name].push({
+                name: item.vehiculo,
+                value: parseInt(item.value)
+            });
+        });
+
+console.log(datosOrganizados)
+        var series = Object.keys(datosOrganizados).map(function(region) {
+            return {
+                name: region,
+                type: 'bar',
+                stack: 'let',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: datosOrganizados[region]
+            };
+        });
+
+console.log(series);
 
         let option = {
             title: {
@@ -1170,7 +1196,7 @@ const getOptionChart10 = (callback) => {
             xAxis: [
                 {
                     type: 'category',
-                    data: nombres
+                    data: names
                 }
             ],
             yAxis: [
@@ -1178,26 +1204,7 @@ const getOptionChart10 = (callback) => {
                     type: 'value'
                 }
             ],
-            series: [
-                {
-                    name: 'Lesionados',
-                    type: 'bar',
-                    stack: 'let',
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: lesionadosData
-                },
-                {
-                    name: 'Muertos',
-                    type: 'bar',
-                    stack: 'let',
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: muertosData
-                },
-            ]
+            series: series
         };
         // Utilizar la configuración para dibujar el gráfico
         chart10.setOption(option);

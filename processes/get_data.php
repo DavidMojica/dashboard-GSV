@@ -44,7 +44,7 @@ function getDataChart10($anio)
 
     include('PDOconn.php');
     if (is_numeric($anio)) {
-        $query = "SELECT s.nombre AS region, v.nombre as name, SUM(a.cantidad) AS value
+        $query = "SELECT s.nombre AS name, v.nombre as vehiculo, SUM(a.cantidad) AS value
         FROM tbl_accidente a
         JOIN tbl_municipio m ON a.municipio = m.id
         JOIN tbl_subregion s ON m.subregion = s.id
@@ -58,7 +58,7 @@ function getDataChart10($anio)
         return  $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    $query = "SELECT s.nombre AS region, v.nombre as name, SUM(a.cantidad) AS value
+    $query = "SELECT s.nombre AS name, v.nombre as vehiculo, SUM(a.cantidad) AS value
     FROM tbl_accidente a
     JOIN tbl_municipio m ON a.municipio = m.id
     JOIN tbl_subregion s ON m.subregion = s.id
@@ -67,7 +67,7 @@ function getDataChart10($anio)
     $stmt = $pdo->prepare($query);
     $stmt->execute();
 
-    return  $stmt->fetchAll(PDO::FETCH_ASSOC);;
+    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 function getDataChart9($anio)
 {
