@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../templates/styles/login.css">
     <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
     <script src="../scripts/login.js" defer></script>
-    <title>Document</title>
+    <title>Login | ANSV</title>
 </head>
 <body class="bg_dotted">
 <nav class="navbar navbar-expand-lg">

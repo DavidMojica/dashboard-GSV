@@ -39,7 +39,7 @@ include("processes/PDOconn.php");
                 ?>
                     <div class="p_info">
                         <a href="templates/login.php">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
                         </a>
                     </div>
                 <?php
@@ -68,7 +68,9 @@ include("processes/PDOconn.php");
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item m-1">
-                            <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                            <a href="https://www.ansv.gov.co/">
+                                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                            </a>
                         </li>
                     </ul>
                 </div>

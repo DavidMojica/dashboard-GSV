@@ -1,6 +1,6 @@
 <?php
 $anioActual = date('Y');
-$anioMinimo = 2016;
+$anioMinimo = 2018;
 
 /**
  * Regresa la respuesta a Ajax.
