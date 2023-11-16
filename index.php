@@ -40,7 +40,7 @@ include("processes/PDOconn.php");
                 ?>
                     <div class="p_info">
                         <a href="templates/login.php">
-                            Iniciar Sesion
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
                         </a>
                     </div>
                 <?php
@@ -60,7 +60,7 @@ include("processes/PDOconn.php");
         <nav class="navbar navbar-expand-lg navbar_d2">
             <div class="container">
                 <a href="https://antioquia.gov.co/" class="ans_logo">
-                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" alt="Logo Gobernacion Antioquia" class="ans_logo">
+                    <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" alt="Colombia Potencia Mundial de la Vida" class="ans_logo">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,10 +69,8 @@ include("processes/PDOconn.php");
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item m-1">
-                            <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" class="ans_logo" alt="Colombia Potencia Mundial de la Vida">
+                            <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
                         </li>
-
-
                     </ul>
                 </div>
             </div>
