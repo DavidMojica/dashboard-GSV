@@ -43,9 +43,6 @@ h1{
     font-size: 46px;
 }
 
-
-
-
 .dash-legend p{
     max-width: 600px;
     margin: 0 auto;
@@ -61,9 +58,78 @@ select{
     width: 90%;
     min-height: 400px;
 }
+.chartHxl{
+    width: 90%;
+    height: 500px;
+}
 
 .chartContainer{   
     background: #fff;
     padding: 1em;
     border-radius: 2em;
+}
+
+
+
+
+/*----------FOOTER---------*/
+#footer-gov{
+    background: #3366CC;
+    color:#fff;
+    font-size: 0.7em;
+    padding: 60px 0;
+}
+
+.list-unstyled{
+    padding-left: 0;
+    list-style: none;
+}
+
+#footer-gov .section{
+    transition: all 0.3s 0s ease;
+    -webkit-transition: all 0.3s 0s ease;
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 2.5em;
+    font-size: 1.3em;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.3);
+}
+#footer-gov .section:hover{
+    background: #fff;
+
+    .svg-inline--fa{
+        color: #005dca;
+    }
+}
+
+.col-3{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+}
+.col-sm-6{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 20%;
+}
+
+
+.svg-inline--fa{
+    display: inline-block;
+    font-size: inherit;
+    height: 16px;
+    width: 16px;
+    overflow: visible;
+    vertical-align: -0.125em;
+}
+
+#footer-gov a{
+    color: #fff;
+    text-decoration: none;
 }

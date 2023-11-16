@@ -460,7 +460,7 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
+                text: `Tasa de muertes x 100.000 hab por I.V. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -746,12 +746,12 @@ const getOptionChart7 = (callback) => {
     getData(chart7Select.value, 'getDataChart7', function (newData) {
         // Seleccionar automáticamente el option con el valor del año actual
         document.getElementById("chart7Select").value = añoActual;
-        
+
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
         console.log(dict)
-        const barData = dict.map(function(objeto){
+        const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
@@ -823,14 +823,14 @@ const getOptionChart7 = (callback) => {
     });
 }
 
-chart7Select.addEventListener('change', function(){
+chart7Select.addEventListener('change', function () {
     chart7.dispose();
     chart7 = echarts.init(document.getElementById("chart7"));
     getData(chart7Select.value, 'getDataChart7', function (newData) {
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
-        const barData = dict.map(function(objeto){
+        const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
@@ -904,19 +904,17 @@ chart7Select.addEventListener('change', function(){
 let chart8;
 let chart8Select = document.getElementById('chart8Select');
 
-const getOptionChart8 = (callback) =>{
-
-
+const getOptionChart8 = (callback) => {
     getData(chart8Select.value, 'getDataChart8', function (newData) {
         const añoActual = new Date().getFullYear();
 
         // Seleccionar automáticamente el option con el valor del año actual
         document.getElementById("chart8Select").value = añoActual;
-        
+
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
-        const barData = dict.map(function(objeto){
+        const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
@@ -986,14 +984,14 @@ const getOptionChart8 = (callback) =>{
     });
 };
 
-chart8Select.addEventListener('change', function(){
+chart8Select.addEventListener('change', function () {
     chart8.dispose();
     chart8 = echarts.init(document.getElementById("chart8"));
     getData(chart8Select.value, 'getDataChart8', function (newData) {
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
-        const barData = dict.map(function(objeto){
+        const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
@@ -1063,6 +1061,198 @@ chart8Select.addEventListener('change', function(){
     });
 });
 
+//----------CHART 9: I.V Por regiones------------//
+let chart9;
+const chart9Select = document.getElementById('chart9Select');
+
+const getOptionChart9 = (callback) => {
+    getData("init", 'getDataChart9', function (newData) {
+        option = {
+            title: {
+                text: 'I.V x Regiones',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
+chart9Select.addEventListener('change', function () {
+    getData(chart9Select.value, 'getDataChart9', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'I.V x Regiones',
+                subtext: chart9Select.value,
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart9.setOption(updatedOption);
+    });
+});
+
+//----------CHART 10: Mixed Actores viales x regiones x % del total de accidentes x cantidad------------------//
+let chart10;
+
+
+const getOptionChart10 = (callback) => {
+    getData("init", 'getDataChart10', function (datos) {
+        console.log(datos)
+        const names = [...new Set(datos.map(item => item.name))];
+        var vehiculos = [...new Set(datos.map(item => item.vehiculo))];
+
+        var datosOrganizados = {};
+
+        names.forEach(function (region) {
+            if (!datosOrganizados[region]) {
+                datosOrganizados[region] = {};
+            }
+
+            vehiculos.forEach(function (vehiculo) {
+                datosOrganizados[region][vehiculo] = 0;
+            });
+        });
+        var muertesPorRegion = [];
+
+        datos.forEach(function (item) {
+            datosOrganizados[item.name][item.vehiculo] += parseInt(item.value);
+            var nombreRegion = item.name;
+            var cantidadMuertes = parseInt(item.value);
+
+            // Inicializar el total de muertes para la región si no existe
+            if (!muertesPorRegion[nombreRegion]) {
+                muertesPorRegion[nombreRegion] = 0;
+            }
+
+            // Acumular el total de muertes para la región
+            muertesPorRegion[nombreRegion] += cantidadMuertes;
+        });
+        let lista = Object.values(muertesPorRegion);
+        var sumaTotal = lista.reduce((a, b) => a + b, 0);
+
+        var porcentajeAcumulado = [];
+        var acumulado = 0;
+
+        for (var i = 0; i < lista.length; i++) {
+            acumulado += (lista[i] / sumaTotal) * 100;
+            porcentajeAcumulado.push(acumulado.toFixed(2));
+        }
+        
+        var series = vehiculos.map(function (vehiculo) {
+            var valores = names.map(function (region) {
+                return datosOrganizados[region][vehiculo];
+            });
+
+            return {
+                name: vehiculo,
+                type: 'bar',
+                stack: 'vehiculos',
+                emphasis: {
+                    focus: 'series'
+                },
+                data: valores
+            };
+        });
+
+        series.push({
+            name: "% del total",
+            type: 'line',
+            emphasis: {
+                focus: 'series'
+            },
+            data: porcentajeAcumulado,
+            yAxisIndex: 1
+        });
+
+        let option = {
+            title: {
+                text: 'Actores viales y % de accidentes por regiones.'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: { top: '6%' },
+            grid: {
+                bottom: '15%',
+
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: names
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                },
+                {
+                    type: 'value',
+                    'name': '% del total'
+                },
+            ],
+            series: series
+        };
+        // Utilizar la configuración para dibujar el gráfico
+        chart10.setOption(option);
+    })
+};
+
+
 //Get data
 function getData(anio, action, callback) {
     $.ajax({
@@ -1085,6 +1275,7 @@ function getData(anio, action, callback) {
             console.log(textStatus);
             console.log(errorThrown);
         }
+
     });
 }
 
@@ -1130,6 +1321,16 @@ function initCharts() {
     getOptionChart8(function (option) {
         chart8.setOption(option);
     });
+
+    chart9 = echarts.init(document.getElementById("chart9"));
+    getOptionChart9(function (option) {
+        chart9.setOption(option);
+    });
+
+    chart10 = echarts.init(document.getElementById("chart10"));
+    getOptionChart10(function (option) {
+        chart10.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1146,4 +1347,6 @@ window.addEventListener('resize', function () {
     chart6.resize();
     chart7.resize();
     chart8.resize();
+    chart9.resize();
+    chart10.resize();
 });
