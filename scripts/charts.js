@@ -1149,33 +1149,40 @@ const getOptionChart10 = (callback) => {
     getData("init", 'getDataChart10', function (datos) {
         console.log(datos)
         const names = [...new Set(datos.map(item => item.name))];
+        var vehiculos = [...new Set(datos.map(item => item.vehiculo))];
+
         var datosOrganizados = {};
 
-        datos.forEach(function(item) {
-            if (!datosOrganizados[item.name]) {
-                datosOrganizados[item.name] = [];
+        names.forEach(function(region) {
+            if (!datosOrganizados[region]) {
+                datosOrganizados[region] = {};
             }
-            datosOrganizados[item.name].push({
-                name: item.vehiculo,
-                value: parseInt(item.value)
+            
+            vehiculos.forEach(function(vehiculo) {
+                datosOrganizados[region][vehiculo] = 0;
             });
         });
 
-console.log(datosOrganizados)
-        var series = Object.keys(datosOrganizados).map(function(region) {
+        datos.forEach(function(item) {
+            datosOrganizados[item.name][item.vehiculo] += parseInt(item.value);
+        });
+
+        var series = vehiculos.map(function(vehiculo) {
+            var valores = names.map(function(region) {
+                return datosOrganizados[region][vehiculo];
+            });
+
             return {
-                name: region,
+                name: vehiculo,
                 type: 'bar',
-                stack: 'let',
+                stack: 'vehiculos',
                 emphasis: {
                     focus: 'series'
                 },
-                data: datosOrganizados[region]
+                data: valores
             };
         });
-
-console.log(series);
-
+        
         let option = {
             title: {
                 text: 'Actores viales y % de accidentes por regiones.'
