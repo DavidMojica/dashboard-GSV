@@ -148,7 +148,7 @@ include("processes/PDOconn.php");
 
                 <h2 class="display-3 text-xl-start">Mortalidad / año</h2>
 
-                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-11 col-md-8 col-lg-8 col-xl-8 chartContainer">
                     <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
@@ -162,8 +162,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-
-                <div class="col-sm-11 col-md-6 col-lg-6 col-xl-6 chartContainer">
+                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart3Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -178,6 +177,23 @@ include("processes/PDOconn.php");
                         ?>
                     </select>
                     <div id="chart3" class="chart"></div>
+                </div>
+
+                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart3e1Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div id="chart3.1" class="chart"></div>
                 </div>
 
                 <h2 class="display-3 text-xl-start">Tasa Departamental</h2>
