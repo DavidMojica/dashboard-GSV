@@ -13,25 +13,25 @@ $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Meses
-$query = "SELECT id, description FROM tbl_meses";
+$query = "SELECT id, nombre FROM tbl_meses";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $meses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //Vehículo
-$query = "SELECT id, description FROM tbl_vehiculo";
+$query = "SELECT id, nombre FROM tbl_vehiculo";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $vehiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //Municipios
-$query = "SELECT id, description FROM tbl_municipio";
+$query = "SELECT id, nombre FROM tbl_municipio";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //Tipos consecuencia
-$query = "SELECT id, description FROM tbl_tipo_accidente";
+$query = "SELECT id, nombre FROM tbl_tipo_accidente";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -95,19 +95,52 @@ $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
 
-                <?php
-                foreach ($result as $row) {
-                    echo '<tr>
-                    <th scope="row">' . $row['id'] . '</th>
-                    <td>' . $row['Mes'] . '</th>
-                    <td>' . $row['Año'] . '</td>
-                    <td>' . $row['Vehiculo'] . '</td>
-                    <td>' . $row['municipio'] . '</td>
-                    <td>' . $row['ML'] . '</td>
-                    <td>' . $row['Cantidad'] . '</td>
-                </tr>';;
+            <?php
+foreach ($result as $row) {
+    echo '<tr>
+            <th scope="row">' . $row['id'] . '</th>
+            <td>
+                <select name="mes" id="mes">';
+                foreach ($meses as $mes) {
+                    $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
+                    echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
                 }
-                ?>
+    echo '</select>
+            </td>
+
+            <td><input type="number" name="ano" value="' . $row['Año'] . '"></td>
+            
+            <td>
+                <select name="vehiculo" id="vehiculo">';
+                foreach ($vehiculos as $vehiculo) {
+                    $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
+                    echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
+                }
+    echo '</select>
+            </td>
+
+            <td>
+                <select name="municipio" id="municipio">';
+                foreach ($municipio as $mun) {
+                    $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                    echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                }
+    echo '</select>
+            </td>
+
+            <td>
+                <select name="ml" id="ml">';
+                foreach ($ml as $mlOption) {
+                    $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
+                    echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
+                }
+    echo '</select>
+            </td>
+
+            <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
+        </tr>';
+}
+?>
 
 
             </tbody>
