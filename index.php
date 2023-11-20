@@ -2,7 +2,6 @@
 include("processes/essentials.php");
 include("processes/PDOconn.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +18,7 @@ include("processes/PDOconn.php");
 
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
+    <link rel="stylesheet" href="templates/styles/btn_stars.css">
     <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
     <script src="scripts/charts.js" defer></script>
 
@@ -86,7 +86,69 @@ include("processes/PDOconn.php");
                 Aquí podrás encontrar visualizaciones interactivas que te ayudarán a entender
                 la distribución y características de los accidentes en Antioquia.
                 Pasa el mouse por encima de cada gráfico para obtener mayores detalles
-                y datos más específicos.
+                y datos más específicos
+            </p> <br>
+            <p class="lead">
+                Puedes descargar los datos aquí:
+            <form action="processes/downloads.php" method="POST">
+                <button type="submit" name="ach1" class="btn_star">
+                    Descargar <i class="fa fa-download"></i>
+                    <div class="star-1">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-2">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-3">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-4">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </button>
+            </form>
             </p>
         </div>
 
@@ -148,7 +210,7 @@ include("processes/PDOconn.php");
 
                 <h2 class="display-3 text-xl-start">Mortalidad / año</h2>
 
-                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-11 col-md-8 col-lg-8 col-xl-8 chartContainer">
                     <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
@@ -162,8 +224,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-
-                <div class="col-sm-11 col-md-6 col-lg-6 col-xl-6 chartContainer">
+                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart3Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -178,6 +239,23 @@ include("processes/PDOconn.php");
                         ?>
                     </select>
                     <div id="chart3" class="chart"></div>
+                </div>
+
+                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart3e1Select" class="form-select form-select-lg mb-3">
+                        <option value="Todos los municipios">Todos los municipios</option>
+                        <?php
+                        $query = "SELECT id, nombre FROM tbl_municipio";
+                        $stmt = $pdo->prepare($query);
+                        $stmt->execute();
+
+                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $row) {
+                            echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div id="chart3.1" class="chart"></div>
                 </div>
 
                 <h2 class="display-3 text-xl-start">Tasa Departamental</h2>

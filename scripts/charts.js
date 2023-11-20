@@ -413,6 +413,156 @@ chart3Select.addEventListener('change', function () {
     });
 });
 
+//------------Chart 3.1: Comparativo lesionados por iv por año -----------------------##
+let chart3e1;
+const chart3e1Select = document.getElementById('chart3e1Select');
+
+const getOptionChart3e1 = (callback) =>{
+    getData("init", 'getDataChart3e1', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        // Inicializar datosPorAnio y anios
+        newData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+            }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+            datosPorAnio[anio][mes] = parseInt(total_muertes);
+        });
+
+
+        // Crear series con relleno de 0 para meses faltantes
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 }).fill(0);
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
+        });
+
+
+        let option = {
+            title: {
+                text: 'Lesiones por incidentes viales por año'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                top: '5%', right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: arrayMeses
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: series
+        };
+        // Llama a la función de devolución de llamada con las opciones del gráfico
+        callback(option);
+    });
+};
+
+chart3e1Select.addEventListener('change', function(){
+    chart3e1.dispose();
+    chart3e1 = echarts.init(document.getElementById("chart3.1"));
+    getData(chart3Select.value, 'getDataChart3e1', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        // Inicializar datosPorAnio y anios
+        newData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+            }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+            datosPorAnio[anio][mes] = parseInt(total_muertes);
+        });
+
+        // Crear series con relleno de 0 para meses faltantes
+        let nseries = anios.map(anio => {
+            let data = Array.from({ length: 12 }).fill(0);
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
+        });
+        console.log(nseries);
+
+        let updatedOption = {
+            title: {
+                text: 'Muertes por incidentes viales por año'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                top: '5%',
+                right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: arrayMeses
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: nseries
+        };
+        chart3e1.setOption(updatedOption);
+    });
+});
+
+
 //-------------CHART 4: Tasa de muerte * 100hab
 let chart4;
 const chart4Select = document.getElementById('chart4Select');
@@ -1296,6 +1446,11 @@ function initCharts() {
         chart3.setOption(option);
     });
 
+    chart3e1 = echarts.init(document.getElementById("chart3.1"));
+    getOptionChart3e1(function (option) {
+        chart3e1.setOption(option);
+    });
+
     chart4 = echarts.init(document.getElementById("chart4"));
     getOptionChart4(function (option) {
         chart4.setOption(option);
@@ -1341,6 +1496,7 @@ window.addEventListener('resize', function () {
     chart1.resize();
     chart2.resize();
     chart3.resize();
+    chart3e1.resize();
     chart4.resize();
     chart5.resize();
     chart6.resize();
