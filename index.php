@@ -1,6 +1,22 @@
 <?php
 include("processes/essentials.php");
 include("processes/PDOconn.php");
+require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+
+//Encabezados del excel
+$columns = ['Mes', 'Año','Vehiculo', 'Municipio', 'M/L', 'Cantidad'];
+$columnIndex = 1;
+foreach ($columns as $column) {
+    $sheet->setCellValueByColumnAndRow($columnIndex, 1, $column);
+    $columnIndex++;
+}
+
+
 ?>
 
 <!DOCTYPE html>
