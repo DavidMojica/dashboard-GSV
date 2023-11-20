@@ -1,8 +1,7 @@
 <?php
 include("essentials.php");
 include("PDOconn.php");
-include('essentials.php');
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -40,8 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['ach1'])) {
         $rowIndex++;
     }
 
-    if(isset($_POST['ach1'])){
-
-    }
+    $writer = new Xlsx($spreadsheet);
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="IncidentesViales.xlsx"');
+    header('Cache-Control: max-age=0');
+    $writer->save('php://output');
+    exit;
 }
 ?>
