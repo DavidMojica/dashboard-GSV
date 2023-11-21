@@ -1,5 +1,6 @@
 <?php
 include("PDOconn.php");
+include("essentials.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_POST['f1'])) {
         $id = $_POST['id'];
@@ -10,17 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ml = $_POST['ml'];
         $cantidad = $_POST['cantidad'];
 
-        $query = "UPDATE tbl_accidente SET mes = :mes, anio = :ano, vehiculo = :vehiculo, municipio = :municipio, tipo_accidente = :ml, cantidad = :cantidad WHERE id = :id";
+        if($ano >= $anioMinimo && $ano <= $anioActual){
+            $query = "UPDATE tbl_accidente SET mes = :mes, anio = :ano, vehiculo = :vehiculo, municipio = :municipio, tipo_accidente = :ml, cantidad = :cantidad WHERE id = :id";
         
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':mes', $mes);
-        $stmt->bindParam(':ano', $ano);
-        $stmt->bindParam(':vehiculo', $vehiculo);
-        $stmt->bindParam(':municipio', $municipio);
-        $stmt->bindParam(':ml', $ml);
-        $stmt->bindParam(':cantidad', $cantidad);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(':mes', $mes);
+            $stmt->bindParam(':ano', $ano);
+            $stmt->bindParam(':vehiculo', $vehiculo);
+            $stmt->bindParam(':municipio', $municipio);
+            $stmt->bindParam(':ml', $ml);
+            $stmt->bindParam(':cantidad', $cantidad);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+        }
         header('Location: ../templates/update.php?f=1');
         exit();
     }
