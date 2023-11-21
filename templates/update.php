@@ -8,7 +8,7 @@ if ($formToDisplay == 1) {
     JOIN tbl_vehiculo v on a.vehiculo = v.id
     JOIN tbl_municipio c on a.municipio = c.id
     JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
-    ORDER BY a.id ASC
+    ORDER BY a.id DESC
     LIMIT 30;";
 
     $stmt = $pdo->prepare($query);
@@ -42,7 +42,7 @@ if ($formToDisplay == 1) {
     $query = "SELECT p.id, m.nombre as municipio, p.anio as anio, p.cantidad as cantidad 
     FROM tbl_poblacion p
     JOIN tbl_municipio m on p.id_municipio = m.id
-    ORDER BY p.id ASC
+    ORDER BY p.id DESC
     LIMIT 30;";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
@@ -129,16 +129,16 @@ if ($formToDisplay == 1) {
                         <td>
                             <form method="POST" action="../processes/updatedb.php">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">
-                                <select name="mes" id="mes">';
+                                <select name="mes" id="mes" class="form-select">';
                         foreach ($meses as $mes) {
                             $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
                             echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
                         }
                         echo '          </select>
                             </td>
-                            <td><input type="number" name="ano" value="' . $row['Año'] . '"></td>
+                            <td><input type="number" class="form-control" name="ano" value="' . $row['Año'] . '"></td>
                             <td>
-                                <select name="vehiculo" id="vehiculo">';
+                                <select name="vehiculo" id="vehiculo" class="form-select">';
                         foreach ($vehiculos as $vehiculo) {
                             $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
                             echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
@@ -146,7 +146,7 @@ if ($formToDisplay == 1) {
                         echo '          </select>
                             </td>
                             <td>
-                                <select name="municipio" id="municipio">';
+                                <select name="municipio" id="municipio" class="form-select">';
                         foreach ($municipio as $mun) {
                             $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
                             echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
@@ -154,15 +154,15 @@ if ($formToDisplay == 1) {
                         echo '          </select>
                             </td>
                             <td>
-                                <select name="ml" id="ml">';
+                                <select name="ml" id="ml" class="form-select">';
                         foreach ($ml as $mlOption) {
                             $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
                             echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
                         }
                         echo '          </select>
                             </td>
-                            <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
-                            <td><input type="submit" value="Guardar" name="f1"></td>
+                            <td><input type="number" class="form-control" name="cantidad" value="' . $row['Cantidad'] . '"></td>
+                            <td><input type="submit" class="btn btn-success" value="Guardar" name="f1"></td>
                             </form>
                         </tr>';
                     }
@@ -192,16 +192,16 @@ if ($formToDisplay == 1) {
                             <td>
                                 <form method="POST" action="../processes/updatedb.php">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">    
-                                <select name="municipio" id="municipio">';
+                                <select name="municipio" id="municipio" class="form-select">';
                                     foreach ($municipio as $mun) {
                                         $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
                                         echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
                                 }
                                     echo '          </select>
                             </td>
-                            <td><input type="number" name="anio" value="' . $row['anio'] . '"></td>
-                            <td><input type="number" name="cant" value="' . $row['cantidad'] . '"></td>
-                            <td><input type="submit" value="Guardar" name="f2"></td>
+                            <td><input type="number" class="form-control" name="anio" value="' . $row['anio'] . '"></td>
+                            <td><input type="number" class="form-control" name="cant" value="' . $row['cantidad'] . '"></td>
+                            <td><input type="submit" class="btn btn-success" value="Guardar" name="f2"></td>
                                 </form>
                             </tr>';
                     }

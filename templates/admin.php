@@ -269,6 +269,7 @@ include('../processes/PDOconn.php');
                             <p id="msg_dane" class="bot_1_d"></p>
 
                             <div class="bot_2_d">
+                            <a href="update.php?f=2"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
                                 <button id="toggle_accidentes" class="btn_rainbow">Accidentes</button>
                                 <button class="btn btn_star senders" id="dane_send" type="submit" aria-expanded="false">
                                     Guardar
