@@ -6,7 +6,8 @@ JOIN tbl_meses m on a.mes = m.id
 JOIN tbl_vehiculo v on a.vehiculo = v.id
 JOIN tbl_municipio c on a.municipio = c.id
 JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
-ORDER BY a.id ASC;";
+ORDER BY a.id ASC
+LIMIT 30;";
 
 $stmt = $pdo->prepare($query);
 $stmt->execute();
@@ -71,6 +72,9 @@ $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item m-1">
+                        <a href="admin.php"><button class="btn_type_A">Volver</button></a>
+                    </li>
+                    <li class="nav-item m-1">
                         <form action="../processes/logout.php" method="post">
                             <input type="submit" value="Cerrar Sesión" class="btn_type_A">
                         </form>
@@ -81,6 +85,7 @@ $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main>
+        <h1 class="text-light">Últimos 30 registros insertados</h1>
         <table class="table table-dark">
             <thead>
                 <tr>

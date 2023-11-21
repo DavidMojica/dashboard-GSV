@@ -161,7 +161,7 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div class="bot_2">
-                                <a href="update.php"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
+                                <a href="update.php?f=1"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
                                 <button type="button" class="btn_rainbow senders" id="toggle_dane">Población</button>
                                 <button class="btn btn_star senders" id="accidente_send" type="submit" aria-expanded="false">
                                     Guardar
@@ -221,12 +221,7 @@ include('../processes/PDOconn.php');
                                         </svg>
                                     </div>
                                 </button>
-
                             </div>
-
-
-
-
                         </form>
                     </div>
                 </div>
