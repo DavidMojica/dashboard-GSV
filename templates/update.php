@@ -81,68 +81,67 @@ $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main>
-    <table class="table table-dark">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Mes</th>
-            <th scope="col">Año</th>
-            <th scope="col">Vehículo</th>
-            <th scope="col">Municipio</th>
-            <th scope="col">Tipo Consecuencia</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Actualizar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($result as $row) {
-            echo '<tr>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Vehículo</th>
+                    <th scope="col">Municipio</th>
+                    <th scope="col">Tipo Consecuencia</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Actualizar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($result as $row) {
+                    echo '<tr>
                     <th scope="row">' . $row['id'] . '</th>
                     <td>
-                        <form method="post" action="actualizar_registro.php">
+                        <form method="post" action="../processes/updatedb.php">
                             <input type="hidden" name="id" value="' . $row['id'] . '">
                             <select name="mes" id="mes">';
-                            foreach ($meses as $mes) {
-                                $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
-                                echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
-                            }
-            echo '          </select>
+                    foreach ($meses as $mes) {
+                        $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
+                        echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
+                    }
+                    echo '          </select>
                         </td>
                         <td><input type="number" name="ano" value="' . $row['Año'] . '"></td>
                         <td>
                             <select name="vehiculo" id="vehiculo">';
-                            foreach ($vehiculos as $vehiculo) {
-                                $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
-                                echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
-                            }
-            echo '          </select>
+                    foreach ($vehiculos as $vehiculo) {
+                        $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
+                        echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
+                    }
+                    echo '          </select>
                         </td>
                         <td>
                             <select name="municipio" id="municipio">';
-                            foreach ($municipio as $mun) {
-                                $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
-                                echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
-                            }
-            echo '          </select>
+                    foreach ($municipio as $mun) {
+                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                    }
+                    echo '          </select>
                         </td>
                         <td>
                             <select name="ml" id="ml">';
-                            foreach ($ml as $mlOption) {
-                                $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
-                                echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
-                            }
-            echo '          </select>
+                    foreach ($ml as $mlOption) {
+                        $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
+                        echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
+                    }
+                    echo '          </select>
                         </td>
                         <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
-                        <td><input type="submit" value="Guardar Cambios"></td>
+                        <td><input type="submit" value="Guardar Cambios" name="f1"></td>
                         </form>
                     </tr>';
-        }
-        ?>
-    </tbody>
-</table>
-
+                }
+                ?>
+            </tbody>
+        </table>
     </main>
 
 </body>
