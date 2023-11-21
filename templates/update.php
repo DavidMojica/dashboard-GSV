@@ -1,42 +1,63 @@
 <?php
 include('../processes/PDOconn.php');
-$query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
-FROM tbl_accidente a
-JOIN tbl_meses m on a.mes = m.id
-JOIN tbl_vehiculo v on a.vehiculo = v.id
-JOIN tbl_municipio c on a.municipio = c.id
-JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
-ORDER BY a.id ASC
-LIMIT 30;";
+$formToDisplay = isset($_GET['f']) ? $_GET['f'] :'';
+echo''. $formToDisplay .'';
+if ($formToDisplay == 1) {
+    $query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
+    FROM tbl_accidente a
+    JOIN tbl_meses m on a.mes = m.id
+    JOIN tbl_vehiculo v on a.vehiculo = v.id
+    JOIN tbl_municipio c on a.municipio = c.id
+    JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
+    ORDER BY a.id ASC
+    LIMIT 30;";
+    
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Meses
+    $query = "SELECT id, nombre FROM tbl_meses";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $meses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    //Vehículo
+    $query = "SELECT id, nombre FROM tbl_vehiculo";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $vehiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    //Municipios
+    $query = "SELECT id, nombre FROM tbl_municipio";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    //Tipos consecuencia
+    $query = "SELECT id, nombre FROM tbl_tipo_accidente";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else if ($formToDisplay == 2) {
+    $query = "SELECT p.id, m.nombre, p.anio, p.cantidad 
+    FROM tbl_poblacion p
+    JOIN tbl_municipio m on p.id_municipio = m.id
+    ORDER BY p.id ASC
+    LIMIT 30;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Meses
-$query = "SELECT id, nombre FROM tbl_meses";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$meses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //Municipios
+    $query = "SELECT id, nombre FROM tbl_municipio";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//Vehículo
-$query = "SELECT id, nombre FROM tbl_vehiculo";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$vehiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//Municipios
-$query = "SELECT id, nombre FROM tbl_municipio";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//Tipos consecuencia
-$query = "SELECT id, nombre FROM tbl_tipo_accidente";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
-$ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,68 +106,93 @@ $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <main>
-        <h1 class="text-light">Últimos 30 registros insertados</h1>
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mes</th>
-                    <th scope="col">Año</th>
-                    <th scope="col">Vehículo</th>
-                    <th scope="col">Municipio</th>
-                    <th scope="col">Tipo Consecuencia</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Actualizar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($result as $row) {
-                    echo '<tr>
-                    <th scope="row">' . $row['id'] . '</th>
-                    <td>
-                        <form method="post" action="../processes/updatedb.php">
-                            <input type="hidden" name="id" value="' . $row['id'] . '">
-                            <select name="mes" id="mes">';
-                    foreach ($meses as $mes) {
-                        $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
-                        echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
-                    }
-                    echo '          </select>
-                        </td>
-                        <td><input type="number" name="ano" value="' . $row['Año'] . '"></td>
+        <?php
+
+        if ($formToDisplay == 1) {
+        ?>
+            <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Mes</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Vehículo</th>
+                        <th scope="col">Municipio</th>
+                        <th scope="col">Tipo Consecuencia</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Actualizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($result as $row) {
+                        echo '<tr>
+                        <th scope="row">' . $row['id'] . '</th>
                         <td>
-                            <select name="vehiculo" id="vehiculo">';
-                    foreach ($vehiculos as $vehiculo) {
-                        $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
-                        echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
+                            <form method="post" action="../processes/updatedb.php">
+                                <input type="hidden" name="id" value="' . $row['id'] . '">
+                                <select name="mes" id="mes">';
+                        foreach ($meses as $mes) {
+                            $selected = ($mes['nombre'] == $row['Mes']) ? 'selected' : '';
+                            echo '<option value="' . $mes['id'] . '" ' . $selected . '>' . $mes['nombre'] . '</option>';
+                        }
+                        echo '          </select>
+                            </td>
+                            <td><input type="number" name="ano" value="' . $row['Año'] . '"></td>
+                            <td>
+                                <select name="vehiculo" id="vehiculo">';
+                        foreach ($vehiculos as $vehiculo) {
+                            $selected = ($vehiculo['nombre'] == $row['Vehiculo']) ? 'selected' : '';
+                            echo '<option value="' . $vehiculo['id'] . '" ' . $selected . '>' . $vehiculo['nombre'] . '</option>';
+                        }
+                        echo '          </select>
+                            </td>
+                            <td>
+                                <select name="municipio" id="municipio">';
+                        foreach ($municipio as $mun) {
+                            $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                            echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                        }
+                        echo '          </select>
+                            </td>
+                            <td>
+                                <select name="ml" id="ml">';
+                        foreach ($ml as $mlOption) {
+                            $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
+                            echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
+                        }
+                        echo '          </select>
+                            </td>
+                            <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
+                            <td><input type="submit" value="Guardar Cambios" name="f1"></td>
+                            </form>
+                        </tr>';
                     }
-                    echo '          </select>
-                        </td>
-                        <td>
-                            <select name="municipio" id="municipio">';
-                    foreach ($municipio as $mun) {
-                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
-                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
-                    }
-                    echo '          </select>
-                        </td>
-                        <td>
-                            <select name="ml" id="ml">';
-                    foreach ($ml as $mlOption) {
-                        $selected = ($mlOption['nombre'] == $row['ML']) ? 'selected' : '';
-                        echo '<option value="' . $mlOption['id'] . '" ' . $selected . '>' . $mlOption['nombre'] . '</option>';
-                    }
-                    echo '          </select>
-                        </td>
-                        <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
-                        <td><input type="submit" value="Guardar Cambios" name="f1"></td>
-                        </form>
-                    </tr>';
-                }
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+
+        <?php
+        }
+        else if ($formToDisplay == 2) {
+            ?>
+            <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Municipio</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Población</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            <?php
+        }
+        ?>
     </main>
 
 </body>
