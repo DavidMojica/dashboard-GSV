@@ -41,3 +41,7 @@
     filter: drop-shadow(1px 1px 1px #fff);
     font-size: 42px;
 }
+
+.tg-light{
+    background: #fff;
+}

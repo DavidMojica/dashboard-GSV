@@ -155,3 +155,15 @@ select{
     color: #fff;
     text-decoration: none;
 }
+
+@media (max-width: 768px){
+    .cont_top{
+        display: block;
+    }
+    .ans_logo{
+        height: 68px;
+    }
+    .top_logo{
+        max-width: 150px;
+    }
+}

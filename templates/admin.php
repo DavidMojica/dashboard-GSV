@@ -33,9 +33,9 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/btn_rainbow.css">
     <link rel="stylesheet" href="styles/select_type_A.css">
     <link rel="stylesheet" href="styles/in_bright.css">
-    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/admin.css">
     <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/base.css">
 
     <script src="../scripts/admin.js" defer></script>
 
@@ -49,7 +49,7 @@ include('../processes/PDOconn.php');
                 <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" ></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -161,9 +161,11 @@ include('../processes/PDOconn.php');
                             </div>
 
                             <div class="bot_2">
-                                <a href="update.php"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
+                                <a href="update.php?f=1"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
                                 <button type="button" class="btn_rainbow senders" id="toggle_dane">Población</button>
-                                <button class="btn btn_star senders" id="accidente_send" type="submit" aria-expanded="false">
+                                
+                            </div>
+                            <button class="btn btn_star senders" id="accidente_send" type="submit" aria-expanded="false">
                                     Guardar
                                     <i class="fa fa-diamond"></i>
                                     <div class="star-1">
@@ -221,12 +223,6 @@ include('../processes/PDOconn.php');
                                         </svg>
                                     </div>
                                 </button>
-
-                            </div>
-
-
-
-
                         </form>
                     </div>
                 </div>
@@ -274,8 +270,12 @@ include('../processes/PDOconn.php');
                             <p id="msg_dane" class="bot_1_d"></p>
 
                             <div class="bot_2_d">
+                            <a href="update.php?f=2"><button type="button" class="btn_rainbow senders" id="mod_accidentes">Modificar</button></a>
                                 <button id="toggle_accidentes" class="btn_rainbow">Accidentes</button>
-                                <button class="btn btn_star senders" id="dane_send" type="submit" aria-expanded="false">
+                                
+
+                            </div>
+                            <button class="btn btn_star senders" id="dane_send" type="submit" aria-expanded="false">
                                     Guardar
                                     <i class="fa fa-diamond"></i>
                                     <div class="star-1">
@@ -333,9 +333,6 @@ include('../processes/PDOconn.php');
                                         </svg>
                                     </div>
                                 </button>
-
-                            </div>
-
                         </form>
                     </div>
                 </div>
