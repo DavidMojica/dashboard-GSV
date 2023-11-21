@@ -57,23 +57,13 @@ include("processes/PDOconn.php");
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar_d2">
-            <div class="container">
-                <a href="https://antioquia.gov.co/" class="ans_logo">
+            <div class="container cont_top">
+                <a href="https://antioquia.gov.co/" class="ans_logo top_logo">
                     <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" alt="Colombia Potencia Mundial de la Vida" class="ans_logo">
                 </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item m-1">
-                            <a href="https://www.ansv.gov.co/">
-                                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <a href="https://www.ansv.gov.co/" class="top_logo">
+                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                </a>
             </div>
         </nav>
     </div>
