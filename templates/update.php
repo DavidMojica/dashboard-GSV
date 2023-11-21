@@ -1,7 +1,6 @@
 <?php
 include('../processes/PDOconn.php');
-$formToDisplay = isset($_GET['f']) ? $_GET['f'] :'';
-echo''. $formToDisplay .'';
+$formToDisplay = isset($_GET['f']) ? $_GET['f'] : '';
 if ($formToDisplay == 1) {
     $query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
     FROM tbl_accidente a
@@ -11,37 +10,36 @@ if ($formToDisplay == 1) {
     JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
     ORDER BY a.id ASC
     LIMIT 30;";
-    
+
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     // Meses
     $query = "SELECT id, nombre FROM tbl_meses";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $meses = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     //Vehículo
     $query = "SELECT id, nombre FROM tbl_vehiculo";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $vehiculos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     //Municipios
     $query = "SELECT id, nombre FROM tbl_municipio";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     //Tipos consecuencia
     $query = "SELECT id, nombre FROM tbl_tipo_accidente";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $ml = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-else if ($formToDisplay == 2) {
-    $query = "SELECT p.id, m.nombre, p.anio, p.cantidad 
+} else if ($formToDisplay == 2) {
+    $query = "SELECT p.id, m.nombre as municipio, p.anio as anio, p.cantidad as cantidad 
     FROM tbl_poblacion p
     JOIN tbl_municipio m on p.id_municipio = m.id
     ORDER BY p.id ASC
@@ -56,7 +54,6 @@ else if ($formToDisplay == 2) {
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $municipio = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 }
 ?>
 
@@ -130,7 +127,7 @@ else if ($formToDisplay == 2) {
                         echo '<tr>
                         <th scope="row">' . $row['id'] . '</th>
                         <td>
-                            <form method="post" action="../processes/updatedb.php">
+                            <form method="POST" action="../processes/updatedb.php">
                                 <input type="hidden" name="id" value="' . $row['id'] . '">
                                 <select name="mes" id="mes">';
                         foreach ($meses as $mes) {
@@ -165,7 +162,7 @@ else if ($formToDisplay == 2) {
                         echo '          </select>
                             </td>
                             <td><input type="number" name="cantidad" value="' . $row['Cantidad'] . '"></td>
-                            <td><input type="submit" value="Guardar Cambios" name="f1"></td>
+                            <td><input type="submit" value="Guardar" name="f1"></td>
                             </form>
                         </tr>';
                     }
@@ -174,10 +171,9 @@ else if ($formToDisplay == 2) {
             </table>
 
         <?php
-        }
-        else if ($formToDisplay == 2) {
-            ?>
-            <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+        } else if ($formToDisplay == 2) {
+        ?>
+            <h1 class="text-light">Población - Últimos 30 registros insertados</h1>
             <table class="table table-dark">
                 <thead>
                     <tr>
@@ -185,14 +181,36 @@ else if ($formToDisplay == 2) {
                         <th scope="col">Municipio</th>
                         <th scope="col">Año</th>
                         <th scope="col">Población</th>
+                        <th scope="col">Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <?php
+                    foreach ($result as $row) {
+                        echo '<tr>
+                            <th scope="row">' . $row['id'] . '</th>
+                            <td>
+                                <form method="POST" action="../processes/updatedb.php">
+                                <input type="hidden" name="id" value="' . $row['id'] . '">    
+                                <select name="municipio" id="municipio">';
+                                    foreach ($municipio as $mun) {
+                                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                                }
+                                    echo '          </select>
+                            </td>
+                            <td><input type="number" name="anio" value="' . $row['anio'] . '"></td>
+                            <td><input type="number" name="cant" value="' . $row['cantidad'] . '"></td>
+                            <td><input type="submit" value="Guardar" name="f2"></td>
+                                </form>
+                            </tr>';
+                    }
+                    ?>
                 </tbody>
+            </table>
             <?php
         }
-        ?>
+            ?>
     </main>
 
 </body>
