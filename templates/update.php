@@ -63,6 +63,8 @@ if ($formToDisplay == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -73,17 +75,16 @@ if ($formToDisplay == 1) {
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">
     <link rel="stylesheet" href="styles/update.css">
-    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
-
-
-
+    <link rel="shortcut icon" href="https://antioquia.gov.co/templates/gk_game/images/touch-device.png" type="image/x-icon">
+    <!-- Custom JS -->
+    <script src="../scripts/update.js" defer></script>
 </head>
 
 <body class="bg_dotted">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="../index.php">
-                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
+                <img src="../resources/logo.png" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler tg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -108,7 +109,18 @@ if ($formToDisplay == 1) {
 
         if ($formToDisplay == 1) {
         ?>
-            <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+            <div>
+                <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+                <select name="" id="filtroMunicipio">
+                    <option value="t">Todos</option>
+                    <?php
+                    foreach($municipio as $mun){
+                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                    } 
+                    ?>
+                </select>
+            </div>
             <table class="table table-dark">
                 <thead>
                     <tr>
@@ -122,7 +134,7 @@ if ($formToDisplay == 1) {
                         <th scope="col">Actualizar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
                     <?php
                     foreach ($result as $row) {
                         echo '<tr>

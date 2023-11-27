@@ -19,7 +19,7 @@ include("processes/PDOconn.php");
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
     <link rel="stylesheet" href="templates/styles/btn_stars.css">
-    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://antioquia.gov.co/templates/gk_game/images/touch-device.png" type="image/x-icon">
     <script src="scripts/charts.js" defer></script>
 
     <title>Dashboard | ANSV</title>
@@ -62,7 +62,7 @@ include("processes/PDOconn.php");
                     <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" alt="Colombia Potencia Mundial de la Vida" class="ans_logo">
                 </a>
                 <a href="https://www.ansv.gov.co/" class="top_logo">
-                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                    <img src="resources/logo.png" class="ans_logo" alt="Gobernacion Antioquia">
                 </a>
             </div>
         </nav>
