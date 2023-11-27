@@ -34,7 +34,7 @@ include('../processes/PDOconn.php');
     <link rel="stylesheet" href="styles/select_type_A.css">
     <link rel="stylesheet" href="styles/in_bright.css">
     <link rel="stylesheet" href="styles/admin.css">
-    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://antioquia.gov.co/templates/gk_game/images/touch-device.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/base.css">
 
     <script src="../scripts/admin.js" defer></script>

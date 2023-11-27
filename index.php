@@ -19,7 +19,7 @@ include("processes/PDOconn.php");
     <link rel="stylesheet" href="templates/styles/base.css">
     <link rel="stylesheet" href="templates/styles/index.css">
     <link rel="stylesheet" href="templates/styles/btn_stars.css">
-    <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://antioquia.gov.co/templates/gk_game/images/touch-device.png" type="image/x-icon">
     <script src="scripts/charts.js" defer></script>
 
     <title>Dashboard | ANSV</title>
