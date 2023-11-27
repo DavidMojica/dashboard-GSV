@@ -9,10 +9,18 @@
     width: 150px;
 }
 .logo_form{
+    display: none;
     width: 170px;
     background: #fff;
     border-radius: 1.5em 1em;
     padding: 10%;
+}
+
+@media (max-width:758px) {
+    .logo_form{
+        display: block;
+    }
+    
 }
 
 .col-red{

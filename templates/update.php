@@ -74,9 +74,8 @@ if ($formToDisplay == 1) {
     <link rel="stylesheet" href="styles/btn_type_A.css">
     <link rel="stylesheet" href="styles/update.css">
     <link rel="shortcut icon" href="https://www.ansv.gov.co/sites/default/files/imagenes/favicon-ansv.png" type="image/x-icon">
-
-
-
+    <!-- Custom JS -->
+    <script src="../scripts/update.js" defer></script>
 </head>
 
 <body class="bg_dotted">
@@ -108,7 +107,18 @@ if ($formToDisplay == 1) {
 
         if ($formToDisplay == 1) {
         ?>
-            <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+            <div>
+                <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
+                <select name="" id="filtroMunicipio">
+                    <option value="t">Todos</option>
+                    <?php
+                    foreach($municipio as $mun){
+                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
+                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                    } 
+                    ?>
+                </select>
+            </div>
             <table class="table table-dark">
                 <thead>
                     <tr>
@@ -122,7 +132,7 @@ if ($formToDisplay == 1) {
                         <th scope="col">Actualizar</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
                     <?php
                     foreach ($result as $row) {
                         echo '<tr>
