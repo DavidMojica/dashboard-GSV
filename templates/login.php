@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
 <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="../index.php">
-                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
+                <img src="../resources/logo.png" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -60,10 +60,8 @@ if (isset($_SESSION['username'])) {
         <div class="form-container">
             <form action="" class="form" method="POST" id="loginForm">
                 <a class="navbar-brand logo_form" href="../index.php">
-                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                <img src="../resources/logo.png" class="ans_logo" alt="Gobernacion Antioquia">
                 </a>
-            
-            
                 <h2>Iniciar Sesión</h2>
                 <div class="form-group">
                     <label for="user">Usuario</label>

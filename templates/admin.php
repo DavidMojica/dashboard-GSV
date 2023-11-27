@@ -46,7 +46,7 @@ include('../processes/PDOconn.php');
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="../index.php">
-                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
+                <img src="../resources/logo.png" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" ></span>
@@ -70,7 +70,7 @@ include('../processes/PDOconn.php');
                     <div class="back-content">
                         <form action="" method="POST" id="formAccidentes">
                             <a class="navbar-brand" href="../index.php">
-                                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo_form" alt="Gobernacion Antioquia">
+                                <img src="../resources/logo.png" class="logo_form" alt="Gobernacion Antioquia">
                             </a>
 
                             <div class="top_1">
@@ -235,7 +235,7 @@ include('../processes/PDOconn.php');
                         <form action="" method="POST" id="formDane" class="form_loadout">
 
                             <a class="navbar-brand" href="../index.php">
-                                <img src="https://prinza.com.co/wp-content/uploads/2021/04/logo-alcaldia-1.png" class="logo_form" alt="logo_secretaria">
+                                <img src="../resources/logo.png" class="logo_form" alt="logo_secretaria">
                             </a>
 
                             <h2 class="h2-drop top_1_d">Poblacion Dane</h2>

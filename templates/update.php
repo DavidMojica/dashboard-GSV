@@ -83,7 +83,7 @@ if ($formToDisplay == 1) {
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="../index.php">
-                <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="logo" alt="Gobernacion Antioquia">
+                <img src="../resources/logo.png" class="logo" alt="Gobernacion Antioquia">
             </a>
             <button class="navbar-toggler tg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

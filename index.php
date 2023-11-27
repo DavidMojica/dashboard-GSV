@@ -62,7 +62,7 @@ include("processes/PDOconn.php");
                     <img src="https://www.ansv.gov.co/sites/default/files/imagenes/LOGO%20COLOMBIA%20POTENCIA%20DE%20LA%20VIDA-TRANSPORTE.png" alt="Colombia Potencia Mundial de la Vida" class="ans_logo">
                 </a>
                 <a href="https://www.ansv.gov.co/" class="top_logo">
-                    <img src="https://www.mintransporte.gov.co/info/mintransporte/media/pubInt/thumbs/thpub_700x400_10745.jpg" class="ans_logo" alt="Gobernacion Antioquia">
+                    <img src="resources/logo.png" class="ans_logo" alt="Gobernacion Antioquia">
                 </a>
             </div>
         </nav>
