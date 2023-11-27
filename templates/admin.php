@@ -165,7 +165,7 @@ include('../processes/PDOconn.php');
                                 <button type="button" class="btn_rainbow senders" id="toggle_dane">Población</button>
                                 
                             </div>
-                            <button class="btn btn_star senders" id="accidente_send" type="submit" aria-expanded="false">
+                            <button class="btn btn_star senders bot_3" id="accidente_send" type="submit" aria-expanded="false">
                                     Guardar
                                     <i class="fa fa-diamond"></i>
                                     <div class="star-1">
