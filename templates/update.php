@@ -1,17 +1,35 @@
 <?php
 include('../processes/PDOconn.php');
 $formToDisplay = isset($_GET['f']) ? $_GET['f'] : '';
+$mpio = isset($_GET['mpio']) ? $_GET['mpio'] : '';
 if ($formToDisplay == 1) {
-    $query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
-    FROM tbl_accidente a
-    JOIN tbl_meses m on a.mes = m.id
-    JOIN tbl_vehiculo v on a.vehiculo = v.id
-    JOIN tbl_municipio c on a.municipio = c.id
-    JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
-    ORDER BY a.id DESC
-    LIMIT 30;";
 
-    $stmt = $pdo->prepare($query);
+    if(isset($_GET['mpio']) and is_numeric($mpio)) {
+        $query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
+        FROM tbl_accidente a
+        JOIN tbl_meses m on a.mes = m.id
+        JOIN tbl_vehiculo v on a.vehiculo = v.id
+        JOIN tbl_municipio c on a.municipio = c.id
+        JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
+        WHERE a.municipio = :mun
+        ORDER BY a.id DESC
+        LIMIT 30;";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":mun", $mpio, PDO::PARAM_INT);
+    }
+    else{
+        $query = "SELECT a.id as id, m.nombre as Mes, a.anio as Año, v.nombre as Vehiculo, c.nombre as municipio, t.nombre as ML, a.cantidad as Cantidad
+        FROM tbl_accidente a
+        JOIN tbl_meses m on a.mes = m.id
+        JOIN tbl_vehiculo v on a.vehiculo = v.id
+        JOIN tbl_municipio c on a.municipio = c.id
+        JOIN tbl_tipo_accidente t on a.tipo_accidente = t.id
+        ORDER BY a.id DESC
+        LIMIT 30;";
+        $stmt = $pdo->prepare($query);
+    }
+    
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -111,15 +129,21 @@ if ($formToDisplay == 1) {
         ?>
             <div>
                 <h1 class="text-light">Accidentes - Últimos 30 registros insertados</h1>
-                <select name="" id="filtroMunicipio">
-                    <option value="t">Todos</option>
-                    <?php
-                    foreach($municipio as $mun){
-                        $selected = ($mun['nombre'] == $row['municipio']) ? 'selected' : '';
-                        echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
-                    } 
-                    ?>
-                </select>
+                <form action="update.php?f=1" method="GET">
+                    <input type="hidden" name="f" value="<?php echo $formToDisplay ?>">
+
+                    <select name="mpio" id="mpio" class="form-select-sm">
+                        <option value="all">Todos</option>
+                        <?php
+                        foreach($municipio as $mun){
+                            $selected = ($mpio == $mun['id']) ? 'selected' : '';
+                            echo '<option value="' . $mun['id'] . '" ' . $selected . '>' . $mun['nombre'] . '</option>';
+                        } 
+                        ?>
+                    </select>
+                    <button type="submit" class="btn btn-warning">Filtrar</button>
+                </form>
+
             </div>
             <table class="table table-dark">
                 <thead>
