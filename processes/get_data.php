@@ -15,7 +15,7 @@ switch ($action) {
         returnDataResponse(getDataChart3($anio, 1));
         break;
     case 'getDataChart3e1':
-        returnDataResponse(getDataChart3($anio,2));
+        returnDataResponse(getDataChart3($anio, 2));
         break;
     case 'getDataChart4':
         returnDataResponse(getDataChart4($anio));

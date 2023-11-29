@@ -493,7 +493,7 @@ const getOptionChart3e1 = (callback) =>{
 chart3e1Select.addEventListener('change', function(){
     chart3e1.dispose();
     chart3e1 = echarts.init(document.getElementById("chart3.1"));
-    getData(chart3Select.value, 'getDataChart3e1', function (newData) {
+    getData(chart3e1Select.value, 'getDataChart3e1', function (newData) {
         let datosPorAnio = {};
         let anios = [];
         // Inicializar datosPorAnio y anios
@@ -527,7 +527,7 @@ chart3e1Select.addEventListener('change', function(){
 
         let updatedOption = {
             title: {
-                text: 'Muertes por incidentes viales por año'
+                text: 'Lesiones por incidentes viales por año'
             },
             tooltip: {
                 trigger: 'axis'
@@ -856,7 +856,7 @@ chart6Select.addEventListener('change', function () {
     getData(chart6Select.value, 'getDataChart6', function (newData) {
         let updatedOption = {
             title: {
-                text: 'Mortalidad por actor vial',
+                text: 'Lesionados por actor vial',
                 subtext: '(2016 - 2023)',
                 left: 'center'
             },
