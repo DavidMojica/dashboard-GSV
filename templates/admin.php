@@ -39,7 +39,7 @@ include('../processes/PDOconn.php');
 
     <script src="../scripts/admin.js" defer></script>
 
-    <title>Admin | ansv</title>
+    <title>Admin | GSV</title>
 </head>
 
 <body class="bg_dotted">
