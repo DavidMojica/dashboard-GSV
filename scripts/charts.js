@@ -1061,7 +1061,7 @@ let chart8Select = document.getElementById('chart8Select');
 
 const getOptionChart8 = (callback) => {
     getData(chart8Select.value, 'getDataChart8', function (newData) {
-        const añoActual = new Date().getFullYear();
+        
 
         // Seleccionar automáticamente el option con el valor del año actual
         document.getElementById("chart8Select").value = añoActual;
@@ -1083,7 +1083,7 @@ const getOptionChart8 = (callback) => {
         let option = {
             title: {
                 text: 'Lesionados no fatales vs Tasa departamental',
-                subtext: chart7Select.value,
+                subtext: chart8Select.value,
                 x: 'center',
             },
             tooltip: {
@@ -1114,7 +1114,7 @@ const getOptionChart8 = (callback) => {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                 },
                 {
                     type: 'value',
@@ -1123,7 +1123,7 @@ const getOptionChart8 = (callback) => {
             ],
             series: [
                 {
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                     type: 'bar',
                     data: barData,
                 },
@@ -1160,7 +1160,7 @@ chart8Select.addEventListener('change', function () {
         let updatedOption = {
             title: {
                 text: 'Lesionados no fatales vs Tasa departamental',
-                subtext: chart7Select.value,
+                subtext: chart8Select.value,
                 x: 'center',
             },
             tooltip: {
@@ -1191,7 +1191,7 @@ chart8Select.addEventListener('change', function () {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                 },
                 {
                     type: 'value',
@@ -1200,7 +1200,7 @@ chart8Select.addEventListener('change', function () {
             ],
             series: [
                 {
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                     type: 'bar',
                     data: barData,
                 },
@@ -1225,7 +1225,7 @@ const getOptionChart9 = (callback) => {
         option = {
             title: {
                 text: 'Lesionados fatales y no fatales \n por región',
-                subtext: '(2016 - 2023)',
+                subtext: chart9Select.value,
                 x: 'center',
             },
             legend: {
