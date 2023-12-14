@@ -311,7 +311,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <h2>Subregion</h2>
+                <h2 class="display-3 text-xl-start">Subregion</h2>
 
                 <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart9Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">

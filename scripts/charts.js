@@ -1336,7 +1336,7 @@ const getOptionChart10 = (callback) => {
         var acumulado = 0;
 
         for (var i = 0; i < lista.length; i++) {
-            acumulado += (lista[i] / sumaTotal) * 100;
+            acumulado = (lista[i] / sumaTotal) * 100;
             porcentajeAcumulado.push(acumulado.toFixed(2));
         }
         
@@ -1358,12 +1358,39 @@ const getOptionChart10 = (callback) => {
 
         series.push({
             name: "% del total",
-            type: 'line',
+            type: 'bar',
+            stack: 'porcentaje',
             emphasis: {
                 focus: 'series'
             },
             data: porcentajeAcumulado,
-            yAxisIndex: 1
+            yAxisIndex: 1,
+            markline:{
+                
+            },
+            markLine: {
+                lineStyle: {
+                    type: 'dashed' 
+                },
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Max',
+                        label: {
+                            position: 'end',
+                            formatter: 'Máx: {c} %'
+                        }
+                    },
+                    {
+                        type: 'min',
+                        name: 'Min',
+                        label: {
+                            position: 'end',
+                            formatter: 'Min: {c} %'
+                        }
+                    }
+                ]
+            }
         });
 
         let option = {
@@ -1393,10 +1420,11 @@ const getOptionChart10 = (callback) => {
                 },
                 {
                     type: 'value',
-                    'name': '% del total'
+                    'name': '% total de accidentes'
                 },
             ],
-            series: series
+            series: series,
+            
         };
         // Utilizar la configuración para dibujar el gráfico
         chart10.setOption(option);
