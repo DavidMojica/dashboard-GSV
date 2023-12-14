@@ -743,6 +743,7 @@ chart4Select.addEventListener('change', function () {
 //--------------CHART 5: Mortalidad por actor vial----------------
 let chart5;
 let chart5Select = document.getElementById('chart5Select');
+let chart5Select2 = document.getElementById('chart5Select2');
 
 const getOptionChart5 = (callback) => {
     getData("init", 'getDataChart5', function (newData) {
@@ -779,8 +780,43 @@ const getOptionChart5 = (callback) => {
     });
 };
 
+chart5Select2.addEventListener('change', function(){
+    getData([chart5Select.value, chart2Select.value], 'getDataChart5', function (newData) {
+        let updatedOption = {
+            title: {
+                text: 'Mortalidad por actor vial',
+                subtext: '(2016 - 2023)',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'horizontal',
+                bottom: '5%'
+            },
+            series: [
+                {
+                    name: 'Muertes por:',
+                    type: 'pie',
+                    radius: '55%',
+                    data: newData,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        chart5.setOption(updatedOption);
+    });
+});
+
 chart5Select.addEventListener('change', function () {
-    getData(chart5Select.value, 'getDataChart5', function (newData) {
+    getData([chart5Select.value, chart2Select.value], 'getDataChart5', function (newData) {
         let updatedOption = {
             title: {
                 text: 'Mortalidad por actor vial',

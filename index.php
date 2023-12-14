@@ -158,9 +158,10 @@ include("processes/PDOconn.php");
                         }
                         ?>
                     </select>
+                    
                     <div id="chart1" class="chart"></div>
                     <p style="color:black;" class="text-sm-start">
-                        Estos accidentes incluyen muertos o lesionados.
+                        Estos accidentes incluyen muertos y lesionados.
                     </p>
                 </div>
 
@@ -178,6 +179,14 @@ include("processes/PDOconn.php");
                         }
                         ?>
                     </select>
+                    <select name="" id="chart5Select2" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='all'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
                     <div class="chart" id="chart5"></div>
                 </div>
 
@@ -192,6 +201,14 @@ include("processes/PDOconn.php");
                         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($result as $row) {
                             echo '<option value=' . $row['id'] . '>' . $row['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <select name="" id="chart6Select2" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
                         }
                         ?>
                     </select>

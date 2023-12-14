@@ -21,10 +21,10 @@ switch ($action) {
         returnDataResponse(getDataChart4($anio));
         break;
     case 'getDataChart5':
-        returnDataResponse(getDataCircular($anio, 1));
+        returnDataResponse(getDataCircular($anio[0], $anio[1], 1));
         break;
     case 'getDataChart6':
-        returnDataResponse(getDataCircular($anio, 2));
+        returnDataResponse(getDataCircular($anio[0], $anio[1], 2));
         break;
     case 'getDataChart7':
         returnDataResponse(getDataPareto($anio, 1));
@@ -125,7 +125,7 @@ function getDataPareto($anio, $tpa)
 
     return [$result1, $result2];
 }
-function getDataCircular($municipio, $tpa)
+function getDataCircular($municipio, $anio, $tpa)
 {
     include('PDOconn.php');
 
