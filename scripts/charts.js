@@ -13,7 +13,8 @@ const getOptionChart1 = (callback) => {
     getData("init", 'getDataChart1', function (data) {
         let option = {
             title: {
-                text: `Lesionados fatales y no fatales \n(${chart1Select.value})`,
+                text: `Lesionados fatales \n y no fatales \n(${chart1Select.value})`,
+                x: 'center',
             },
             tooltip: {
                 trigger: 'item'
@@ -916,7 +917,7 @@ const getOptionChart7 = (callback) => {
 
         let option = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -993,7 +994,7 @@ chart7Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -1077,7 +1078,7 @@ const getOptionChart8 = (callback) => {
 
         let option = {
             title: {
-                text: 'Lesionados vs Tasa departamental',
+                text: 'Lesionados no fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -1154,7 +1155,7 @@ chart8Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: 'Lesionados vs Tasa departamental',
+                text: 'Lesionados no fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -1219,7 +1220,7 @@ const getOptionChart9 = (callback) => {
     getData("init", 'getDataChart9', function (newData) {
         option = {
             title: {
-                text: 'Incidentes Viales por Región',
+                text: 'Lesionados fatales y no fatales \n por región',
                 subtext: '(2016 - 2023)',
                 x: 'center',
             },
@@ -1257,7 +1258,7 @@ chart9Select.addEventListener('change', function () {
     getData(chart9Select.value, 'getDataChart9', function (newData) {
         updatedOption = {
             title: {
-                text: 'Incidentes Viales por Región',
+                text: 'Lesionados fatales y no fatales \n por región',
                 subtext: chart9Select.value,
                 x: 'center',
             },
@@ -1364,7 +1365,7 @@ const getOptionChart10 = (callback) => {
 
         let option = {
             title: {
-                text: 'I.V de actores viales por región'
+                text: 'Lesiones viales: Fatales y no fatales, por actor y región.'
             },
             tooltip: {
                 trigger: 'axis',
