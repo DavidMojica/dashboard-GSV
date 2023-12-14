@@ -900,9 +900,9 @@ let chart7;
 let chart7Select = document.getElementById('chart7Select');
 
 const getOptionChart7 = (callback) => {
+    document.getElementById("chart7Select").value = añoActual;
     getData(chart7Select.value, 'getDataChart7', function (newData) {
         // Seleccionar automáticamente el option con el valor del año actual
-        document.getElementById("chart7Select").value = añoActual;
 
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
@@ -1060,12 +1060,9 @@ let chart8;
 let chart8Select = document.getElementById('chart8Select');
 
 const getOptionChart8 = (callback) => {
+    document.getElementById("chart8Select").value = añoActual;
     getData(chart8Select.value, 'getDataChart8', function (newData) {
         
-
-        // Seleccionar automáticamente el option con el valor del año actual
-        document.getElementById("chart8Select").value = añoActual;
-
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 

@@ -332,7 +332,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-6 col-xl-6 chartContainer">
                     <select name="" id="chart11Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
