@@ -148,8 +148,8 @@ include("processes/PDOconn.php");
 
         <div class="dashboard container">
             <h2 class="display-3">Incidentalidad y consecuencias.</h2>
-            <div class="row gap-3 justify-content-center">
-                <div class="col-10 col-md-3 col-lg-3 col-xl-3 chartContainer">
+            <div class="row gap-3 justify-content-center text-center">
+                <div class="col-sm-10 col-md-5 col-lg-3 col-xl-3 chartContainer">
                     <select name="" id="chart1Select" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
@@ -164,7 +164,7 @@ include("processes/PDOconn.php");
                     </p>
                 </div>
 
-                <div class="col-10 col-md-4 col-lg-4 col-xl-4 chartContainer">
+                <div class="col-sm-10 col-md-6 col-lg-4 col-xl-4 chartContainer">
                     <select name="" id="chart5Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -181,7 +181,7 @@ include("processes/PDOconn.php");
                     <div class="chart" id="chart5"></div>
                 </div>
 
-                <div class="col-10 col-md-4 col-lg-4 col-xl-4 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-4 col-xl-4 chartContainer">
                     <select name="" id="chart6Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -200,7 +200,7 @@ include("processes/PDOconn.php");
 
                 <h2 class="display-3 text-xl-start">Mortalidad / año</h2>
 
-                <div class="col-sm-11 col-md-8 col-lg-8 col-xl-8 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-8 col-xl-8 chartContainer">
                     <select name="" id="chart2Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
@@ -214,7 +214,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart3Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -231,7 +231,7 @@ include("processes/PDOconn.php");
                     <div id="chart3" class="chart"></div>
                 </div>
 
-                <div class="col-sm-11 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart3e1Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -251,7 +251,7 @@ include("processes/PDOconn.php");
                 <h2 class="display-3 text-xl-start">Tasa Departamental</h2>
 
 
-                <div class="col-sm-12 col-md-11 col-lg-11 col-xl-11 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-11 col-xl-11 chartContainer">
                     <select name="" id="chart4Select" class="form-select form-select-lg mb-3">
                         <option value="Todos los municipios">Todos los municipios</option>
                         <?php
@@ -268,7 +268,7 @@ include("processes/PDOconn.php");
                     <div class="chart" id="chart4"></div>
                 </div>
 
-                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart7Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         for ($i = $anioMinimo; $i <= $anioActual; $i++) {
@@ -281,7 +281,7 @@ include("processes/PDOconn.php");
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart8Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         for ($i = $anioMinimo; $i <= $anioActual; $i++) {
@@ -296,7 +296,7 @@ include("processes/PDOconn.php");
 
                 <h2>Subregion</h2>
 
-                <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
                     <select name="" id="chart9Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
                         <?php
                         echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
@@ -309,7 +309,7 @@ include("processes/PDOconn.php");
 
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 chartContainer">
+                <div class="col-sm-10 col-md-10 col-lg-6 col-xl-6 chartContainer">
                     <div class="chartHxl" id="chart10">
 
                     </div>

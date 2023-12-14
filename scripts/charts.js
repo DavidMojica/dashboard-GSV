@@ -13,7 +13,7 @@ const getOptionChart1 = (callback) => {
     getData("init", 'getDataChart1', function (data) {
         let option = {
             title: {
-                text: `Incidentes viales (${chart1Select.value})`,
+                text: `Lesionados fatales y no fatales \n(${chart1Select.value})`,
             },
             tooltip: {
                 trigger: 'item'
@@ -1293,8 +1293,6 @@ chart9Select.addEventListener('change', function () {
 
 //----------CHART 10: Mixed Actores viales x regiones x % del total de accidentes x cantidad------------------//
 let chart10;
-
-
 const getOptionChart10 = (callback) => {
     getData("init", 'getDataChart10', function (datos) {
         console.log(datos)
