@@ -375,7 +375,6 @@ chart3Select.addEventListener('change', function () {
                 data: data
             };
         });
-        console.log(nseries);
 
         let updatedOption = {
             title: {
@@ -524,7 +523,6 @@ chart3e1Select.addEventListener('change', function(){
                 data: data
             };
         });
-        console.log(nseries);
 
         let updatedOption = {
             title: {
@@ -780,12 +778,12 @@ const getOptionChart5 = (callback) => {
     });
 };
 
-chart5Select2.addEventListener('change', function(){
-    getData([chart5Select.value, chart2Select.value], 'getDataChart5', function (newData) {
+function updateChart5() {
+    getData([chart5Select.value, chart5Select2.value], 'getDataChart5', function (newData) {
         let updatedOption = {
             title: {
                 text: 'Mortalidad por actor vial',
-                subtext: '(2016 - 2023)',
+                subtext: chart5Select2.value,
                 left: 'center'
             },
             tooltip: {
@@ -813,42 +811,10 @@ chart5Select2.addEventListener('change', function(){
         };
         chart5.setOption(updatedOption);
     });
-});
+}
 
-chart5Select.addEventListener('change', function () {
-    getData([chart5Select.value, chart2Select.value], 'getDataChart5', function (newData) {
-        let updatedOption = {
-            title: {
-                text: 'Mortalidad por actor vial',
-                subtext: '(2016 - 2023)',
-                left: 'center'
-            },
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: {
-                orient: 'horizontal',
-                bottom: '5%'
-            },
-            series: [
-                {
-                    name: 'Muertes por:',
-                    type: 'pie',
-                    radius: '55%',
-                    data: newData,
-                    emphasis: {
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-        chart5.setOption(updatedOption);
-    });
-});
+chart5Select2.addEventListener('change', updateChart5);
+chart5Select.addEventListener('change', updateChart5);
 
 //-----------CHART 6: Lesionados por actor vial-----------------
 let chart6;
@@ -937,12 +903,10 @@ const getOptionChart7 = (callback) => {
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
-        console.log(dict)
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
-        console.log(barData)
 
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
@@ -1332,7 +1296,6 @@ chart9Select.addEventListener('change', function () {
 let chart10;
 const getOptionChart10 = (callback) => {
     getData("init", 'getDataChart10', function (datos) {
-        console.log(datos)
         const names = [...new Set(datos.map(item => item.name))];
         var vehiculos = [...new Set(datos.map(item => item.vehiculo))];
 
