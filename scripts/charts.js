@@ -1439,7 +1439,7 @@ const getOptionChart11 = (callback) => {
     getData("init", 'getDataChart11', function (newData) {
         option = {
             title: {
-                text: 'Lesionados fatales \n por región',
+                text: 'Lesionados fatales por región',
                 subtext: '(2016 - 2023)',
                 x: 'center',
             },
@@ -1477,8 +1477,8 @@ chart11Select.addEventListener('change', function () {
     getData(chart11Select.value, 'getDataChart11', function (newData) {
         updatedOption = {
             title: {
-                text: 'Lesionados fatales y no fatales \n por región',
-                subtext: chart9Select.value,
+                text: 'Lesionados fatales por región',
+                subtext: chart11Select.value,
                 x: 'center',
             },
             legend: {
@@ -1507,7 +1507,7 @@ chart11Select.addEventListener('change', function () {
                 }
             ]
         };
-        chart9.setOption(updatedOption);
+        chart11.setOption(updatedOption);
     });
 });
 
@@ -1519,7 +1519,7 @@ const getOptionChart12 = (callback) => {
     getData("init", 'getDataChart12', function (newData) {
         option = {
             title: {
-                text: 'Lesionados fatales \n por región',
+                text: 'Lesionados no fatales por región',
                 subtext: '(2016 - 2023)',
                 x: 'center',
             },
@@ -1553,6 +1553,43 @@ const getOptionChart12 = (callback) => {
     });
 };
 
+chart12Select.addEventListener('change', function () {
+    getData(chart12Select.value, 'getDataChart12', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'Lesionados no fatales por región',
+                subtext: chart12Select.value,
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart12.setOption(updatedOption);
+    });
+});
 
 //Get data
 function getData(anio, action, callback) {
@@ -1637,6 +1674,16 @@ function initCharts() {
     getOptionChart10(function (option) {
         chart10.setOption(option);
     });
+
+    chart11 = echarts.init(document.getElementById("chart11"));
+    getOptionChart11(function (option) {
+        chart11.setOption(option);
+    });
+
+    chart12 = echarts.init(document.getElementById("chart12"));
+    getOptionChart12(function (option) {
+        chart12.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1656,4 +1703,6 @@ window.addEventListener('resize', function () {
     chart8.resize();
     chart9.resize();
     chart10.resize();
+    chart11.resize();
+    chart12.resize();
 });
