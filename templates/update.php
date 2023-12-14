@@ -102,7 +102,7 @@ if ($formToDisplay == 1) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- fa icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Update | ANSV</title>
+    <title>Update | GSV</title>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/bg_dotted.css">
     <link rel="stylesheet" href="styles/btn_type_A.css">

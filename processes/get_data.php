@@ -21,10 +21,10 @@ switch ($action) {
         returnDataResponse(getDataChart4($anio));
         break;
     case 'getDataChart5':
-        returnDataResponse(getDataCircular($anio, 1));
+        returnDataResponse(getDataCircular($anio[0], $anio[1], 1));
         break;
     case 'getDataChart6':
-        returnDataResponse(getDataCircular($anio, 2));
+        returnDataResponse(getDataCircular($anio[0], $anio[1], 2));
         break;
     case 'getDataChart7':
         returnDataResponse(getDataPareto($anio, 1));
@@ -33,11 +33,17 @@ switch ($action) {
         returnDataResponse(getDataPareto($anio, 2));
         break;
     case 'getDataChart9':
-        returnDataResponse(getDataChart9($anio));
+        returnDataResponse(getDataChartFlower($anio, 3));
         break;
     case 'getDataChart10':
         returnDataResponse(getDataChart10($anio));
         break;
+    case 'getDataChart11':
+        returnDataResponse(getDataChartFlower($anio, 1));
+    break;
+    case 'getDataChart12':
+        returnDataResponse(getDataChartFlower($anio, 2));
+    break;
     default:
         die();
 }
@@ -71,35 +77,58 @@ function getDataChart10($anio)
 
     return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getDataChart9($anio)
+function getDataChartFlower($anio, $tpa)
 {
     include('PDOconn.php');
+
+    $whereClause = '';
+    $params = [];
+
+    if ($tpa == 1 || $tpa == 2) {
+        $whereClause = ' AND a.tipo_accidente = :tpa';
+        $params[':tpa'] = $tpa;
+    }
+
     if (is_numeric($anio)) {
         $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
-        FROM tbl_accidente a
-        JOIN tbl_municipio m ON a.municipio = m.id
-        JOIN tbl_subregion s ON m.subregion = s.id
-        WHERE a.anio = :a
-        GROUP BY s.nombre
-        ORDER BY VALUE;";
+            FROM tbl_accidente a
+            JOIN tbl_municipio m ON a.municipio = m.id
+            JOIN tbl_subregion s ON m.subregion = s.id
+            WHERE a.anio = :anio $whereClause
+            GROUP BY s.nombre
+            ORDER BY value;";
 
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':a', $anio, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
 
+        foreach ($params as $param => $value) {
+            $stmt->bindParam($param, $value, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Si $anio no es numérico, se ignora en la consulta
     $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
-    FROM tbl_accidente a
-    JOIN tbl_municipio m ON a.municipio = m.id
-    JOIN tbl_subregion s ON m.subregion = s.id
-    GROUP BY s.nombre
-    ORDER BY VALUE;";
+        FROM tbl_accidente a
+        JOIN tbl_municipio m ON a.municipio = m.id
+        JOIN tbl_subregion s ON m.subregion = s.id
+        WHERE 1 $whereClause
+        GROUP BY s.nombre
+        ORDER BY value;";
+
     $stmt = $pdo->prepare($query);
+
+    foreach ($params as $param => $value) {
+        $stmt->bindParam($param, $value, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 function getDataPareto($anio, $tpa)
 {
     include('PDOconn.php');
@@ -125,11 +154,25 @@ function getDataPareto($anio, $tpa)
 
     return [$result1, $result2];
 }
-function getDataCircular($municipio, $tpa)
+function getDataCircular($municipio, $anio, $tpa)
 {
     include('PDOconn.php');
 
-    if (is_numeric($municipio)) {
+    if (is_numeric($municipio) && is_numeric($anio)) {
+        $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
+        FROM tbl_accidente a
+        JOIN tbl_vehiculo v on a.vehiculo = v.id
+        WHERE a.municipio = :mpio AND a.anio = :anio AND a.tipo_accidente = :tpa
+        GROUP BY v.id;";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':mpio', $municipio, PDO::PARAM_INT);
+        $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
+        $stmt->bindParam(':tpa', $tpa, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else if (is_numeric($municipio)){
         $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
         FROM tbl_accidente a
         JOIN tbl_vehiculo v on a.vehiculo = v.id
@@ -142,6 +185,20 @@ function getDataCircular($municipio, $tpa)
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    else if(is_numeric($anio)){
+        $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
+        FROM tbl_accidente a
+        JOIN tbl_vehiculo v on a.vehiculo = v.id
+        WHERE a.anio = :anio AND a.tipo_accidente = :tpa
+        GROUP BY v.id;";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
+        $stmt->bindParam(':tpa', $tpa, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     $query = "SELECT SUM(a.cantidad) as value, v.nombre as name
     FROM tbl_accidente a
     JOIN tbl_vehiculo v on a.vehiculo = v.id

@@ -13,7 +13,8 @@ const getOptionChart1 = (callback) => {
     getData("init", 'getDataChart1', function (data) {
         let option = {
             title: {
-                text: `Incidentes viales (${chart1Select.value})`,
+                text: `Lesionados fatales \n y no fatales \n(${chart1Select.value})`,
+                x: 'center',
             },
             tooltip: {
                 trigger: 'item'
@@ -374,7 +375,6 @@ chart3Select.addEventListener('change', function () {
                 data: data
             };
         });
-        console.log(nseries);
 
         let updatedOption = {
             title: {
@@ -523,7 +523,6 @@ chart3e1Select.addEventListener('change', function(){
                 data: data
             };
         });
-        console.log(nseries);
 
         let updatedOption = {
             title: {
@@ -742,6 +741,7 @@ chart4Select.addEventListener('change', function () {
 //--------------CHART 5: Mortalidad por actor vial----------------
 let chart5;
 let chart5Select = document.getElementById('chart5Select');
+let chart5Select2 = document.getElementById('chart5Select2');
 
 const getOptionChart5 = (callback) => {
     getData("init", 'getDataChart5', function (newData) {
@@ -778,12 +778,12 @@ const getOptionChart5 = (callback) => {
     });
 };
 
-chart5Select.addEventListener('change', function () {
-    getData(chart5Select.value, 'getDataChart5', function (newData) {
+function updateChart5() {
+    getData([chart5Select.value, chart5Select2.value], 'getDataChart5', function (newData) {
         let updatedOption = {
             title: {
                 text: 'Mortalidad por actor vial',
-                subtext: '(2016 - 2023)',
+                subtext: chart5Select2.value,
                 left: 'center'
             },
             tooltip: {
@@ -811,11 +811,15 @@ chart5Select.addEventListener('change', function () {
         };
         chart5.setOption(updatedOption);
     });
-});
+}
+
+chart5Select2.addEventListener('change', updateChart5);
+chart5Select.addEventListener('change', updateChart5);
 
 //-----------CHART 6: Lesionados por actor vial-----------------
 let chart6;
 let chart6Select = document.getElementById('chart6Select');
+let chart6Select2 = document.getElementById('chart6Select2');
 
 const getOptionChart6 = (callback) => {
     getData("init", 'getDataChart6', function (newData) {
@@ -852,8 +856,8 @@ const getOptionChart6 = (callback) => {
     });
 }
 
-chart6Select.addEventListener('change', function () {
-    getData(chart6Select.value, 'getDataChart6', function (newData) {
+function updateChart6(){
+    getData([chart6Select.value, chart6Select2.value], 'getDataChart6', function (newData) {
         let updatedOption = {
             title: {
                 text: 'Lesionados por actor vial',
@@ -885,7 +889,10 @@ chart6Select.addEventListener('change', function () {
         };
         chart6.setOption(updatedOption);
     });
-});
+}
+
+chart6Select.addEventListener('change', updateChart6);
+chart6Select2.addEventListener('change', updateChart6);
 
 
 //-----------CHART 7: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
@@ -893,19 +900,17 @@ let chart7;
 let chart7Select = document.getElementById('chart7Select');
 
 const getOptionChart7 = (callback) => {
+    document.getElementById("chart7Select").value = añoActual;
     getData(chart7Select.value, 'getDataChart7', function (newData) {
         // Seleccionar automáticamente el option con el valor del año actual
-        document.getElementById("chart7Select").value = añoActual;
 
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
-        console.log(dict)
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
-        console.log(barData)
 
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
@@ -916,7 +921,7 @@ const getOptionChart7 = (callback) => {
 
         let option = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -993,7 +998,7 @@ chart7Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: 'Mortalidad vs Tasa departamental',
+                text: 'Lesionados fatales vs Tasa departamental',
                 subtext: chart7Select.value,
                 x: 'center',
             },
@@ -1055,12 +1060,9 @@ let chart8;
 let chart8Select = document.getElementById('chart8Select');
 
 const getOptionChart8 = (callback) => {
+    document.getElementById("chart8Select").value = añoActual;
     getData(chart8Select.value, 'getDataChart8', function (newData) {
-        const añoActual = new Date().getFullYear();
-
-        // Seleccionar automáticamente el option con el valor del año actual
-        document.getElementById("chart8Select").value = añoActual;
-
+        
         const pobTotalAntioquia = newData[1][0]['value'];
         const dict = newData[0];
 
@@ -1077,8 +1079,8 @@ const getOptionChart8 = (callback) => {
 
         let option = {
             title: {
-                text: 'Lesionados vs Tasa departamental',
-                subtext: chart7Select.value,
+                text: 'Lesionados no fatales vs Tasa departamental',
+                subtext: chart8Select.value,
                 x: 'center',
             },
             tooltip: {
@@ -1109,7 +1111,7 @@ const getOptionChart8 = (callback) => {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                 },
                 {
                     type: 'value',
@@ -1118,7 +1120,7 @@ const getOptionChart8 = (callback) => {
             ],
             series: [
                 {
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                     type: 'bar',
                     data: barData,
                 },
@@ -1154,8 +1156,8 @@ chart8Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: 'Lesionados vs Tasa departamental',
-                subtext: chart7Select.value,
+                text: 'Lesionados no fatales vs Tasa departamental',
+                subtext: chart8Select.value,
                 x: 'center',
             },
             tooltip: {
@@ -1186,7 +1188,7 @@ chart8Select.addEventListener('change', function () {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                 },
                 {
                     type: 'value',
@@ -1195,7 +1197,7 @@ chart8Select.addEventListener('change', function () {
             ],
             series: [
                 {
-                    name: 'No. Muertos',
+                    name: 'No. Lesionados',
                     type: 'bar',
                     data: barData,
                 },
@@ -1219,8 +1221,8 @@ const getOptionChart9 = (callback) => {
     getData("init", 'getDataChart9', function (newData) {
         option = {
             title: {
-                text: 'Incidentes Viales por Región',
-                subtext: '(2016 - 2023)',
+                text: 'Lesionados fatales y no fatales \n por región',
+                subtext: chart9Select.value,
                 x: 'center',
             },
             legend: {
@@ -1257,7 +1259,7 @@ chart9Select.addEventListener('change', function () {
     getData(chart9Select.value, 'getDataChart9', function (newData) {
         updatedOption = {
             title: {
-                text: 'Incidentes Viales por Región',
+                text: 'Lesionados fatales y no fatales \n por región',
                 subtext: chart9Select.value,
                 x: 'center',
             },
@@ -1293,11 +1295,8 @@ chart9Select.addEventListener('change', function () {
 
 //----------CHART 10: Mixed Actores viales x regiones x % del total de accidentes x cantidad------------------//
 let chart10;
-
-
 const getOptionChart10 = (callback) => {
     getData("init", 'getDataChart10', function (datos) {
-        console.log(datos)
         const names = [...new Set(datos.map(item => item.name))];
         var vehiculos = [...new Set(datos.map(item => item.vehiculo))];
 
@@ -1334,7 +1333,7 @@ const getOptionChart10 = (callback) => {
         var acumulado = 0;
 
         for (var i = 0; i < lista.length; i++) {
-            acumulado += (lista[i] / sumaTotal) * 100;
+            acumulado = (lista[i] / sumaTotal) * 100;
             porcentajeAcumulado.push(acumulado.toFixed(2));
         }
         
@@ -1356,17 +1355,44 @@ const getOptionChart10 = (callback) => {
 
         series.push({
             name: "% del total",
-            type: 'line',
+            type: 'bar',
+            stack: 'porcentaje',
             emphasis: {
                 focus: 'series'
             },
             data: porcentajeAcumulado,
-            yAxisIndex: 1
+            yAxisIndex: 1,
+            markline:{
+                
+            },
+            markLine: {
+                lineStyle: {
+                    type: 'dashed' 
+                },
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Max',
+                        label: {
+                            position: 'end',
+                            formatter: 'Máx: {c} %'
+                        }
+                    },
+                    {
+                        type: 'min',
+                        name: 'Min',
+                        label: {
+                            position: 'end',
+                            formatter: 'Min: {c} %'
+                        }
+                    }
+                ]
+            }
         });
 
         let option = {
             title: {
-                text: 'I.V de actores viales por región'
+                text: 'Lesiones viales: Fatales y no fatales, por actor y región.'
             },
             tooltip: {
                 trigger: 'axis',
@@ -1391,16 +1417,176 @@ const getOptionChart10 = (callback) => {
                 },
                 {
                     type: 'value',
-                    'name': '% del total'
+                    'name': '% total de accidentes'
                 },
             ],
-            series: series
+            series: series,
+            
         };
         // Utilizar la configuración para dibujar el gráfico
         chart10.setOption(option);
     })
 };
 
+//----------Chart 11:
+let chart11;
+const chart11Select = document.getElementById('chart11Select');
+
+const getOptionChart11 = (callback) => {
+    getData("init", 'getDataChart11', function (newData) {
+        option = {
+            title: {
+                text: 'Lesionados fatales por región',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
+chart11Select.addEventListener('change', function () {
+    getData(chart11Select.value, 'getDataChart11', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'Lesionados fatales por región',
+                subtext: chart11Select.value,
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart11.setOption(updatedOption);
+    });
+});
+
+//----------Chart 12: 
+let chart12;
+const chart12Select = document.getElementById('chart12Select');
+
+const getOptionChart12 = (callback) => {
+    getData("init", 'getDataChart12', function (newData) {
+        option = {
+            title: {
+                text: 'Lesionados no fatales por región',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
+chart12Select.addEventListener('change', function () {
+    getData(chart12Select.value, 'getDataChart12', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'Lesionados no fatales por región',
+                subtext: chart12Select.value,
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart12.setOption(updatedOption);
+    });
+});
 
 //Get data
 function getData(anio, action, callback) {
@@ -1485,6 +1671,16 @@ function initCharts() {
     getOptionChart10(function (option) {
         chart10.setOption(option);
     });
+
+    chart11 = echarts.init(document.getElementById("chart11"));
+    getOptionChart11(function (option) {
+        chart11.setOption(option);
+    });
+
+    chart12 = echarts.init(document.getElementById("chart12"));
+    getOptionChart12(function (option) {
+        chart12.setOption(option);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -1504,4 +1700,6 @@ window.addEventListener('resize', function () {
     chart8.resize();
     chart9.resize();
     chart10.resize();
+    chart11.resize();
+    chart12.resize();
 });

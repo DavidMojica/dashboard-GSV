@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../templates/styles/login.css">
     <link rel="shortcut icon" href="https://antioquia.gov.co/templates/gk_game/images/touch-device.png" type="image/x-icon">
     <script src="../scripts/login.js" defer></script>
-    <title>Login | ANSV</title>
+    <title>Login | GSV</title>
 </head>
 <body class="bg_dotted">
 <nav class="navbar navbar-expand-lg">
