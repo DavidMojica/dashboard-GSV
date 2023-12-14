@@ -33,11 +33,17 @@ switch ($action) {
         returnDataResponse(getDataPareto($anio, 2));
         break;
     case 'getDataChart9':
-        returnDataResponse(getDataChart9($anio));
+        returnDataResponse(getDataChartFlower($anio, 3));
         break;
     case 'getDataChart10':
         returnDataResponse(getDataChart10($anio));
         break;
+    case 'getDataChart11':
+        returnDataResponse(getDataChartFlower($anio, 1));
+    break;
+    case 'getDataChart12':
+        returnDataResponse(getDataChartFlower($anio, 2));
+    break;
     default:
         die();
 }
@@ -71,35 +77,58 @@ function getDataChart10($anio)
 
     return  $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getDataChart9($anio)
+function getDataChartFlower($anio, $tpa)
 {
     include('PDOconn.php');
+
+    $whereClause = '';
+    $params = [];
+
+    if ($tpa == 1 || $tpa == 2) {
+        $whereClause = ' AND a.tipo_accidente = :tpa';
+        $params[':tpa'] = $tpa;
+    }
+
     if (is_numeric($anio)) {
         $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
-        FROM tbl_accidente a
-        JOIN tbl_municipio m ON a.municipio = m.id
-        JOIN tbl_subregion s ON m.subregion = s.id
-        WHERE a.anio = :a
-        GROUP BY s.nombre
-        ORDER BY VALUE;";
+            FROM tbl_accidente a
+            JOIN tbl_municipio m ON a.municipio = m.id
+            JOIN tbl_subregion s ON m.subregion = s.id
+            WHERE a.anio = :anio $whereClause
+            GROUP BY s.nombre
+            ORDER BY value;";
 
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':a', $anio, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->bindParam(':anio', $anio, PDO::PARAM_INT);
 
+        foreach ($params as $param => $value) {
+            $stmt->bindParam($param, $value, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Si $anio no es numérico, se ignora en la consulta
     $query = "SELECT SUM(a.cantidad) AS value, s.nombre AS name
-    FROM tbl_accidente a
-    JOIN tbl_municipio m ON a.municipio = m.id
-    JOIN tbl_subregion s ON m.subregion = s.id
-    GROUP BY s.nombre
-    ORDER BY VALUE;";
+        FROM tbl_accidente a
+        JOIN tbl_municipio m ON a.municipio = m.id
+        JOIN tbl_subregion s ON m.subregion = s.id
+        WHERE 1 $whereClause
+        GROUP BY s.nombre
+        ORDER BY value;";
+
     $stmt = $pdo->prepare($query);
+
+    foreach ($params as $param => $value) {
+        $stmt->bindParam($param, $value, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 function getDataPareto($anio, $tpa)
 {
     include('PDOconn.php');

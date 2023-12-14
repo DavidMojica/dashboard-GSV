@@ -1431,6 +1431,128 @@ const getOptionChart10 = (callback) => {
     })
 };
 
+//----------Chart 11:
+let chart11;
+const chart11Select = document.getElementById('chart11Select');
+
+const getOptionChart11 = (callback) => {
+    getData("init", 'getDataChart11', function (newData) {
+        option = {
+            title: {
+                text: 'Lesionados fatales \n por región',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
+chart11Select.addEventListener('change', function () {
+    getData(chart11Select.value, 'getDataChart11', function (newData) {
+        updatedOption = {
+            title: {
+                text: 'Lesionados fatales y no fatales \n por región',
+                subtext: chart9Select.value,
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        chart9.setOption(updatedOption);
+    });
+});
+
+//----------Chart 12: 
+let chart12;
+const chart12Select = document.getElementById('chart12Select');
+
+const getOptionChart12 = (callback) => {
+    getData("init", 'getDataChart12', function (newData) {
+        option = {
+            title: {
+                text: 'Lesionados fatales \n por región',
+                subtext: '(2016 - 2023)',
+                x: 'center',
+            },
+            legend: {
+                top: 'bottom'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                }
+            },
+            series: [
+                {
+                    name: 'Incidentes Viales',
+                    type: 'pie',
+                    radius: [40, 160],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: {
+                        borderRadius: 8
+                    },
+                    data: newData
+                }
+            ]
+        };
+        callback(option);
+    });
+};
+
 
 //Get data
 function getData(anio, action, callback) {

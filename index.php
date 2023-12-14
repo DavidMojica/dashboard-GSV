@@ -331,6 +331,33 @@ include("processes/PDOconn.php");
 
                     </div>
                 </div>
+
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart11Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chartHxl" id="chart11">
+
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-10 col-lg-5 col-xl-5 chartContainer">
+                    <select name="" id="chart12Select" aria-label=".form-select-lg example" class="form-select form-select-lg mb-3">
+                        <?php
+                        echo "<option value='" . $anioMinimo . " - " . $anioActual . "'>Todos los años (" . $anioMinimo . " - " . $anioActual . ")</option>";
+                        for ($i = $anioMinimo; $i <= $anioActual; $i++) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <div class="chartHxl" id="chart12">
+
+                    </div>
+                </div>
             </div>
 
         </div>
