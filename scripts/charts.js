@@ -819,6 +819,7 @@ chart5Select.addEventListener('change', updateChart5);
 //-----------CHART 6: Lesionados por actor vial-----------------
 let chart6;
 let chart6Select = document.getElementById('chart6Select');
+let chart6Select2 = document.getElementById('chart6Select2');
 
 const getOptionChart6 = (callback) => {
     getData("init", 'getDataChart6', function (newData) {
@@ -855,8 +856,8 @@ const getOptionChart6 = (callback) => {
     });
 }
 
-chart6Select.addEventListener('change', function () {
-    getData(chart6Select.value, 'getDataChart6', function (newData) {
+function updateChart6(){
+    getData([chart6Select.value, chart6Select2.value], 'getDataChart6', function (newData) {
         let updatedOption = {
             title: {
                 text: 'Lesionados por actor vial',
@@ -888,7 +889,10 @@ chart6Select.addEventListener('change', function () {
         };
         chart6.setOption(updatedOption);
     });
-});
+}
+
+chart6Select.addEventListener('change', updateChart6);
+chart6Select2.addEventListener('change', updateChart6);
 
 
 //-----------CHART 7: MORTALIDAD VS TASA DEPARTAMENTAL POR I.V -------------//
