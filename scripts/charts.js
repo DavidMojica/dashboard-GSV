@@ -985,17 +985,22 @@ chart7Select.addEventListener('change', function () {
     chart7.dispose();
     chart7 = echarts.init(document.getElementById("chart7"));
     getData(chart7Select.value, 'getDataChart7', function (newData) {
-        const pobTotalAntioquia = newData[1][0]['value'];
+        const pobTotalAntioquia = newData[1];
         const dict = newData[0];
 
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
+        const anioBuscado = chart7Select.value;
+        console.log(anioBuscado);
+        const poblacionAnio = pobTotalAntioquia.find(item => item.anio === anioBuscado);
 
+        console.log(poblacionAnio)
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
+            
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / poblacionAnio) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
