@@ -612,7 +612,7 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: `Tasa de lesiones fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesionados fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -707,7 +707,7 @@ chart4Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: `Tasa de lesiones fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesionados fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -791,7 +791,7 @@ const getOptionChart4e1 = (callback) => {
 
         let option = {
             title: {
-                text: `Tasa de lesiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesionados no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -886,7 +886,7 @@ chart4e1Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: `Tasa de lesiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesionados no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
