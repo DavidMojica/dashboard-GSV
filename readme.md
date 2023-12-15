@@ -6,32 +6,24 @@
 <p>Data provided by <b>Gerencia de Seguridad Vial de Antioquia</b> (Road Safety Management of Antioquia), providing accurate and comprehensive information on accidents and related incidents in the region.</p>
 <br>
 <h2 align="center">Previews & examples</h2>
-<div style="display: flex; justify-content: flex-end; align-items: center;">
-  <img src="resources/readmeResx/c1.png" height="400" style="margin-left: 0px;">
-  <div style="text-align: right; margin-right: 50px; margin-left:50px;">
-    <b>There you can find basic & essential data</b>
-  </div>
-</div>
-<h3 align="center">To...</h3>
-<div style="display: flex; justify-content: flex-end; align-items: center;">
-  <div style="text-align: right; margin-right: 60px; margin-left:50px;">
-    <b>More Complex Data</b>
-  </div>
-  <img src="resources/readmeResx/b2.png" height="400" style="margin-left: 0px; margin-right: 20px;">
-</div>
-<br>
+<p align="center"><b>There you can find basic & essential data</b></p>
+<p align="center"><img src="resources/readmeResx/c1.png" height="400" style="margin-left: 0px;"><p>
 
-<div style="display: flex; justify-content: center; align-items: center;">
-  <img src="resources/readmeResx/c4.png" height="400" style="margin-left: 0px; margin-right: 20px;">
-<div style="text-align: right; margin-right: 60px; margin-left:50px;">
-<h3 align="center">Perform data filtering...</h3>
-  </div>
-    
-</div>
-<br>
+<h3 align="center">To more complex Data</h3>
+<p align="center"> <img src="resources/readmeResx/b2.png" height="400" style="margin-left: 0px; margin-right: 20px;"> <p>
+
+
+<h3 align="center">Filter the data</h3>
 <p align="center">The data will give you what you need</p>
 <p align="center">
-  <img src="resources/readmeResx/c5.png" height="400" style="margin-left: 0px; margin-right: 20px;">
+<img src="resources/readmeResx/c4.png" height="400" style="margin-left: 0px; margin-right: 20px;">
+<img src="resources/readmeResx/c5.png" height="300" style="margin-left: 0px; margin-right: 20px;">
+</p>
+<div style="display: flex; justify-content: center; align-items: center;">
+  
+
+<p align="center">
+  
 </p>
 <h3 align="center">Interact with the Data</h3>
 <div style="display: flex; justify-content: center; align-items: center;">
