@@ -1846,6 +1846,11 @@ function initCharts() {
         chart4.setOption(option);
     });
 
+    chart4e1 = echarts.init(document.getElementById("chart4e1"));
+    getOptionChart4e1(function (option) {
+        chart4e1.setOption(option);
+    });
+
     chart5 = echarts.init(document.getElementById("chart5"));
     getOptionChart5(function (option) {
         chart5.setOption(option);

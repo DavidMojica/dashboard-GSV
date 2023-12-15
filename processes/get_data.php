@@ -34,7 +34,10 @@ switch ($action) {
         returnDataResponse(getDataChart3($anio, 2));
         break;
     case 'getDataChart4':
-        returnDataResponse(getDataChart4($anio, $diccionarioPoblacion));
+        returnDataResponse(getDataChart4($anio, $diccionarioPoblacion, 1));
+        break;
+    case 'getDataChart4e1':
+        returnDataResponse(getdatachart4($anio, $diccionarioPoblacion, 2));
         break;
     case 'getDataChart5':
         returnDataResponse(getDataCircular($anio[0], $anio[1], 1));
@@ -251,7 +254,7 @@ function getDataChart1($anio)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getDataChart4($municipio, $diccionarioPoblacion)
+function getDataChart4($municipio, $diccionarioPoblacion, $tpa)
 {
     include('PDOconn.php');
     $anioMinimo = 2018;
@@ -261,11 +264,12 @@ function getDataChart4($municipio, $diccionarioPoblacion)
         $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
         FROM tbl_accidente a
         JOIN tbl_meses m ON a.mes = m.id
-        WHERE a.tipo_accidente = 2 AND a.anio BETWEEN :a_m AND :a_y AND a.municipio = :municipio
+        WHERE a.tipo_accidente = :tpa AND a.anio BETWEEN :a_m AND :a_y AND a.municipio = :municipio
         GROUP BY a.anio, m.nombre
         ORDER BY a.anio, CAST(a.mes AS SIGNED);";
 
         $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":tpa", $tpa, PDO::PARAM_INT);
         $stmt->bindParam(":a_m", $anioMinimo, PDO::PARAM_INT);
         $stmt->bindParam(":a_y", $anioActual, PDO::PARAM_INT);
         $stmt->bindParam(":municipio", $municipio, PDO::PARAM_INT);
@@ -286,11 +290,12 @@ function getDataChart4($municipio, $diccionarioPoblacion)
     $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
             FROM tbl_accidente a
             JOIN tbl_meses m ON a.mes = m.id
-            WHERE a.tipo_accidente = 2 AND a.anio BETWEEN :a_m AND :a_y 
+            WHERE a.tipo_accidente = :tpa AND a.anio BETWEEN :a_m AND :a_y 
             GROUP BY a.anio, m.nombre
             ORDER BY a.anio, CAST(a.mes AS SIGNED);";
 
     $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":tpa", $tpa, PDO::PARAM_INT);
     $stmt->bindParam(":a_m", $anioMinimo, PDO::PARAM_INT);
     $stmt->bindParam(":a_y", $anioActual, PDO::PARAM_INT);
     $stmt->execute();
