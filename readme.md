@@ -19,12 +19,7 @@
 <img src="resources/readmeResx/c4.png" height="400" style="margin-left: 0px; margin-right: 20px;">
 <img src="resources/readmeResx/c5.png" height="300" style="margin-left: 0px; margin-right: 20px;">
 </p>
-<div style="display: flex; justify-content: center; align-items: center;">
-  
 
-<p align="center">
-  
-</p>
 <h3 align="center">Interact with the Data</h3>
 <div style="display: flex; justify-content: center; align-items: center;">
   <img src="resources/readmeResx/c6.png" height="300" style="margin-left: 0px; margin-right: 20px;">
