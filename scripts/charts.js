@@ -576,9 +576,8 @@ const getOptionChart4 = (callback) => {
         let pobTotalAntioquia = newData[1];
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
-        quarryData.forEach((element, i) => { // Ajuste aquí, corregí el uso de los paréntesis
+        quarryData.forEach(element => { // Ajuste aquí, corregí el uso de los paréntesis
             let { anio, mes, total_muertes } = element;
-            console.log(pobTotalAntioquia[anio])
 
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = {};
@@ -683,7 +682,7 @@ chart4Select.addEventListener('change', function () {
 
             acumMuertesPorAnio[anio] += parseInt(total_muertes);
             if (isNaN(chart4Select.value)) {
-                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia[anio]) * 100000).toFixed(2);
             }
             else {
                 datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
@@ -908,18 +907,17 @@ const getOptionChart7 = (callback) => {
     getData(chart7Select.value, 'getDataChart7', function (newData) {
         // Seleccionar automáticamente el option con el valor del año actual
 
-        const pobTotalAntioquia = newData[1][0]['value'];
+        const pobTotalAntioquia = newData[1];
         const dict = newData[0];
 
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
 
-
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index]) * 100000).toFixed(2);
             return tasaPor100000;
         });
 

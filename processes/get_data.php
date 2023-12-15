@@ -42,10 +42,10 @@ switch ($action) {
         returnDataResponse(getDataCircular($anio[0], $anio[1], 2));
         break;
     case 'getDataChart7':
-        returnDataResponse(getDataPareto($anio, 1));
+        returnDataResponse(getDataPareto($anio, 1, $diccionarioPoblacion));
         break;
     case 'getDataChart8':
-        returnDataResponse(getDataPareto($anio, 2));
+        returnDataResponse(getDataPareto($anio, 2, $diccionarioPoblacion));
         break;
     case 'getDataChart9':
         returnDataResponse(getDataChartFlower($anio, 3));
@@ -145,7 +145,7 @@ function getDataChartFlower($anio, $tpa)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getDataPareto($anio, $tpa)
+function getDataPareto($anio, $tpa, $diccionarioPoblacion)
 {
     include('PDOconn.php');
 
@@ -161,14 +161,7 @@ function getDataPareto($anio, $tpa)
 
     $result1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $query2 = "SELECT SUM(p.cantidad) as value
-    FROM tbl_poblacion p;";
-    $stmt = $pdo->prepare($query2);
-    $stmt->execute();
-
-    $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return [$result1, $result2];
+    return [$result1, $diccionarioPoblacion];
 }
 function getDataCircular($municipio, $anio, $tpa)
 {
