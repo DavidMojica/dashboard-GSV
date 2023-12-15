@@ -612,7 +612,7 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesiones fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -660,7 +660,7 @@ chart4Select.addEventListener('change', function () {
         let selectedText = chart4Select.options[selectedIndex].text;
 
         if (isNaN(chart4Select.value)) {
-            var pobTotalAntioquia = newData[1][0]['pob_total'];
+            var pobTotalAntioquia = newData[1];
         }
         else {
             var pobTotalMpioAnios = newData[1]
@@ -707,7 +707,7 @@ chart4Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesiones fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -791,7 +791,7 @@ const getOptionChart4e1 = (callback) => {
 
         let option = {
             title: {
-                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesiones no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -839,7 +839,7 @@ chart4e1Select.addEventListener('change', function () {
         let selectedText = chart4e1Select.options[selectedIndex].text;
 
         if (isNaN(chart4e1Select.value)) {
-            var pobTotalAntioquia = newData[1][0]['pob_total'];
+            var pobTotalAntioquia = newData[1];
         }
         else {
             var pobTotalMpioAnios = newData[1]
@@ -886,7 +886,7 @@ chart4e1Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+                text: `Tasa de lesiones no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -1803,7 +1803,6 @@ function getData(anio, action, callback) {
         success: function (response) {
             let jsonString = JSON.stringify(response);
             let data = JSON.parse(jsonString);
-            // console.log(data)
             callback(data.content);
         },
         error: function (jqXHR, textStatus, errorThrown) {
