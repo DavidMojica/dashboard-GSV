@@ -991,16 +991,22 @@ chart7Select.addEventListener('change', function () {
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
-        const anioBuscado = chart7Select.value;
-        console.log(anioBuscado);
+        const anioBuscado = parseInt(chart7Select.value, 10);
         const poblacionAnio = pobTotalAntioquia.find(item => item.anio === anioBuscado);
 
-        console.log(poblacionAnio)
+        var poblacion = undefined;
+        if(poblacionAnio){
+             poblacion = poblacionAnio.pob_total;
+        }
+        else{
+            poblacion = 7000000 //Fake data para cubrir algún error de extracción (no pasa pero por si acaso)
+        }
+
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / poblacionAnio) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / poblacion) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
