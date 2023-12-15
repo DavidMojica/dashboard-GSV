@@ -573,12 +573,12 @@ const getOptionChart4 = (callback) => {
         
         let datosPorAnio = {};
         let anios = [];
-        let pobTotalAntioquia = newData[1][0]['pob_total'];
+        let pobTotalAntioquia = newData[1];
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
-        console.log(pobTotalAntioquia)
-        quarryData.forEach(element => {
+        quarryData.forEach((element, i) => { // Ajuste aquí, corregí el uso de los paréntesis
             let { anio, mes, total_muertes } = element;
+            console.log(pobTotalAntioquia[anio])
 
             if (!datosPorAnio[anio]) {
                 datosPorAnio[anio] = {};
@@ -593,6 +593,9 @@ const getOptionChart4 = (callback) => {
             acumMuertesPorAnio[anio] += parseInt(total_muertes);
             datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia[anio]) * 100000).toFixed(2);
         });
+
+        
+
         let series = anios.map(anio => {
             let data = Array.from({ length: 12 });
 

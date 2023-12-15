@@ -5,12 +5,19 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
 $anio = isset($_POST['anio']) ? $_POST['anio'] : null;
 
 #General Queryes
-$query = "SELECT SUM(p.cantidad) as pob_total
+$query = "SELECT p.anio as anio, SUM(p.cantidad) as pob_total
     from tbl_poblacion p
     GROUP BY `anio`;";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $poblacionAnios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$diccionarioPoblacion = array();
+foreach ($poblacionAnios as $row) {
+    $anQuery = $row['anio'];
+    $pobTotal = $row['pob_total'];
+    $diccionarioPoblacion[$anQuery] = $pobTotal;
+}
+
 
 switch ($action) {
     case 'getDataChart1':
@@ -26,7 +33,7 @@ switch ($action) {
         returnDataResponse(getDataChart3($anio, 2));
         break;
     case 'getDataChart4':
-        returnDataResponse(getDataChart4($anio, $poblacionAnios));
+        returnDataResponse(getDataChart4($anio, $diccionarioPoblacion));
         break;
     case 'getDataChart5':
         returnDataResponse(getDataCircular($anio[0], $anio[1], 1));
@@ -250,7 +257,7 @@ function getDataChart1($anio)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getDataChart4($municipio, $poblacionAnios)
+function getDataChart4($municipio, $diccionarioPoblacion)
 {
     include('PDOconn.php');
     $anioMinimo = 2018;
@@ -272,7 +279,15 @@ function getDataChart4($municipio, $poblacionAnios)
         $stmt->execute();
         $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return [$resultQ1, $poblacionAnios];
+        $query = "SELECT * from  tbl_poblacion p
+        where id_municipio = :municipio
+        GROUP BY p.anio";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(":municipio", $municipio, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultQ2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return [$resultQ1, $resultQ2];
     }
     $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
             FROM tbl_accidente a
@@ -287,7 +302,7 @@ function getDataChart4($municipio, $poblacionAnios)
     $stmt->execute();
     $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    return [$resultQ1, $poblacionAnios];
+    return [$resultQ1, $diccionarioPoblacion];
 }
 function getDataChart3($municipio, $tpa)
 {
