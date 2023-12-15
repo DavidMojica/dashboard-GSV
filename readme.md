@@ -33,3 +33,4 @@
 <h2 align="center">Made with ♥ by</h2>
 <p align="Center">David Mojica S.E and Developer</p>
 <p align="Center">William Montoya - Data Provider</p>
+<p align="right">Last update: 15/12/2023 - Release 1.0</p>
