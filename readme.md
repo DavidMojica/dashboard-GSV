@@ -44,3 +44,7 @@
 <p align="center">
   <img src="resources/readmeResx/c8.png" height="50" style="margin-left: 0px; margin-right: 20px;">
 </p>
+<hr>
+<h2 align="center">Made with ♥ by</h2>
+<p align="Center">David Mojica S.E and Developer</p>
+<p align="Center">William Montoya - Data Provider</p>
