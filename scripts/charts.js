@@ -1093,11 +1093,22 @@ const getOptionChart7 = (callback) => {
             return parseInt(objeto.value);
         });
 
+        const anioBuscado = parseInt(chart7Select.value, 10);
+        const poblacionAnio = pobTotalAntioquia.find(item => item.anio === anioBuscado);
+
+        var poblacion = undefined;
+        if(poblacionAnio){
+             poblacion = poblacionAnio.pob_total;
+        }
+        else{
+            poblacion = 7000000 //Fake data para cubrir alguna malintención del cliente
+        }
+
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
 
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index].pob_total) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / poblacion) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
@@ -1263,10 +1274,21 @@ const getOptionChart8 = (callback) => {
             return parseInt(objeto.value);
         });
 
+        const anioBuscado = parseInt(chart8Select.value, 10);
+        const poblacionAnio = pobTotalAntioquia.find(item => item.anio === anioBuscado);
+
+        var poblacion = undefined;
+        if(poblacionAnio){
+             poblacion = poblacionAnio.pob_total;
+        }
+        else{
+            poblacion = 7000000 //Fake data para cubrir alguna malintención del cliente
+        }
+
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index].pob_total) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / poblacion) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
