@@ -20,20 +20,27 @@
   <img src="resources/readmeResx/b2.png" height="400" style="margin-left: 0px; margin-right: 20px;">
 </div>
 <br>
-<h3 align="center">Perform data filtering...</h3>
-<div style="display: flex; justify-content: flex-end; align-items: center;">
-  <img src="resources/readmeResx/c3.png" height="400" style="margin-left: 0px; margin-right: 20px;">
+
+<div style="display: flex; justify-content: center; align-items: center;">
   <img src="resources/readmeResx/c4.png" height="400" style="margin-left: 0px; margin-right: 20px;">
-  <br>
+<div style="text-align: right; margin-right: 60px; margin-left:50px;">
+<h3 align="center">Perform data filtering...</h3>
+  </div>
+    
 </div>
 <br>
 <p align="center">The data will give you what you need</p>
 <p align="center">
   <img src="resources/readmeResx/c5.png" height="400" style="margin-left: 0px; margin-right: 20px;">
 </p>
-<h3 align="center">Interact...</h3>
-<div style="display: flex; justify-content: flex-end; align-items: center;">
-  <img src="resources/readmeResx/c3.png" height="400" style="margin-left: 0px; margin-right: 20px;">
-  <img src="resources/readmeResx/c4.png" height="400" style="margin-left: 0px; margin-right: 20px;">
+<h3 align="center">Interact with the Data</h3>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="resources/readmeResx/c6.png" height="300" style="margin-left: 0px; margin-right: 20px;">
+  <img src="resources/readmeResx/c4.png" height="300" style="margin-left: 0px; margin-right: 20px;">
   <br>
 </div>
+<br>
+<p align="center"> Remove data if you want...</p>
+<p align="center">
+  <img src="resources/readmeResx/c8.png" height="50" style="margin-left: 0px; margin-right: 20px;">
+</p>
