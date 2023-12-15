@@ -570,12 +570,13 @@ const getOptionChart4 = (callback) => {
     let selectedIndex = chart4Select.selectedIndex;
     let selectedText = chart4Select.options[selectedIndex].text;
     getData("init", 'getDataChart4', function (newData) {
+        
         let datosPorAnio = {};
         let anios = [];
         let pobTotalAntioquia = newData[1][0]['pob_total'];
         let quarryData = newData[0];
         let acumMuertesPorAnio = {};
-
+        console.log(pobTotalAntioquia)
         quarryData.forEach(element => {
             let { anio, mes, total_muertes } = element;
 
@@ -590,7 +591,7 @@ const getOptionChart4 = (callback) => {
             }
 
             acumMuertesPorAnio[anio] += parseInt(total_muertes);
-            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia) * 100000).toFixed(2);
+            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia[anio]) * 100000).toFixed(2);
         });
         let series = anios.map(anio => {
             let data = Array.from({ length: 12 });
@@ -1617,6 +1618,7 @@ function getData(anio, action, callback) {
 // ------------INIT CHARTS - RESPONSIVITY--------------//
 
 function initCharts() {
+    console.time('load')
     chart1 = echarts.init(document.getElementById("chart1"));
     getOptionChart1(function (option) {
         chart1.setOption(option);
@@ -1681,6 +1683,7 @@ function initCharts() {
     getOptionChart12(function (option) {
         chart12.setOption(option);
     });
+    console.timeEnd('load')
 }
 
 document.addEventListener('DOMContentLoaded', function () {

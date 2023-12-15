@@ -1,8 +1,16 @@
 <?php
-
+include('PDOconn.php');
 include('essentials.php');
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 $anio = isset($_POST['anio']) ? $_POST['anio'] : null;
+
+#General Queryes
+$query = "SELECT SUM(p.cantidad) as pob_total
+    from tbl_poblacion p
+    GROUP BY `anio`;";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$poblacionAnios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 switch ($action) {
     case 'getDataChart1':
@@ -18,7 +26,7 @@ switch ($action) {
         returnDataResponse(getDataChart3($anio, 2));
         break;
     case 'getDataChart4':
-        returnDataResponse(getDataChart4($anio));
+        returnDataResponse(getDataChart4($anio, $poblacionAnios));
         break;
     case 'getDataChart5':
         returnDataResponse(getDataCircular($anio[0], $anio[1], 1));
@@ -47,6 +55,8 @@ switch ($action) {
     default:
         die();
 }
+
+
 
 function getDataChart10($anio)
 {
@@ -127,7 +137,6 @@ function getDataChartFlower($anio, $tpa)
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 function getDataPareto($anio, $tpa)
 {
@@ -241,7 +250,7 @@ function getDataChart1($anio)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getDataChart4($municipio)
+function getDataChart4($municipio, $poblacionAnios)
 {
     include('PDOconn.php');
     $anioMinimo = 2018;
@@ -263,13 +272,7 @@ function getDataChart4($municipio)
         $stmt->execute();
         $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $query = "SELECT * from  tbl_poblacion where id_municipio = :municipio";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":municipio", $municipio, PDO::PARAM_INT);
-        $stmt->execute();
-        $resultQ2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return [$resultQ1, $resultQ2];
+        return [$resultQ1, $poblacionAnios];
     }
     $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
             FROM tbl_accidente a
@@ -284,13 +287,7 @@ function getDataChart4($municipio)
     $stmt->execute();
     $resultQ1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $query = "SELECT SUM(p.cantidad) as pob_total
-    from tbl_poblacion p;";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute();
-    $resultQ2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return [$resultQ1, $resultQ2];
+    return [$resultQ1, $poblacionAnios];
 }
 function getDataChart3($municipio, $tpa)
 {
