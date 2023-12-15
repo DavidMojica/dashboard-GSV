@@ -909,6 +909,7 @@ const getOptionChart7 = (callback) => {
 
         const pobTotalAntioquia = newData[1];
         const dict = newData[0];
+        console.log(pobTotalAntioquia)
 
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
@@ -917,7 +918,7 @@ const getOptionChart7 = (callback) => {
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index]) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index].pob_total) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
