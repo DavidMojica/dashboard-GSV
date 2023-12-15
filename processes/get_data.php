@@ -261,7 +261,7 @@ function getDataChart4($municipio, $diccionarioPoblacion)
         $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
         FROM tbl_accidente a
         JOIN tbl_meses m ON a.mes = m.id
-        WHERE a.tipo_accidente = 1 AND a.anio BETWEEN :a_m AND :a_y AND a.municipio = :municipio
+        WHERE a.tipo_accidente = 2 AND a.anio BETWEEN :a_m AND :a_y AND a.municipio = :municipio
         GROUP BY a.anio, m.nombre
         ORDER BY a.anio, CAST(a.mes AS SIGNED);";
 
@@ -286,7 +286,7 @@ function getDataChart4($municipio, $diccionarioPoblacion)
     $query = "SELECT a.anio, m.nombre as mes, SUM(a.cantidad) as total_muertes 
             FROM tbl_accidente a
             JOIN tbl_meses m ON a.mes = m.id
-            WHERE a.tipo_accidente = 1 AND a.anio BETWEEN :a_m AND :a_y 
+            WHERE a.tipo_accidente = 2 AND a.anio BETWEEN :a_m AND :a_y 
             GROUP BY a.anio, m.nombre
             ORDER BY a.anio, CAST(a.mes AS SIGNED);";
 

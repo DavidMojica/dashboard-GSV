@@ -562,7 +562,7 @@ chart3e1Select.addEventListener('change', function(){
 });
 
 
-//-------------CHART 4: Tasa de muerte * 100hab
+//-------------CHART 4: Tasa de lesiones * 100hab
 let chart4;
 const chart4Select = document.getElementById('chart4Select');
 
@@ -612,7 +612,7 @@ const getOptionChart4 = (callback) => {
 
         let option = {
             title: {
-                text: `Tasa de muertes x 100.000 hab por I.V. - ${selectedText}`
+                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -707,7 +707,7 @@ chart4Select.addEventListener('change', function () {
 
         let updatedOption = {
             title: {
-                text: `Muertes por incidentes viales x 100.000 hab. - ${selectedText}`
+                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
             },
             tooltip: {
                 trigger: 'axis'
@@ -738,6 +738,185 @@ chart4Select.addEventListener('change', function () {
             series: series
         };
         chart4.setOption(updatedOption);
+    });
+});
+
+//-------------Chart 4.1 Tasa de muerte * 100 hab 
+let chart4e1;
+const chart4e1Select = document.getElementById('chart4e1Select');
+
+const getOptionChart4e1 = (callback) => {
+    let selectedIndex = chart4e1Select.selectedIndex;
+    let selectedText = chart4e1Select.options[selectedIndex].text;
+    getData("init", 'getDataChart4e1', function (newData) {
+        
+        let datosPorAnio = {};
+        let anios = [];
+        let pobTotalAntioquia = newData[1];
+        let quarryData = newData[0];
+        let acumMuertesPorAnio = {};
+        quarryData.forEach(element => { // Ajuste aquí, corregí el uso de los paréntesis
+            let { anio, mes, total_muertes } = element;
+
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+                acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
+            }
+
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+
+            acumMuertesPorAnio[anio] += parseInt(total_muertes);
+            datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia[anio]) * 100000).toFixed(2);
+        });
+
+        
+
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 });
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
+        });
+
+        let option = {
+            title: {
+                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                top: '5%', right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: arrayMeses
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: series
+        };
+        // Llama a la función de devolución de llamada con las opciones del gráfico
+        callback(option);
+    });
+};
+
+chart4e1Select.addEventListener('change', function () {
+    chart4e1.dispose();
+    chart4e1 = echarts.init(document.getElementById("chart4e1"))
+    getData(chart4e1Select.value, 'getDataChart4e1', function (newData) {
+        let datosPorAnio = {};
+        let anios = [];
+        var pobTotalMpioPorAnio = {};
+        let quarryData = newData[0];
+        let acumMuertesPorAnio = {};
+        let selectedIndex = chart4e1Select.selectedIndex;
+        let selectedText = chart4e1Select.options[selectedIndex].text;
+
+        if (isNaN(chart4e1Select.value)) {
+            var pobTotalAntioquia = newData[1][0]['pob_total'];
+        }
+        else {
+            var pobTotalMpioAnios = newData[1]
+            for (let i of pobTotalMpioAnios) {
+                pobTotalMpioPorAnio[i.anio] = i.cantidad
+            }
+        }
+
+        quarryData.forEach(element => {
+            let { anio, mes, total_muertes } = element;
+            if (!datosPorAnio[anio]) {
+                datosPorAnio[anio] = {};
+                anios.push(anio.toString());
+                acumMuertesPorAnio[anio] = 0; // Reiniciar la acumulación al inicio de cada año
+            }
+            if (!datosPorAnio[anio][mes]) {
+                datosPorAnio[anio][mes] = 0;
+            }
+
+            acumMuertesPorAnio[anio] += parseInt(total_muertes);
+            if (isNaN(chart4e1Select.value)) {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalAntioquia[anio]) * 100000).toFixed(2);
+            }
+            else {
+                datosPorAnio[anio][mes] = parseFloat((acumMuertesPorAnio[anio] / pobTotalMpioPorAnio[anio]) * 100000).toFixed(2);
+            }
+        });
+
+        let series = anios.map(anio => {
+            let data = Array.from({ length: 12 });
+
+            for (let mes in datosPorAnio[anio]) {
+                let mesIndex = meses[mes] - 1;
+
+                data[mesIndex] = datosPorAnio[anio][mes];
+            }
+            return {
+                name: anio.toString(),
+                type: 'line',
+                data: data
+            };
+        });
+
+
+        let updatedOption = {
+            title: {
+                text: `Tasa de esiones no fatales x 100.000 habitantes. - ${selectedText}`
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: anios,
+                right: '5%'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: arrayMeses
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: series
+        };
+        chart4e1.setOption(updatedOption);
     });
 });
 
@@ -909,7 +1088,6 @@ const getOptionChart7 = (callback) => {
 
         const pobTotalAntioquia = newData[1];
         const dict = newData[0];
-        console.log(pobTotalAntioquia)
 
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
@@ -917,6 +1095,7 @@ const getOptionChart7 = (callback) => {
 
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
+
             acumMuertes += value; // Acumula las muertes
             const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index].pob_total) * 100000).toFixed(2);
             return tasaPor100000;
@@ -999,7 +1178,7 @@ chart7Select.addEventListener('change', function () {
              poblacion = poblacionAnio.pob_total;
         }
         else{
-            poblacion = 7000000 //Fake data para cubrir algún error de extracción (no pasa pero por si acaso)
+            poblacion = 7000000 //Fake data para cubrir alguna malintención del cliente
         }
 
         let acumMuertes = 0;
@@ -1077,7 +1256,7 @@ const getOptionChart8 = (callback) => {
     document.getElementById("chart8Select").value = añoActual;
     getData(chart8Select.value, 'getDataChart8', function (newData) {
         
-        const pobTotalAntioquia = newData[1][0]['value'];
+        const pobTotalAntioquia = newData[1];
         const dict = newData[0];
 
         const barData = dict.map(function (objeto) {
@@ -1087,7 +1266,7 @@ const getOptionChart8 = (callback) => {
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia[index].pob_total) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
@@ -1154,17 +1333,27 @@ chart8Select.addEventListener('change', function () {
     chart8.dispose();
     chart8 = echarts.init(document.getElementById("chart8"));
     getData(chart8Select.value, 'getDataChart8', function (newData) {
-        const pobTotalAntioquia = newData[1][0]['value'];
+        const pobTotalAntioquia = newData[1];
         const dict = newData[0];
 
         const barData = dict.map(function (objeto) {
             return parseInt(objeto.value);
         });
+        const anioBuscado = parseInt(chart8Select.value, 10);
+        const poblacionAnio = pobTotalAntioquia.find(item => item.anio === anioBuscado);
+
+        var poblacion = undefined;
+        if(poblacionAnio){
+             poblacion = poblacionAnio.pob_total;
+        }
+        else{
+            poblacion = 7000000 //Fake data para cubrir alguna malintención del cliente
+        }
 
         let acumMuertes = 0;
         const tasaPor100000Data = barData.map((value, index, array) => {
             acumMuertes += value; // Acumula las muertes
-            const tasaPor100000 = parseFloat((acumMuertes / pobTotalAntioquia) * 100000).toFixed(2);
+            const tasaPor100000 = parseFloat((acumMuertes / poblacion) * 100000).toFixed(2);
             return tasaPor100000;
         });
 
