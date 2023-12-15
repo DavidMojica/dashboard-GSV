@@ -69,35 +69,31 @@ switch ($action) {
 
 
 
-function getDataChart10($anio)
+function getDataChart10($anio = null)
 {
     include('PDOconn.php');
-    if (is_numeric($anio)) {
-        $query = "SELECT s.nombre AS name, v.nombre as vehiculo, SUM(a.cantidad) AS value
-        FROM tbl_accidente a
-        JOIN tbl_municipio m ON a.municipio = m.id
-        JOIN tbl_subregion s ON m.subregion = s.id
-        JOIN tbl_vehiculo v ON a.vehiculo = v.id
-        WHERE a.anio = :a
-        GROUP BY m.subregion, a.vehiculo;";
-
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':a', $anio, PDO::PARAM_INT);
-        $stmt->execute();
-        return  $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    
+    $filtroAnio = is_numeric($anio) ? "AND a.anio = :a" : "";
 
     $query = "SELECT s.nombre AS name, v.nombre as vehiculo, SUM(a.cantidad) AS value
     FROM tbl_accidente a
     JOIN tbl_municipio m ON a.municipio = m.id
     JOIN tbl_subregion s ON m.subregion = s.id
     JOIN tbl_vehiculo v ON a.vehiculo = v.id
+    WHERE 1 {$filtroAnio}
     GROUP BY m.subregion, a.vehiculo;";
+
     $stmt = $pdo->prepare($query);
+
+    if (is_numeric($anio)) {
+        $stmt->bindParam(':a', $anio, PDO::PARAM_INT);
+    }
+
     $stmt->execute();
 
-    return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 function getDataChartFlower($anio, $tpa)
 {
     include('PDOconn.php');
