@@ -930,7 +930,7 @@ const getOptionChart5 = (callback) => {
         let option = {
             title: {
                 text: 'Mortalidad por actor vial',
-                subtext: '(2016 - 2023)',
+                subtext: chart5Select2.value,
                 left: 'center'
             },
             tooltip: {
@@ -1008,7 +1008,7 @@ const getOptionChart6 = (callback) => {
         let option = {
             title: {
                 text: 'Lesionados por actor vial',
-                subtext: '(2016 - 2023)',
+                subtext: chart6Select2.value,
                 left: 'center'
             },
             tooltip: {
@@ -1043,7 +1043,7 @@ function updateChart6(){
         let updatedOption = {
             title: {
                 text: 'Lesionados por actor vial',
-                subtext: '(2016 - 2023)',
+                subtext: chart6Select2.value,
                 left: 'center'
             },
             tooltip: {
@@ -1662,7 +1662,7 @@ const getOptionChart11 = (callback) => {
         option = {
             title: {
                 text: 'Lesionados fatales por región',
-                subtext: '(2016 - 2023)',
+                subtext: chart11Select.value,
                 x: 'center',
             },
             legend: {
@@ -1742,7 +1742,7 @@ const getOptionChart12 = (callback) => {
         option = {
             title: {
                 text: 'Lesionados no fatales por región',
-                subtext: '(2016 - 2023)',
+                subtext: chart12Select.value,
                 x: 'center',
             },
             legend: {
